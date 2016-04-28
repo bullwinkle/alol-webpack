@@ -1,0 +1,17 @@
+{
+	"extends": "eslint:recommended",
+	"parser": "babel-eslint",
+	"globals": {
+		"angular": true
+	},
+	"env": {
+		"jasmine": true,
+		"browser": true,
+		"mocha": true,
+		"node": true
+	},
+	"rules": {
+		"eqeqeq": 1,
+		"no-console": 0
+	}
+}
