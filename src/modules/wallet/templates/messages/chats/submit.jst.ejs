@@ -1,0 +1,55 @@
+<div class="submit-form" data-bind="toggle: not(state_isRatedReview)">
+    <div class="attachments">
+        <div class="list"></div>
+        <button class="add-more attachment" type="button">
+            <i class="ic-plus-circle"></i>
+        </button>
+    </div>
+
+    <div class="actions" data-bind="classes: { 'review-room': state_reviewRoom }">
+        <div class="action message active" data-type="0" data-bind="classes: { active: equal(state_actionType, 0) }">
+            <i class="icon ic-text-aa-thin"></i>
+        </div>
+        <div class="action faq" data-type="1" data-bind="classes: { active: equal(state_actionType, 1), empty: not(state_faqAvailable) }">
+            <div class="tooltip">
+                <i class="ic ic-robohead"></i>
+
+                <div class="content">
+                    <div class="header">Ooops!</div>
+                    <div class="text">Популярных вопросов<br>пока нет</div>
+                </div>
+            </div>
+            <i class="icon ic-question"></i>
+        </div>
+        <div class="action smile" data-type="2" data-bind="classes: { active: equal(state_actionType, 2) }">
+            <div class="tooltip">Доволька: Чем мы Вас порадовали?</div>
+            <i class="icon ic ic-face-smile"></i>
+        </div>
+        <div class="action sad" data-type="3" data-bind="classes: { active: equal(state_actionType, 3) }">
+            <div class="tooltip">Печалька: Дайте знать, где мы напортачили.</div>
+            <i class="icon ic ic-face-sad"></i>
+        </div>
+        <div class="action idea" data-type="4" data-bind="classes: { active: equal(state_actionType, 4) }">
+            <div class="tooltip">Хотелка: Поделитесь идеей!</div>
+            <i class="icon ic ic-idea"></i>
+        </div>
+    </div>
+    <div class="flexbox body-input-row" data-bind="classes:{'is-hidden': state_faqVisible}">
+        <div class="attach needsclick">
+            <i class="icon ic-camera-alt-2 needsclick"></i>
+            <input type="file" multiple="multiple" accept="image/*" class="needsclick"/>
+        </div>
+
+        <div class="input-contenteditable">
+            <div contenteditable placeholder="Введите текст" maxlength="1024" name="body" class="needsclick"></div>
+        </div>
+
+        <button class="theme review" type="button">
+            <i class="ic-speaker"></i>
+        </button>
+        <div class="theme submit-button">
+            <span class="text-mobile">Отпр.</span>
+            <span class="text-desktop">Отправить</span>
+        </div>
+    </div>
+</div>

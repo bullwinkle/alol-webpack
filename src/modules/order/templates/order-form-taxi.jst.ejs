@@ -1,0 +1,106 @@
+<div class="order-form-container">
+	<form>
+
+		<div class="car-type flexbox">
+			<input id="standart" class="hide" type="radio" value="standart" name="car-type" data-bind="checked:car_type,events:['input','paste','change']"/>
+			<label for="standart" class="theme-border-color">
+				<span class="icon car-type-standart"></span>
+				<span class="text">КОМФОРТ</span>
+			</label>
+			<input id="vip" class="hide" type="radio" value="vip" name="car-type" data-bind="checked:car_type,events:['input','paste','change']"/>
+			<label for="vip" class="theme-border-color">
+				<span class="icon car-type-vip"></span>
+				<span class="text">VIP</span>
+			</label>
+		</div>
+
+		<!--<label for="from" class="green">Откуда</label>-->
+		<div class="label address">
+			<div class="icon">A</div>
+			<div class="text">Откуда</div>
+			<select class="city-select" name="city" data-bind="value: city, options:state_cities"></select>
+		</div>
+		<div class="input-with-icon">
+			<input type="text" name="fromAddress" id="fromAddress" placeholder="Введите адрес" data-bind="value:fromAddress,events:['input','paste','change']"/>
+			<div class="icon ic-marker-on-map show-map-button-from"></div>
+		</div>
+
+		<!--<label for="where" class="green">Куда</label>-->
+		<div class="label">
+			<div class="icon">B</div>
+			<div class="text">Куда</div>&emsp;
+			<span class="hint">( Заполните, если хотите узнать стоимость поездки )</span>
+		</div>
+		<div class="input-with-icon">
+			<input type="text" name="whereAddress" id="whereAddress" placeholder="Введите адрес" data-bind="value:whereAddress,events:['input','paste','change']"/><br/>
+			<div class="icon ic-marker-on-map show-map-button-where"></div>
+		</div>
+
+		<div class="flexbox date-time">
+			<div class="date">
+				<!--<label for="when_date" class="green">Дата</label>-->
+				<div class="label">
+					<div class="icon calendar"></div>
+					<div class="text">Дата</div>
+				</div>
+				<input name="when_date" id="when_date" type="date" data-bind="value:when_date,events:['input','paste','change']"/>
+			</div>
+			<div class="time">
+				<!--<label for="when_time" class="green">Время</label>-->
+				<div class="label">
+					<div class="icon clock"></div>
+					<div class="text">Время</div>
+				</div>
+				<input name="when_time" id="when_time" type="time" data-bind="value:when_time,events:['input','paste','change']"/>
+			</div>
+		</div>
+
+		<!--<label class="green" for="">Телефон для связи</label>-->
+		<div class="label">
+			<div class="icon phone"></div>
+			<div class="text">Телефон для связи</div>
+		</div>
+		<div class="phone-input">
+			<div class="phone-prefix">+7</div>
+			<div class="input-wrapper">
+				<input name="phone" type="tel" data-user-phone placeholder="Номер телефона" data-bind="phoneValue:phone, countryCode:7, events:['input','paste','change']"/>
+			</div>
+		</div>
+
+		<div class="label add-comment">
+			<div class="icon talk"></div>
+			<div class="text" data-bind="text: select(not(state_isCommentAreaVisible), 'Добавить комментарий', 'Комментарий')">Добавить комментарий</div>
+		</div>
+		<textarea name="comment" data-bind="value:comment, classes: {hide: not(state_isCommentAreaVisible)}"></textarea>
+
+		<button type="submit" class="theme filled large submit-button" data-bind="classes:{'is-loading': state_isSubmitting}">Заказать</button>
+	</form>
+</div>
+<iframe src="about:blank" name="hidden-frame" class="hide" frameborder="0"></iframe>
+<div class="slidable-region-right map-region" data-bind="classes: {'is-visible': state_isMapShowen}">
+	<a class="head button menu-item">
+		<i class="ic-chevron-left close-map theme"></i>
+		<span class="content">
+		<div class="with-loader">
+			<input type="text"
+			       name="where"
+			       id="where"
+			       maxlength="20"
+			       autocomplete="on"
+			       autocorrect="off"
+			       placeholder="Выбранный адрес"
+			       data-bind="value:state_mapInputValue, events:['input','paste','change']">
+			<div class="loader-bubbles theme"></div>
+		</div>
+
+		</span>
+		<!--<i class="ic-chevron-right get-location-button theme"></i>-->
+		<!--<i class="ic-check theme checked"></i>-->
+	</a>
+	<div class="google-map-container">
+		<button class="map-loader theme text is-loading"></button>
+		<!--<iframe width="600" height="450" frameborder="0" style="border:0"-->
+		        <!--src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDTxcsn1v26bHK1_1LBcqBilI0KK332o-M&q=Fisht+Olympic+Stadium,Sochi+Russia">-->
+		<!--</iframe>-->
+	</div>
+</div>

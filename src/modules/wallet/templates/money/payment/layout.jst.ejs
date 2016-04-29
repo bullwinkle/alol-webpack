@@ -1,0 +1,9 @@
+<label for="provider-categories">Категория</label>
+<select name="provider-caregories" id="provider-categories" data-bind="options: state_providerCategories, sodValue: state_providerCategoryId"></select>
+
+<div data-bind="toggle: state_providerCategoryId">
+	<label for="providers">Оператор</label>
+	<select name="providers" id="providers" data-bind="options: state_providers, sodValue: state_providerId"></select>
+</div>
+
+<div name="additional-fields"></div>

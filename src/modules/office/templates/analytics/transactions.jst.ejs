@@ -1,0 +1,53 @@
+<p>Мы можем сгенерировать и выслать вам файл с таблицей аналитики в формате CSV или XLS на почту
+	<b class="email" data-bind="text:state_email"></b>
+</p>
+
+
+<label>Выберите дату</label>
+
+
+<div class="dates flexbox">
+
+	<div class="date flexbox">
+		<span>От</span>
+
+		<div class="date-input flexbox">
+			<input type="date" data-bind="value:date_from, events: ['input','paste','change']" name="date_from" id="date-from"
+			       max="{{= moment().format('YYYY-MM-DD') }}"/>
+		</div>
+
+
+		<i data-bind="toggle: state_showResetDate" class="reset-date-from ic-cross-circle"></i>
+	</div>
+
+	<div class="date flexbox">
+		<span>До</span>
+
+		<div class="date-input flexbox">
+			<input type="date" data-bind="value:date_to, events: ['input','paste','change']" name="date_to" id="date-to"
+			       max="{{= moment().format('YYYY-MM-DD') }}"/>
+		</div>
+
+		<i data-bind="toggle: state_showResetDate" class="reset-date-to ic-cross-circle"></i>
+	</div>
+</div>
+<div class="l-mb-20">
+	<label>Формат отчета</label>
+	<select name="report-format" id="report-format" data-select-or-die data-bind="value: state_format, events: ['change']">
+		<option value="pdf">PDF</option>
+		<option value="xls" selected>XLS</option>
+		<option value="csv">CSV</option>
+	</select>
+	<!--<label class="green s-cp">-->
+		<!--<input type="radio" name="report-format" class="green" data-bind="checked: state_format" value="pdf"> pdf-->
+	<!--</label>-->
+	<!--<label class="green s-cp">-->
+		<!--<input type="radio" name="report-format" class="green" data-bind="checked: state_format" value="csv"> csv-->
+	<!--</label>-->
+	<!--<label class="green s-cp">-->
+		<!--<input type="radio" name="report-format" class="green" data-bind="checked: state_format" value="xls"> xls-->
+	<!--</label>-->
+</div>
+
+
+<button type="button" class="theme filled send">Отправить файл</button>

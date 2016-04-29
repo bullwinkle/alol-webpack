@@ -1,0 +1,74 @@
+<div class="header">
+	<div class="content">
+		<a href="/wallet" class="logo"><%= image_tag "alol-black.svg"%></a>
+
+		<div class="authorised-links">
+			<a href="/wallet/profile" class="button" name="profile">
+				<img alt="" class="avatar"/>
+				<!--<span class="user-name"></span>-->
+			</a>
+			<!--<a class="button green" href="/office" name="office">Office</a>-->
+		</div>
+
+		<div class="unauthorised-links">
+			<a href="/auth?action={{- window.location.pathname }}&fromPublicRoute=true" class="signin theme">Вход</a>
+			<a href="/auth?action={{- window.location.pathname }}&fromPublicRoute=true" class="signup grey">Регистрация</a>
+		</div>
+
+	</div>
+</div>
+
+<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
+		<div class="main-section">
+			<div class="main-region-wrapper">
+				<div id="slideable-region-left" class="main-region slideable-region slide-left"></div>
+				<div id="main-region" class="main-region main-region"></div>
+				<div id="slideable-region-right" class="main-region slideable-region slide-right"></div>
+				<div id="slideable-region-right2" class="main-region slideable-region slide-right"></div>
+			</div>
+		</div>
+
+		<!-- Left side menu -->
+		<aside class="left-off-canvas-menu" data-prevent-scroll>
+			<div class="off-canvas-wrap-relative">
+				<div class="user-profile">
+					<div class="user-profile-image-background"></div>
+					<a href="/wallet/profile" class="clearfix link">
+						<div class="user-profile-image">
+						  <img alt=""/>
+						</div>
+						<div class="user-profile-name"></div>
+						<div class="user-profile-phone"></div>
+						<!--<div class="user-profile-settings-icon ic-settings"></div>-->
+						<!--<div class="user-profile-messages">-->
+							<!--<span class="user-profile-messages-count"></span>-->
+							<!--<span class="user-profile-messages-text"><span></span></span>-->
+						<!--</div>-->
+					</a>
+				</div>
+				<div class="menu">
+				  <div name="money">
+				    <a href="/wallet/money" class="button list-item menu-item">
+				      <i class="ic-cards"></i>
+
+				      <div class="content">Мои карты</div>
+				    </a>
+				  </div>
+
+					<div name="messages">
+						<a href="/wallet/messages/chats" class="button list-item menu-item">
+							<i class="ic-bubble-square"></i>
+
+							<div class="content">Сообщения</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</aside>
+
+		<!-- Overflow to exit side menu -->
+		<a class="exit-off-canvas"></a>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<!-- Info block -->
+<div class="cashback">
+  <div class="balance">
+    <span data-bind="text:money(balance)"></span>
+    <span class="rouble">№</span>
+  </div>
+  <div class="subtitle">
+    <div class="container">
+      <div class="text">CashBack</div>
+      <div class="icon">
+						<span class="ic-info-circle" role="tooltip" data-tooltip aria-haspopup="true"
+						      data-options="disable_for_touch:true"
+						      title="Сумма вашего кешбэка."></span>
+      </div>
+    </div>
+  </div>
+  <a href="/wallet/money/withdraw">
+    <button class="button small">ПЕРЕВЕСТИ НА КАРТУ</button>
+  </a>
+
+  <div class="tabs">
+    <a href="/wallet/cashback">
+      <button class="tab" data-bind="classes: { active:not(state_isMoneyPage) }">
+        <span class="ic-cashback">История</span>
+      </button>
+    </a>
+    <a href="/wallet/money">
+      <button class="tab" data-bind="classes: { active:state_isMoneyPage }">
+        <span class="ic-cards">Мои карты</span>
+      </button>
+    </a>
+  </div>
+</div>
+
+<!-- Card list or history -->
+<div name="list-region" role="region"></div>
+<!--<div class="list-loader" data-bind="toggle:state_loading">-->
+  <!--<%= image_tag "ajax-loader-small.gif" %>-->
+<!--</div>-->
+<!--<div class="hint no-cashback-history text-center" data-bind="toggle:state_noCashbackHistory">У Вас еще нет ни одной транзакции.</div>-->
+

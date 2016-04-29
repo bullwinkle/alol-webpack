@@ -1,0 +1,59 @@
+<div class="offer" data-bind="toggle: not(state_isLoading)">
+	<header class="header">
+		<a href="/">
+			<%= image_tag 'alol-black.svg', :class => 'iconto-logo-main' %>
+		</a>
+	</header>
+	<!--<div class="content">-->
+		<!--<div class="inner">-->
+			<!--&lt;!&ndash; some scrollable content &ndash;&gt;-->
+		<!--</div>-->
+	<!--</div>-->
+	<iframe class="content" src="/rules" frameborder="0"></iframe>
+	<div class="bottom-buttons">
+		<button class="grey" name="cancel">Не принимаю</button>
+		<button class="blue theme filled" name="ok">Принимаю</button>
+	</div>
+
+	<footer class="footer">
+		<div class="left-side">
+			<div class="service">
+				<div class="heading">О СЕРВИСЕ</div>
+				<ul>
+					<li><a data-bypass class="link" href="/landing/cashback">CashBack</a></li>
+					<li><a data-bypass class="link" href="/landing/places">Places</a></li>
+					<li><a data-bypass class="link" href="/landing/office">Office</a></li>
+					<li><a data-bypass class="link" href="/rules" target="_blank">Правила</a></li>
+				</ul>
+			</div>
+			<div class="contacts">
+				<div class="heading">КОНТАКТЫ</div>
+				<ul>
+					<li><a data-bypass href="mailto:welcome@alol.io">welcome@alol.io</a></li>
+					<li><a data-bypass href="tel:+78123850045">+7 (812) 385 00 45</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="more">
+			<div class="logos">
+				<div class="pci">
+					<%= image_tag "landing/pci.png" %>
+				</div>
+				<div class="social">
+					<a data-bypass href="https://www.facebook.com/icontoapp?ref=br_rs--" target="_blank">
+						<div class="icon fb"></div>
+					</a>
+					<a data-bypass href="https://vk.com/icontoapp" target="_blank">
+						<div class="icon vk"></div>
+					</a>
+					<a data-bypass href="https://twitter.com/iConto_Rus" target="_blank">
+						<div class="icon tw"></div>
+					</a>
+				</div>
+			</div>
+			<div class="copyright">2015 © АЛОЛЬ . All rights reserved</div>
+		</div>
+	</footer>
+</div>
+<div class="loader-bubbles blue" data-bind="toggle: state_isLoading"></div>

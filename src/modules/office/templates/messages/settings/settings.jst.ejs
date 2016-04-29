@@ -1,0 +1,24 @@
+<form>
+	<div class="row">
+		<div class="small-12 columns">
+
+			<!--<input type="checkbox" data-bind="checked: delivery" name="delivery" id="delivery"/>-->
+			<input type="checkbox" data-bind="checked: sms_delivery" name="sms_delivery" id="sms-delivery"/>
+			<label for="sms-delivery">Отправлять сообщение через SMS, если невозможно доставить сообщение пользователю в мессенджер</label>
+
+			<!--<input type="checkbox" data-bind="checked: delayEnabled, events: ['checked']" name="delay" id="delay"/>-->
+			<input type="checkbox" data-bind="checked: sms_schedule" name="sms_schedule" id="sms-schedule"/>
+			<label for="sms-schedule">Отправлять сообщение через SMS, если пользователь не прочел сообщение в мессенджере в течение часа</label>
+
+		</div>
+	</div>
+
+	<!--<div class="row delay-hours-row">-->
+		<!--<label class="inline columns">Более</label>-->
+		<!--<div class="columns">-->
+			<!--<input type="tel" maxlength="2" data-bind="value: delayHours, events: ['input', 'change', 'paste']"-->
+			       <!--name="delayHours" class="radius"/>-->
+		<!--</div>-->
+		<!--<label class="inline columns"><span name="delay-text" data-bind="text:delayText"></span></label>-->
+	<!--</div>-->
+</form>

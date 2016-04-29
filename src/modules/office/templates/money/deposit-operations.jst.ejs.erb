@@ -1,0 +1,66 @@
+<div class="header">
+  <div class="balance">
+    <span class="amount" data-bind="text:money(amount)"></span>&nbsp;<span class="rouble">:</span>
+
+    <div class="text">на вашем кошельке</div>
+  </div>
+
+  <div class="button-group">
+    <a href="/office/{{- companyId }}/money/bill" class="white" name="commit-from-account">ПОПОЛНИТЬ С&nbsp;РАСЧЕТНОГО
+      СЧЕТА</a>
+    <a href="/office/{{- companyId }}/money/commit" class="white" name="commit-from-card">ПОПОЛНИТЬ С&nbsp;БАНКОВСКОЙ
+      КАРТЫ</a>
+  </div>
+</div>
+
+<div class="wrap" data-bind="toggle:not(all(not(state_isLoadingMore), state_isEmpty, state_modelIsValid))">
+  <label>Период действия</label>
+
+  <div class="dates flexbox">
+
+    <div class="date flexbox">
+      <span>От</span>
+
+      <div class="date-input flexbox">
+        <input type="date" data-bind="value:date_from, events: ['input','paste']" name="date_from" id="date-from"
+               max="{{= moment().format('YYYY-MM-DD') }}"/>
+      </div>
+
+
+      <i data-bind="toggle: state_showResetDate" class="reset-date-from ic-cross-circle"></i>
+    </div>
+
+    <div class="date flexbox">
+      <span>До</span>
+
+      <div class="date-input flexbox">
+        <input type="date" data-bind="value:date_to, events: ['input','paste']" name="date_to" id="date-to"
+               max="{{= moment().format('YYYY-MM-DD') }}"/>
+      </div>
+
+      <i data-bind="toggle: state_showResetDate" class="reset-date-to ic-cross-circle"></i>
+    </div>
+
+  </div>
+</div>
+
+<div data-bind="toggle: id" class="inputs">
+  <div data-bind="toggle:all(not(state_isLoadingMore), state_isEmpty, state_modelIsValid)" class="empty-state">
+    <%= image_tag "empty-states/operations.svg" %>
+    <div class="empty-state-header">Еще нет транзакций</div>
+    <div class="hint">Здесь отображаются операции списания и пополнения вашего корпоративного кошелька.
+    </div>
+  </div>
+
+  <div data-bind="toggle:all(not(state_isEmpty), state_modelIsValid)">
+    <!--<div class="text-center operation-history">История операций</div>-->
+    <div class="list"></div>
+  </div>
+
+  <div class="loader-bubbles theme" data-bind="toggle:all(state_isLoadingMore, state_modelIsValid)"></div>
+</div>
+
+<div data-bind="toggle: not(id)" class="no-legal-message">
+  <div>Для пополнения счета и просмотра истории операций необходимо заполнить данные юридического лица</div>
+  <div><a href="/office/{{= companyId }}/legal" class="theme button fill-legal-first">Заполнить</a></div>
+</div>

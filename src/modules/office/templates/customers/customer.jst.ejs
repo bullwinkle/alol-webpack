@@ -1,0 +1,106 @@
+<form class="form">
+
+	<!--<div class="addresses" data-bind="underscore: state_addresses">-->
+	<!--<script type="text/template">-->
+	<!--<div class="address">-->
+	<!--<input type="checkbox" name="addresses" id="address_0"/>-->
+	<!--<label for="address_0">Все адреса</label>-->
+	<!--</div>-->
+	<!--<@ _.each(obj, function(address) { @>-->
+	<!--<div class="address">-->
+	<!--<input type="checkbox" name="address" data-id="<@= address.id @>" id="address_<@= address.id @>"/>-->
+	<!--<label for="address_<@= address.id @>"><@- address.address @></label>-->
+	<!--</div>-->
+	<!--<@ }); @>-->
+	<!--</script>-->
+	<!--</div>-->
+
+	<label>Имя</label>
+	<input type="text" id="first-name" name="first_name"
+	       data-bind="value:first_name, events: ['input', 'change', 'paste']"
+	       class="radius" maxlength="99"/>
+
+	<label>Фамилия</label>
+	<input type="text" name="last_name" id="last-name"
+	       data-bind="value:last_name, events: ['input', 'paste']"
+	       class="radius" maxlength="100"/>
+
+	<div class="hint l-mt-5" data-bind="toggle:state_profileNickName">
+		Имя и фамилия, указанные в профиле пользователя: <span data-bind="text: state_profileNickName"></span>
+	</div>
+
+	<label>Телефон</label>
+
+	<div data-bind="toggle: not(id)">
+		<div class="phone-input">
+			<div class="phone-prefix">+7</div>
+			<div class="input-wrapper">
+				<input type="tel" name="phone" id="phone"
+				       data-bind="value:state_phone, events: ['input', 'paste'], attr: { 'disabled': id }"
+				       class="radius"/>
+			</div>
+		</div>
+	</div>
+	<div data-bind="toggle: id">
+		<a class="field" data-bind="attr: { href: format('tel:+$1', phone) }, text: format('+$1', phone)" data-bypass></a>
+	</div>
+
+	<label>E-mail</label>
+
+	<div data-bind="toggle: not(id)">
+
+		<input type="email" name="email" id="email"
+		       data-bind="value:email, events: ['input', 'paste'], attr: { 'disabled': id }"
+		       class="radius" maxlength="64"/>
+	</div>
+	<div data-bind="toggle: id">
+		<a class="field theme" data-bind="attr: { href: format('mailto:$1', email) }, text: email" data-bypass></a>
+	</div>
+
+	<label>Дата рождения</label>
+	<input type="date" name="birthday" id="birthday"
+	       data-bind="value:birthday, events: ['input', 'paste', 'change'], attr: { 'disabled': id }" class="radius"/>
+
+	<!-- gender -->
+	<label>Пол</label>
+
+	<div>
+		<input class="green" type="radio" name="sex" value="1" data-bind="checked: integer(sex), attr: { 'disabled': id }"
+		       id="sex-male"/>
+		<label for="sex-male" class="grey inline">Мужской</label>
+	</div>
+	<div>
+		<input class="green" type="radio" name="sex" value="2" data-bind="checked: integer(sex), attr: { 'disabled': id }"
+		       id="sex-female"/>
+		<label for="sex-female" class="grey inline">Женский</label>
+	</div>
+	<div>
+		<input class="green" type="radio" name="sex" value="0" data-bind="checked: integer(sex), attr: { 'disabled': id }"
+		       id="sex-unknown"/>
+		<label for="sex-unknown" class="grey inline">Не определен</label>
+	</div>
+
+	<hr/>
+
+	<div class="splitter"></div>
+
+	<label class="s-cp">
+		<input type="checkbox" class="green switch" name="is_vip" id="is-vip" data-bind="checked: is_vip"/> VIP
+	</label>
+
+	<div class="splitter l-mt-20"></div>
+
+    <label>Идентификатор клиента</label>
+    <input type="text" id="external_id" name="external_id"
+           data-bind="value:external_id, events: ['input', 'change', 'paste']"
+           class="radius" maxlength="99"/>
+
+	<label>Примечание</label>
+	<textarea name="description" id="description" data-bind="value: description, events: ['input', 'paste', 'change']"
+	          class="radius" maxlength="255"></textarea>
+
+	<div class="form-buttons">
+		<button type="button" class="button red" name="remove" data-bind="toggle:all(id, state_isEditable)">Удалить</button>
+		<button type="submit" class="button green filled" name="save">Сохранить</button>
+	</div>
+</form>

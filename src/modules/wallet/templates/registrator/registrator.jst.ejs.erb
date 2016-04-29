@@ -1,0 +1,14 @@
+<form class="registrator-form hide-validation-errors">
+  <label for="login">Номер телефона</label>
+
+	<div class="phone-input">
+		<div class="phone-prefix">+7</div>
+		<div class="input-wrapper">
+    		<input id="login" name="login" type="text" data-bind="value:state_login, events: ['input','paste','change']"/>
+		</div>
+	</div>
+  <label for="card_number">Номер карты</label>
+  <input id="card_number" name="card_number" maxlength="19" type="text" data-bind="value:ignoreWhitespace(card_number), events: ['input','paste','change']"/>
+
+  <button type="submit" class="register blue filled">Зарегистрировать</button>
+</form>

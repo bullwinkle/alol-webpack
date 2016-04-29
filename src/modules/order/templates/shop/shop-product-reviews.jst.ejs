@@ -1,0 +1,38 @@
+<div class="s-brb-1 l-pb-10">
+	<form id="_filterForm" class="flexbox flex-v-center l-h-50 l-pl-10 l-pr-20">
+		<span class="show-for-medium-up t-black f-w-600">Сортировать по:</span>
+		<label>
+			<input name="sortBy"
+				   value="updated_at"
+				   type="radio"
+				   class="hide"
+				   data-bind="checked:state_sortBy"/>
+			<span order-by="updated_at"
+				  class="show-for-medium-up l-ml-30 s-cp t-grey-light l-mr-10 l-pr-20"
+				  data-bind="classes:{'triangle-top':equal(get(state_orderBy,'updated_at'),'asc'),'triangle-bottom':equal(get(state_orderBy,'updated_at'),'desc')}">Дате</span>
+		</label>
+		<label>
+			<input name="sortBy"
+				   value="rating"
+				   type="radio"
+				   class="hide"
+				   data-bind="checked:state_sortBy"/>
+			<span order-by="rating"
+				  class="show-for-medium-up l-ml-30 s-cp t-grey-light l-pr-20"
+				  data-bind="classes:{'triangle-top':equal(get(state_orderBy,'rating'),'asc'),'triangle-bottom':equal(get(state_orderBy,'rating'),'desc')}">Количеству звезд</span>
+		</label>
+
+		<div class="show-for-small-only l-pr-5 f-w-600 f-sz-14 t-grey-light nowrap l-ptb-20 l-pr-10">
+			<div data-bind="toggle: not(state_hasCurrentUserReview)">Оцените товар</div>
+		</div>
+		<div class="flex-0 l-ml-a t-a-right"
+			 data-bind="toggle: not(state_hasCurrentUserReview)">
+
+			<div class="show-for-medium-up l-pb-5">Оцените товар</div>
+			<div class="rating-wrapper"></div>
+		</div>
+	</form>
+</div>
+<div id="current-user-review"></div>
+<ul id="reviews-list" class="s-unstyled"></ul>
+<div class="loader-bubbles" data-bind="toggle: any(state_isLoading,infiniteScrollState_isLoadingMore)"></div>

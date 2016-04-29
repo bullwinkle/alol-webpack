@@ -1,0 +1,62 @@
+<div class="user flexbox l-mt-10 l-mb-20">
+	<div class="image" data-bind="attr: { style: format('background-image: url($1)', get(image, 'url')) }"></div>
+
+	<div class="info l-mr-20">
+		<div class="name s-ellipsis" data-bind="text: format('$1 $2', first_name_display, last_name_display)"></div>
+		<div class="phone s-ellipsis" data-bind="text: format('+7 $1', phoneFormat7(phone))"></div>
+		<div class="email s-ellipsis" data-bind="text: email"></div>
+	</div>
+
+	<div class="card-number"></div>
+
+	<div class="vip-status flexbox">
+		<input type="checkbox" id="vip" data-bind="checked: is_vip">
+		<label for="vip">VIP</label>
+	</div>
+</div>
+
+<div class="edit">
+	<div class="flexbox">
+		<div class="flex-1 l-mr-10">
+			<label>Имя</label>
+			<input type="text" name="first_name" data-bind="value: first_name">
+		</div>
+		<div class="flex-1">
+			<label>Фамилия</label>
+			<input type="text" name="last_name" data-bind="value: last_name">
+		</div>
+	</div>
+
+	<div class="flexbox">
+		<div class="flexbox l-mr-10">
+			<div class="l-mr-10">
+				<label>День рождения</label>
+				<input type="date" name="birthday" data-bind="value: birthday">
+			</div>
+			<div>
+				<label>Код клиента</label>
+				<input type="text" name="external_id" data-bind="value: external_id">
+			</div>
+		</div>
+
+		<div class="flex-1">
+			<label>Пол</label>
+			<select name="gender" data-bind="value: integer(sex)" data-select-or-die>
+				<option value="0">Неопределен</option>
+				<option value="1">Мужской</option>
+				<option value="2">Женский</option>
+			</select>
+		</div>
+	</div>
+
+	<div>
+		<label>Примечание</label>
+		<textarea name="description" rows="5" data-bind="value: description"></textarea>
+		<div class="hint">Здесь Вы можете написать примечание, видимое только для сотрудников компании</div>
+	</div>
+</div>
+
+<div class="buttons">
+	<button type="button" class="filled" name="save-button">Сохранить</button>
+	<button type="button" class="grey" name="cancel-button">Отмена</button>
+</div>

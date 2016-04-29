@@ -1,0 +1,68 @@
+<div class="restaurant" data-bind="text: restaurant_name">hi</div>
+
+<form action="/blank" method="POST">
+
+	<div class="flexbox date-time">
+		<div class="date">
+			<!--<label for="when_date" class="green">Дата</label>-->
+			<div class="label" for="when_date">
+				<div class="icon ic-label-calendar t-yellow l-mr-5"></div>
+				<div class="text">Дата</div>
+			</div>
+			<input name="when_date" id="when_date" type="date"
+			       data-bind="value:state_when_date,events:['input','paste','change']"/>
+		</div>
+		<div class="time">
+			<!--<label for="when_time" class="green">Время</label>-->
+			<div class="label" for="when_time">
+				<div class="icon ic-label-time t-yellow l-mr-5"></div>
+				<div class="text">Время</div>
+			</div>
+			<input name="when_time" id="when_time" type="time"
+			       data-bind="value:state_when_time,events:['input','paste','change']"/>
+		</div>
+	</div>
+	<div class="label" for="user_name">
+		<div class="icon ic-label-edit t-yellow l-mr-5"></div>
+		<div class="text">Имя</div>
+	</div>
+	<input type="text" name="user_name" id="user_name" data-bind="value: user_name"/>
+
+	<div class="label" for="phone">
+		<div class="icon ic-label-phone t-yellow l-mr-5"></div>
+		<div class="text">Телефон</div>
+	</div>
+	<div class="phone-input">
+		<div class="phone-prefix radius">+7</div>
+		<div class="input-wrapper">
+			<input id="phone"
+			       name="phone"
+			       class="radius"
+			       type="tel"
+			       placeholder="Номер телефона"
+			       value="7"
+			       autocomplete="on"
+			       autocorrect="off"
+			       maxlength="20"
+			       data-bind="phoneValue:phone,countryCode:7, events: ['input', 'paste', 'change']"
+				/>
+		</div>
+	</div>
+
+	<div class="label" for="persons">
+		<div class="icon ic-label-people t-yellow l-mr-5"></div>
+		<div class="text">Количество человек</div>
+	</div>
+	<input name="persons" id="persons" type="number" data-bind="value: number(persons)"/>
+
+	<div class="label add-comment" for="comment">
+		<div class="icon ic-label-comment t-yellow l-mr-5"></div>
+		<div class="text"> Комментарий </div>
+	</div>
+	<textarea name="comment" id="comment" data-bind="value:comment"></textarea>
+
+	<div class="form-buttons">
+		<button type="submit" class="blue theme filled">Сохранить</button>
+		<button type="button" class="red delete">Удалить</button>
+	</div>
+</form>

@@ -1,0 +1,53 @@
+<div class="form">
+
+	<!--<pre id="model">{{- JSON.stringify(obj, null, '\t') }}</pre>-->
+	<div id="cropper-region" class="l-mb-20"></div>
+
+	<input type="date" name="date" data-bind="value: utcDate(date), events: ['paste', 'change']" placeholder="date"/>
+	<input type="time" name="time" data-bind="value: utcTime(time), events: ['paste', 'change']" placeholder="time"/>
+	<input type="datetime-local" name="date-time" data-bind="value: utcDateTime(dateTime), events: ['paste', 'change']" placeholder="dateTime"/>
+	<input type="datetime" name="date-time" data-bind="value: utcDateTime(dateTime), events: ['paste', 'change']" placeholder="dateTime"/>
+	<input type="month" name="month" data-bind="value: utcMonth(month), events: ['paste', 'change']" placeholder="month"/>
+
+	<input type="text" name="address" data-bind="value: address_address, events: ['input', 'paste', 'change']" placeholder="address_address"/>
+
+	<input type="tel" name="company_id" data-bind="value: address_company_id, events: ['input', 'paste', 'change']" placeholder="address_company_id"/>
+
+	<input type="tel" name="city_id" data-bind="value: address_city_id, events: ['input', 'paste', 'change']" placeholder="address_city_id"/>
+
+	<input type="tel" name="country_id" data-bind="value: address_country_id, events: ['input', 'paste', 'change']" placeholder="address_country_id"/>
+
+	<input type="tel" name="place_id" data-bind="value: address_place_id, events: ['input', 'paste', 'change']" placeholder="address_place_id"/>
+
+	<input type="tel" name="contact_phone" data-bind="value: address_contact_phone, events: ['input', 'paste', 'change']" placeholder="address_contact_phone"/>
+
+	<input type="text" name="name" data-bind="value: company_name, events: ['input', 'paste', 'change']" placeholder="company_name"/>
+
+	<input type="text" name="sender_name" data-bind="value: company_sender_name, events: ['input', 'paste', 'change']" placeholder="company_sender_name"/>
+
+	<input type="tel" name="phone" data-bind="value: phone, events: ['input', 'paste', 'change']" placeholder="company_client_phone (model_phone)"/>
+
+	<div contenteditable name="description" data-bind="htmlToText: company_description, events: ['input', 'paste', 'change']" placeholder="state_company_description"></div>
+
+	<select name="" id="" data-bind="options: state_items">
+		<!--<option value="one">One</option>-->
+		<!--<option value="two">Two</option>-->
+		<!--<option value="three">Three</option>-->
+		<!--<optgroup label="Option Group Label">-->
+			<!--<option value="group.one">Option Group.One</option>-->
+			<!--<option value="group.two">Option Group.Two</option>-->
+		<!--</optgroup>-->
+		<!--<option value="four">Four</option>-->
+		<!--<option value="five">Five</option>-->
+	</select>
+
+	<div class="flexbox">
+		<button type="button" class="needsclick file-upload blue filled l-mr-10">Выбрать файл</button>
+		<div class="files-names"></div>
+	</div>
+	<input type="file" class="needsclick" multiple name="file" id="file-input" >
+
+	<button type="button" name="submit" class="blue filled wide">submit</button>
+
+
+</div>

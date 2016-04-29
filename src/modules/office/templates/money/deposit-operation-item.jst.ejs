@@ -1,0 +1,13 @@
+<div class="flexbox">
+
+	<div class="info">
+		<div class="description">{{= purchase_description }}</div>
+		<div class="date">{{= moment.unix(time).format("DD MMM YYYY в HH:mm") }}</div>
+	</div>
+
+	<div class="amount {{= getSign() == '-' ? 'red' : '' }}">
+		<span>{{= getSign() }}{{= Iconto.shared.helpers.money(amount) }}</span>
+		<span class="rouble">:</span>
+	</div>
+
+</div>

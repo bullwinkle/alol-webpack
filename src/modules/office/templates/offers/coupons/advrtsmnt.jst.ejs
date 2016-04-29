@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="small-12 columns">
+
+		<div class="text-center" data-bind="toggle: url">
+
+			<img class="qr" alt=""
+			     data-bind="attr: { src: format('//chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$1', hash) }"/>
+
+			<h6 class="text-center">
+				<a target="_blank" data-bind="attr: { href: url }, text: replace(url, '/^\/+|\/+$/g', '')" data-bypass=""></a>
+			</h6>
+		</div>
+
+		<h6 data-bind="text:title"></h6>
+
+		<h6 data-bind="text:description"></h6>
+
+		<img class="image" data-bind="toggle: state_imageUrl, attr: { src: state_imageUrl }" />
+
+	</div>
+</div>

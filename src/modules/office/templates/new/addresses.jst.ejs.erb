@@ -1,0 +1,53 @@
+<div class="steps">
+  {{ for (var i=0;i< stepIcons.length;i++) { }}
+  {{ var state = (step - 1) == i ? 'active' : (step - 1) < i ? '' : 'done'; }}
+  <div class="step {{= state }}">
+    <i class="ic-{{= stepIcons[i] }}"></i>
+  </div>
+  {{ if (i< stepIcons.length-1) { }}
+  <div class="flexbox dots">
+    {{ for (var j=0;j< stepIcons.length;j++) { }}
+    <div class="dot{{= (i >= step - 1) ? ' light' : '' }}"></div>
+    {{ } }}
+  </div>
+  {{ } }}
+  {{ } }}
+</div>
+
+<div class="content form" data-scroll>
+  <div class="content-padding">
+    <div class="title"><span>Шаг 2.</span> Адреса компании</div>
+
+    <div class="hint">Адреса компании нельзя будет отредактировать. Если у вас изменится адрес, необходимо удалить
+      старый и добавить новый. В настройках профиля компании можно будет привязать к адресу телефон и указать режим
+      работы. Возможность добавлять адреса доступна в профиле компании.
+    </div>
+
+    <label>Страна</label>
+    <select name="country_id" id="country_id" data-bind="options: state_countries, sodValue:integer(state_countryId)"></select>
+
+
+    <div data-bind="toggle: state_countryId">
+      <label>Город</label>
+      <select name="city_id" id="city_id" data-bind="options: state_cities, sodValue:integer(state_cityId)"></select>
+    </div>
+
+    <div class="address-inputs-block"></div>
+
+    <div class="template hide">
+      <div class="new-address">
+        <label>Адрес</label>
+        <input type="text"/>
+
+        <div class="hint">Например: Невский пр., 147, Санкт-Петербург, Россия</div>
+      </div>
+    </div>
+
+    <div class="add-address" data-bind="toggle: state_cityId">+ Добавить еще один адрес</div>
+
+    <div class="buttons">
+      <button type="button" class="grey" name="back-button">Назад</button>
+      <button type="button" class="green filled" name="continue-button">Продолжить</button>
+    </div>
+  </div>
+</div>

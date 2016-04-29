@@ -1,0 +1,10 @@
+<div class="ic- icon" style="background-image:url({{- _.get(obj,'mainPhoto','https://static.iconto.net/images/noimage.png') }})"></div>
+<div class="content">
+	<div class="clearfix">
+		<div class="type hint left">{{- _.get(obj,'prefix','-') }}</div>
+		<div class="distance hint right">{{- _.get(obj,'distance','-') }}м</div>
+	</div>
+	<div class="name">{{- _.get(obj,'name','-') }}</div>
+	<div class="address">{{- _.get(obj,'address','-') }}</div>
+</div>
+<i class="ic-chevron-right"></i>

@@ -1,0 +1,41 @@
+<link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=latin,cyrillic"
+      rel="stylesheet"
+      type="text/css">
+
+<style type="text/css">
+	@import url(//fonts.googleapis.com/css?family=Lato:300,400,700|Satisfy);
+</style>
+
+<div class="table">
+  <div class="table-row">
+    <div class="table-cell">
+
+      <div class="row">
+        <div class="small-12 medium-4 medium-centered columns">
+          <h6 class="title">Short link generator</h6>
+
+          <form>
+            <div class="pt-page pt-page-create pt-page-current">
+              <div class="page-content">
+                <input type="text" name="url" class="radius" placeholder="Введите длинную ссылку" data-bind="value: url, events: ['input', 'paste', 'change']"/>
+                <button type="submit" class="submit button radius tiny expand" disabled>СОЗДАТЬ</button>
+              </div>
+            </div>
+            <div class="pt-page pt-page-result">
+              <div class="page-content">
+                <input type="text" readonly class="radius" name="result"/>
+                <button type="button" class="submit button radius tiny expand" name="more">ЕЩЁ</button>
+              </div>
+            </div>
+            <div class="pt-page pt-page-error">
+              <div class="page-content">
+                <h6>Некорректная ссылка</h6>
+                <button type="button" class="submit button radius tiny expand" name="more">ЕЩЁ</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

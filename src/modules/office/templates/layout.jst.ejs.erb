@@ -1,0 +1,185 @@
+<div class="header">
+	<div class="content">
+		<a href="/office" class="logo"><%= image_tag "alol-black.svg" %></a>
+
+		<div class="authorised-links">
+			<a href="/office/profile" class="button" name="profile">
+				<img alt="" class="avatar"/>
+				<span class="user-name"></span>
+			</a>
+			<a class="button blue" href="/wallet" name="office">Wallet</a>
+		</div>
+
+		<div class="unauthorised-links">
+			<a href="/auth/signin" class="signin theme">Вход</a>
+			<a href="/auth/signup" class="signup grey">Регистрация</a>
+		</div>
+
+	</div>
+</div>
+
+<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
+		<div class="main-section">
+			<div class="main-region-wrapper">
+				<div id="slideable-region-left" class="main-region slideable-region slide-left"></div>
+				<div id="main-region" class="main-region main-region"></div>
+				<div id="slideable-region-right" class="main-region slideable-region slide-right"></div>
+			</div>
+		</div>
+
+		<!-- Left side menu -->
+		<aside class="left-off-canvas-menu" data-prevent-scroll>
+			<div class="off-canvas-wrap-relative">
+				<div class="user-profile">
+					<a href="/office/profile" class="clearfix">
+						<div class="user-profile-image"><img/></div>
+						<div class="user-profile-name"></div>
+						<div class="user-profile-settings-icon ic-settings"></div>
+					</a>
+				</div>
+
+
+				<div class="menu">
+					<div name="profile">
+						<a href="/" class="button list-item menu-item">
+							<img id="company-image">
+
+							<div class="content">
+								<div id="company-name"></div>
+								<div class="company-legal"></div>
+								<div class="company-addresses"></div>
+								<div class="company-deposit"></div>
+							</div>
+						</a>
+					</div>
+
+					<div name="companies">
+						<a href="/office" class="button list-item menu-item">
+							<i class="ic-markers"></i>
+
+							<div class="content">Компании</div>
+						</a>
+					</div>
+
+					<div name="messages">
+						<a class="button list-item menu-item">
+							<i class="ic-bubbles-round-o"></i>
+
+							<div class="content">Сообщения</div>
+						</a>
+					</div>
+
+					<div name="money">
+						<a class="button list-item menu-item">
+							<i class="ic-money"></i>
+
+							<div class="content">Деньги</div>
+						</a>
+					</div>
+
+					<div name="customers">
+						<a class="button list-item menu-item">
+							<i class="ic-group"></i>
+
+							<div class="content">Клиенты</div>
+						</a>
+					</div>
+
+
+					<div name="offers">
+						<a class="button list-item menu-item">
+							<i class="ic-cashback"></i>
+
+							<div class="content">Предложения</div>
+						</a>
+					</div>
+
+					<div name="shop">
+						<a class="button list-item menu-item">
+							<i class="ic-cart"></i>
+
+							<div class="content">Заказы</div>
+						</a>
+					</div>
+
+					<div name="analytics">
+						<a class="button list-item menu-item">
+							<i class="ic-line-chart"></i>
+
+							<div class="content">Аналитика</div>
+						</a>
+					</div>
+
+					<div name="branding">
+						<a class="button list-item menu-item">
+							<i class="ic-cube"></i>
+
+							<div class="content">Брендированный вход</div>
+						</a>
+					</div>
+
+					<div name="spots">
+						<a class="button list-item menu-item">
+							<i class="ic-markers"></i>
+
+							<div class="content">Точки обратной связи</div>
+						</a>
+					</div>
+
+					<!--<div name="chat-settings">-->
+					<!--<a class="button list-item menu-item">-->
+					<!--<i class="ic-bubble-round"></i>-->
+
+					<!--<div class="content">Настройки чата</div>-->
+					<!--</a>-->
+					<!--</div>-->
+
+					<!--<div name="documents">-->
+						<!--<a class="button list-item menu-item">-->
+							<!--<i class="ic-document"></i>-->
+
+							<!--<div class="content">Документы</div>-->
+						<!--</a>-->
+					<!--</div>-->
+
+					<!--<div name="add-transaction">-->
+						<!--<a class="button list-item menu-item">-->
+							<!--<i class="ic-wallet-add"></i>-->
+
+							<!--<div class="content">Добавить транзакцию</div>-->
+						<!--</a>-->
+					<!--</div>-->
+
+					<div name="all-companies">
+						<a class="button list-item menu-item">
+							<i class="ic-chevron-left"></i>
+
+							<div class="content"></div>
+						</a>
+					</div>
+
+					<div name="wallet">
+						<a class="button list-item menu-item">
+							<i class="ic-iconto-wallet"></i>
+
+							<div class="content">Перейти в АЛОЛЬ </div>
+						</a>
+					</div>
+				</div>
+
+				<div class="iconto-logo">
+					<%= image_tag 'alol-black.svg' %>
+				</div>
+			</div>
+
+			<a class="all-companies">
+				<i class="ic-chevron-left"></i>
+				<span></span>
+			</a>
+		</aside>
+
+		<!-- Overflow to exit side menu -->
+		<a class="exit-off-canvas"></a>
+	</div>
+</div>

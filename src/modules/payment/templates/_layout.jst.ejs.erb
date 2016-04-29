@@ -1,0 +1,290 @@
+<header class="row show-for-medium-up">
+  <div class="large-2 medium-2 small-3 columns text-left">
+    <a data-bind="attr: { href: order_redirect_url }">
+      <%= image_tag 'logo.png', :class => 'logo' %>
+    </a>
+  </div>
+  <div class="large-10 medium-10 small-9 columns text-left left">
+    <div class="slogan">
+      <h2>
+        Make your money back
+      </h2>
+      <!--<h6>-->
+      <!--Когда деньги возвращаются-->
+      <!--</h6>-->
+    </div>
+
+    <%= image_tag 'header.png', class: 'struct' %>
+  </div>
+</header>
+
+<div class="contain-to-grid light">
+  <nav class="top-bar light" data-topbar>
+
+    <section class="top-bar-section">
+      <h6 id="order-description" class="text-center" data-bind="text:order_description"></h6>
+    </section>
+  </nav>
+</div>
+
+<div class="row">
+
+<div class="small-12 small-centered medium-5 columns" data-bind="attr: { 'data-order-status': order_status }">
+
+<div class="row">
+  <div class="small-6 columns">
+    <h6>
+      <small>Платеж: <span data-bind="text:order_id"></span></small>
+    </h6>
+  </div>
+  <div class="small-6 columns">
+    <h6 class="text-right" data-bind="hide:isCardRegistration(order_type)">
+      <small>
+        Сумма: <span data-bind="text:money(orderFee_amount)"></span> руб.<br/>
+        Комиссия: <span data-bind='text:money(orderFee_total)'></span> руб.
+        (<span data-bind='text:feePercent(orderFee_fee_percent)'></span>%)
+      </small>
+    </h6>
+  </div>
+</div>
+
+<div class="order-error">
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <h2>Ошибка</h2>
+	    <h6 data-bind="toggle:order_isCardRegistration">Регистрация карты не может быть осуществлена</h6>
+      <h6 data-bind="toggle:not(order_isCardRegistration)">Оплата по карте не может быть осуществлена</h6>
+      <h6 data-bind="toggle:not(state_noredirect)">
+        <a data-bind="attr: { href: order_redirect_url }" class="return-button" data-bypass>Вернуться</a>
+      </h6>
+    </div>
+  </div>
+</div>
+
+
+<div class="order-processing order-ready">
+  <div class="row">
+    <div class="small-12 columns">
+      <h6 class="text-center">
+        <%= image_tag 'ajax-loader-small.gif' %>
+      </h6>
+      <h6 class="text-center">
+        <!--Платеж №<span data-bind="text:order_id"></span> в обработке-->
+	      Дождитесь окончания операции
+      </h6>
+      <h6 class="text-center">
+        <small>Осталось <span data-bind="text:timeFromSeconds(state_timer)"></span></small>
+      </h6>
+    </div>
+  </div>
+</div>
+
+<div class="order-completed">
+  <div class="row">
+    <div class="small-12 columns text-center">
+	    <h2 data-bind="toggle:order_isCardRegistration">Регистрация завершена</h2>
+      <h2 data-bind="toggle:not(order_isCardRegistration)">Ваша карта успешно подтверждена.</h2>
+      <h6 data-bind="toggle:not(state_noredirect)">
+        <%= image_tag 'ajax-loader-small.gif' %>
+      </h6>
+      <h6 data-bind="toggle:not(state_noredirect)">
+        Происходит переадресация...
+      </h6>
+    </div>
+  </div>
+</div>
+
+<div class="order-timeout">
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <h2>Ошибка</h2>
+      <h6>Время ожидания истекло</h6>
+      <h6 data-bind="toggle:not(state_noredirect)">
+        <a data-bind="attr: { href: order_redirect_url }" class="return-button" data-bypass>Вернуться</a>
+      </h6>
+    </div>
+  </div>
+</div>
+
+<div class="order-pending" data-bind="attr: { 'data-order-type': order_type }">
+
+  <div data-bind="toggle: not(state_paymentProcessing)">
+
+    <div class="money-income">
+      <div class="payment-sources"></div>
+
+
+      <div data-bind="toggle:showCardForm(order_type, integer(state_paymentSourceType))">
+
+        <div class="row">
+          <div class="small-12 columns">
+            <input type="tel" placeholder="Номер карты" class="radius" maxlength="25"
+                   data-bind="value:ignoreWhitespace(card_number), events:['input', 'paste']"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-6 columns">
+            <select class="radius" data-bind="value:month">
+              <option default selected>Месяц</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <div class="small-6 columns">
+            <select class="radius" data-bind="value:year">
+              <option default selected>Год</option>
+              <option value="2014">14</option>
+              <option value="2015">15</option>
+              <option value="2016">16</option>
+              <option value="2017">17</option>
+              <option value="2018">18</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <input type="text" placeholder="Имя держателя карты" class="radius"
+                   data-bind="value:cardholder_name, events:['input', 'paste']"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <input type="password" pattern="[0-9]*" class="radius" placeholder="CVV/CVC" maxlength="5"
+                   data-bind="value:cvc, events:['input', 'paste']"/>
+          </div>
+          <div class="small-9 columns">
+            <small>
+              CVV/CVC — это 3 или 4 последние цифры на обороте вашей карты.
+            </small>
+          </div>
+        </div>
+
+      </div>
+
+      <div data-bind="toggle:card_id">
+
+	      <div class="row" data-bind="toggle:all(order_source_card_id, state_paymentSourceFulfilled)">
+		      <div class="small-12 columns">
+			      <h6>
+				      С карты: <span data-bind="text:get(state_paymentSource, 'card_number')"></span>
+			      </h6>
+		      </div>
+	      </div>
+
+        <div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">
+          <div class="small-12 columns">
+            <h6 class="text-center">Введите данные карты еще раз:</h6>
+          </div>
+        </div>
+
+        <div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">
+          <div class="small-12 columns">
+            <input type="tel" placeholder="Номер карты" class="radius" maxlength="25"
+                   data-bind="value:ignoreWhitespace(card_number), events:['input', 'paste']"/>
+          </div>
+        </div>
+        <div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">
+          <div class="small-6 columns">
+            <select class="radius" data-bind="value:month">
+              <option default selected>Месяц</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <div class="small-6 columns">
+            <select class="radius" data-bind="value:year">
+              <option default selected>Год</option>
+              <option value="2014">14</option>
+              <option value="2015">15</option>
+              <option value="2016">16</option>
+              <option value="2017">17</option>
+              <option value="2018">18</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">
+          <div class="small-12 columns">
+            <input type="text" placeholder="Имя держателя карты" class="radius"
+                   data-bind="value:cardholder_name, events:['input', 'paste']"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-3 columns">
+            <input type="password" pattern="[0-9]*" class="radius" placeholder="CVV/CVC" maxlength="5"
+                   data-bind="value:cvc, events:['input', 'paste']"/>
+          </div>
+          <div class="small-9 columns">
+            <small>
+              CVV/CVC — это 3 или 4 последние цифры на обороте вашей карты.
+            </small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <button type="button" class="blue-button button tiny radius expand" data-bind="disabled: state_modelIsValid" disabled>
+	          <span data-bind="toggle:order_isCardRegistration">Зарегистрироваться</span>
+	          <span data-bind="toggle:not(order_isCardRegistration)">Оплатить</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+	<div data-bind="toggle: state_paymentProcessing">
+	  <div class="row">
+	    <div class="small-12 columns">
+	      <h6 class="text-center">
+	        <%= image_tag 'ajax-loader-small.gif' %>
+	      </h6>
+	      <h6 class="text-center">
+	        <!--Платеж №<span data-bind="text:order_id"></span> в обработке-->
+		      Дождитесь окончания операции
+	      </h6>
+	    </div>
+	  </div>
+	</div>
+
+  <div class="money-outcome">
+    <div class="row">
+      <div class="small-12 columns">
+        <button type="button" class="blue-button button tiny radius expand" name="withdraw-submit">Вывести</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+</div>
+
+</div>

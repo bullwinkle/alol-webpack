@@ -1,0 +1,72 @@
+<div class="flexbox">
+
+	{{ var image = image.id ? Iconto.shared.helpers.image.resize(image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) : Iconto.shared.helpers.image.anonymous() }}
+	<img src="{{= image }}" alt="" class="chat-logo"/>
+
+	<div class="info">
+		<div class="title">
+			<div class="chat-name">
+				{{- name }}
+			</div>
+			{{ if (obj['last_message']) { }}
+			<div class="date">
+				{{= getDateString(last_message.created_at) }}
+			</div>
+			{{ } }}
+		</div>
+
+		<div class="additional-group-names">
+			{{- additional_group_names || source_group_additional_name }}
+		</div>
+
+		{{ if (obj['last_message'] && (obj['last_message'].body || obj['last_message'].attachments)) { }}
+		<div class="last-message">
+			{{
+		  var image = Iconto.shared.helpers.image.anonymous();
+			if (last_message.user && last_message.user.image && last_message.user.image.id) {
+				image = Iconto.shared.helpers.image.resize(last_message.user.image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL);
+			}
+			}}
+			<img class="sender-image" src="{{= image }}" alt=""/>
+			<span class="message-body">
+				{{- getMessageBody(last_message) }}
+			</span>
+		</div>
+	  {{ } else { }}
+	  <div class="last-message">
+	    <span class="empty message-body">Сообщений еще нет</span>
+	  </div>
+	  {{ } }}
+	</div>
+
+</div>
+
+<div class="actions">
+	<i class="dots ic-dots"></i>
+</div>
+
+<div class="overlay">
+	<div class="wrap-overlay">
+		<a href="#" class="overlay-button white hide-chat">
+			<i class="f-lh-26"><span>–</span></i>
+			<span>Скрыть</span>
+		</a>
+
+		{{ var callHref = !!obj.contact_phone ? 'tel:+'+obj.contact_phone : '#'; }}
+		{{ var callDisabled = !callHref }}
+
+		<a href="#" class="overlay-button red block-chat">
+			<i class="ic-lock"></i>
+			<span>Заблокировать</span>
+		</a>
+
+		<a href="#" class="overlay-button chat-user-info green">
+			<i>
+				<span class="l-m-0">i</span>
+			</i>
+			<span>Информация</span>
+		</a>
+
+	</div>
+
+</div>

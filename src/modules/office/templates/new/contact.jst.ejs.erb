@@ -1,0 +1,54 @@
+<div class="steps">
+  {{ for (var i=0;i<5;i++) { }}
+  <div class="step{{= (step - 1) == i ? ' active' : '' }}{{= (step > i && (step - 1) != i) ? ' done': ''}}">
+    <i class="ic-{{= stepIcons[i] }}"></i>
+  </div>
+  {{ if (i<4) { }}
+  <div class="flexbox dots">
+    {{ for (var j=0;j<5;j++) { }}
+    <div class="dot{{= (i >= step - 1) ? ' light' : '' }}"></div>
+    {{ } }}
+  </div>
+  {{ } } }}
+</div>
+
+<div class="content form">
+  <div class="content-padding">
+    <div class="title"><span>Шаг 5.</span> Контактное лицо</div>
+
+    <form>
+      <div class="my-info-block">
+        <div class="checkbox">
+          <input type="checkbox" id="my-info" class="green switch"/>
+        </div>
+        <div class="label">
+          <label for="my-info" class="my-info-label">Использовать мои данные</label>
+        </div>
+      </div>
+
+      <label>Имя</label>
+      <input type="text" name="first_name" id="first_name" maxlength="255" data-bind="value:first_name, events: ['paste', 'input', 'change']"/>
+
+      <label>Фамилия</label>
+      <input type="text" name="last_name" id="last_name" maxlength="255" data-bind="value:last_name, events: ['paste', 'input', 'change']"/>
+
+      <label>Номер телефона</label>
+
+		<div class="phone-input">
+			<div class="phone-prefix">+7</div>
+			<div class="input-wrapper">
+        		<input type="tel" name="phone" id="phone" maxlength="20" data-bind="value:state_phone, events: ['paste', 'input', 'change']"/>
+			</div>
+		</div>
+
+      <label>E-mail</label>
+      <input type="text" name="email" id="email" maxlength="255" data-bind="value:email, events: ['paste', 'input', 'change']"/>
+
+    </form>
+
+    <div class="buttons">
+      <button type="button" class="grey" name="back-button">Назад</button>
+      <button type="button" class="green filled" name="continue-button">Отправить заявку</button>
+    </div>
+  </div>
+</div>

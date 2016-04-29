@@ -1,0 +1,38 @@
+<!--<div class="tabs">-->
+	<!--<a class="button cashback" data-bind="classes: {active: state_isCashbackTab}">-->
+		<!--<i class="icon ic-cashback"></i>-->
+
+		<!--<div class="content">CashBack</div>-->
+	<!--</a>-->
+	<!--<a class="button promotion active" data-bind="classes: {active: not(state_isCashbackTab)}">-->
+		<!--<i class="icon ic-speaker"></i>-->
+
+		<!--<div class="content">Акции и предложения</div>-->
+	<!--</a>-->
+<!--</div>-->
+
+<!-- Notification -->
+<div class="notification" data-bind="toggle: state_notification">
+	<i class="ic-info-circle"></i>
+
+	<div class="content">На указанный Вами адрес электронной почты было отправлено письмо. Пожалуйста, пройдите по ссылке,
+		указанной в письме, чтобы подтвердить адрес.
+	</div>
+</div>
+
+<div class="loader-bubbles green" data-bind="toggle: state_isLoadingMore"></div>
+
+<div data-bind="toggle:all(state_empty,not(state_isLoadingMore))" class="no-promotions-message">
+	<h6>У Вас не создано ни одной акции или предложения.</h6>
+	<a class="button green" href="/office/{{= state.companyId }}/offers/promotion/new">Создать</a>
+</div>
+
+<div class="list-wrapper" data-bind="toggle:all(not(state_empty),not(state_isLoadingMore))" data-scroll>
+	<!--<div class="text-center sub-header">-->
+		<!--<span data-bind="text:state_amount"></span>-->
+		<!--<span data-bind="text:declension(state_amount, ['акция или предложение','акции или предложения','акций или предложений'])"></span>-->
+	<!--</div>-->
+
+	<div class="list"></div>
+
+</div>

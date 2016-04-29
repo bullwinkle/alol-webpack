@@ -1,0 +1,60 @@
+{{ _.each(fields, function(field) { }}
+
+<label for="field_{{- field['attribute-name'] }}">
+	{{- field.label }}
+</label>
+
+{{ if (field.comment) { }}
+<div class="comment">
+	{{= Iconto.shared.helpers.string.stripTags(field.comment.replace(/<br\/?>/gi, '\n')).replace(/\n/g, '<br/>') }}
+</div>
+{{ } }}
+
+{{ if (field.type == 'INTEGER' || field.type == 'CARDNUMBER') { }}
+<input type="tel"
+       id="field_{{- field['attribute-name'] }}"
+       name="{{- field['attribute-name'] }}"
+			 autocomplete="off"/>
+
+{{ } else if (field.type == 'TEXT') { }}
+<input type="text"
+       id="field_{{- field['attribute-name'] }}"
+       name="{{- field['attribute-name'] }}"
+			 maxlength="{{- (obj['maxlength'] ? obj['maxlength'] : '') }}"
+			 autocomplete="off"/>
+
+{{ } else if (field.type == 'MASKED') { }}
+<div class="comment">{{- field.mask }}</div>
+<input type="text"
+       id="field_{{- field['attribute-name'] }}"
+       name="{{- field['attribute-name'] }}"
+       autocomplete="off"/>
+
+{{ } else if (field.type == 'DATE') { }}
+<input type="date"
+       id="field_{{- field['attribute-name'] }}"
+       name="{{- field['attribute-name'] }}"
+       autocomplete="off"/>
+
+{{ } else if (field.type == 'NOTE') { }}
+<textarea id="field_{{- field['attribute-name'] }}"
+          name="{{- field['attribute-name'] }}"
+          autocomplete="off"></textarea>
+
+{{ } else if (field.type == 'ENUM' && field['enum'] && field['enum'].item) { }}
+<select id="field_{{- field['attribute-name'] }}"
+        name="{{- field['attribute-name'] }}"
+        data-select-or-die>
+	{{ _.each(field['enum'].item, function(item) { }}
+	<option value="{{- item.id }}">{{- item['_'] }}</option>
+	{{ }); }}
+</select>
+
+{{ } }}
+
+{{ }); }}
+
+<label for="amount">Сумма</label>
+<input type="tel" name="amount" id="amount" autocomplete="off"/>
+
+<button type="button" class="button blue filled" name="submit">Продолжить</button>

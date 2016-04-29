@@ -1,0 +1,19 @@
+<div class="company">
+	<div class="company-image" data-bind="css: { 'background-image': format('url($1)', image_url) }"></div>
+	<div class="company-info">
+		<div class="company-name" data-bind="text: name"></div>
+		<div class="company-category-name" data-bind="text: state_categoryName"></div>
+		<div class="buttons">
+			<button type="button" name="send-message-to-company" class="button white filled">Написать</button>
+			<button name="go-to-shop-button" class="button white" data-bind="toggle: has_shop">Заказать</button>
+		</div>
+	</div>
+</div>
+
+<div class="tabs">
+	<a class="tab tab-info" data-bind="attr: { href: format('/wallet/company/$1/info', id) }">Информация</a>
+	<a class="tab tab-offers" data-bind="attr: { href: format('/wallet/company/$1/offers', id) }">Акции</a>
+	<a class="tab tab-news" data-bind="attr: { href: format('/wallet/company/$1/news', id) }, toggle: facebook_id">Новости</a>
+</div>
+
+<div id="view-region" role="region" class="page-content"></div>

@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="small-12 medium-6 medium-centered columns">
+		<ul class="radius tabs row collapse">
+			{{ var isUser13205 = 13205 == state.user.id; }}
+			<li class="small-6 columns tab dialogs-tab {{= state.subpage=='chats'?'active':'' }} {{= isUser13205 ? 'hide' : '' }}">
+				<a href="/office/{{= state.companyId }}/messages/chats" class="button tiny">Чаты</a>
+			</li>
+			<li class="small-{{= isUser13205 ? '12' : '6' }} columns tab deliveries-tab {{= state.subpage=='deliveries'||state.subpage=='delivery'?'active':'' }}">
+				<a href="/office/{{= state.companyId }}/messages/deliveries" class="button tiny">Рассылки</a>
+			</li>
+		</ul>
+	</div>
+</div>

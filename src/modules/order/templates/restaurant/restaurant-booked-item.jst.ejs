@@ -1,0 +1,24 @@
+<!--
+id
+comment
+created_at
+deleted
+leclick_id
+persons
+phone
+restaurant_id
+status
+time_at
+updated_at
+user_id
+user_name
+-->
+
+<div class="content">
+	<div class="">Имя: <b>{{- _.get(obj,'user_name','-') }}</b></div>
+	<div class="">Телефон: <b>+{{- _.get(obj,'phone','-') }}</b></div>
+	<div class="">Статус: <b>{{- _.get(obj,'status','-') }}</b></div>
+	<div class="">Количество персон: <b>{{- _.get(obj,'persons','-') }}</b></div>
+	<div class="">Время: <b>{{- moment.unix(_.get(obj,'time_at',0)).format('DD.MM HH:mm') }}</b></div>
+</div>
+<!--<i class="ic-chevron-right"></i>-->

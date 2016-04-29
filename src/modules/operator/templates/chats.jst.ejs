@@ -1,0 +1,15 @@
+<input type="text" name="query" id="query" placeholder="Поиск" data-bind="value: trim(state_query), events: ['input', 'paste', 'change'], toggle: equal(state_page, 'all')" autocomplete="off"
+       class="search"/>
+
+<div class="not-found hint">
+	Ничего не найдено, попробуйте изменить Ваш запрос
+</div>
+
+<div class="no-chats hint">
+	Здесь будут Ваши чаты
+</div>
+
+<div class="list-wrap" data-scroll>
+	<div class="list"></div>
+	<div class="loader-bubbles blue theme" data-bind="toggle: infiniteScrollState_isLoadingMore"></div>
+</div>

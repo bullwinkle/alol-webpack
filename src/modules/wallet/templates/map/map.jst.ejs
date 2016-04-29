@@ -1,0 +1,30 @@
+<div class="map-view"></div>
+
+<div class="addresses" data-bind="underscore: state_addresses">
+	<script type="text/template">
+		<@ _.each(obj, function(address, i) { if (!address.deleted_at) { @>
+		<a data-id="<@- address.id @>" data-lat="<@- address.latitude @>" data-lon="<@- address.longitude @>"
+		   class="address-item button list-item menu-item" href="/wallet/company/{{- id }}/address/<@- address.id @>">
+			<span class="content">
+
+				<div class="flexbox">
+
+					<div class="discount-percent"><@- address.discount_percent @></div>
+
+					<div class="address-block">
+						<div class="address"><@- address.address || '(адрес не указан)' @></div>
+
+						<@ if (address.contact_phone) {@>
+						<div class="hint l-mb-0">+7 <@- Iconto.shared.helpers.phone.format7(address.contact_phone )@></div>
+						<@}@>
+					</div>
+
+				</div>
+
+			</span>
+
+			<i class="ic-chevron-right"></i>
+		</a>
+		<@ }}); @>
+	</script>
+</div>

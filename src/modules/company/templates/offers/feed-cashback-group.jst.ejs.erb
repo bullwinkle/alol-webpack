@@ -1,0 +1,90 @@
+{{
+var objectName;
+switch (object_type) {
+case 1:
+objectName = 'promotion';
+break;
+case 2:
+objectName = 'cashback';
+break;
+case 3:
+objectName = 'cashbacks';
+break;
+default:
+objectName = 'unknown';
+}
+}}
+
+<div class="feed-item {{= objectName }}">
+	<div class="is-recommended" data-bind="toggle: is_recommended">
+		<div class="plate-left"></div>
+		<div class="plate-right"></div>
+		<span class="text">Рекомендовано АЛОЛЬ </span>
+	</div>
+	{{ if (object_data){ }}
+	<div class="info-container">
+		<div class="flexbox flex-v-center">
+			{{ if (object_data.company && object_data.company.image && object_data.company.image.url) { }}
+			<div class="company-icon" style="background-image:url('{{- object_data.company.image.url }}');"></div>
+			{{ } }}
+			<div class="company-info-container flex-v-center">
+				{{ if (object_data.company && object_data.company.name){ }}
+				<div class="company-name"><span>{{- object_data.company.name}}</span></div>
+				{{ } }}
+				{{ if (object_data.company && object_data.company.category && object_data.company.category.name) { }}
+				<div class="company-category">{{- object_data.company.category.name}}</div>
+				{{ } }}
+			</div>
+			{{ if (object_data.cashbackMaxPercent){ }}
+			<div class="cashback-amount">до {{- object_data.cashbackMaxPercent }}%</div>
+			{{ } }}
+		</div>
+	</div>
+	<hr/>
+	<div class="content">
+		<div class="is-recommended" data-bind="classes: {hide: not(is_recommended)}">
+			<div class="plate-left"></div>
+			<div class="plate-right"></div>
+			<span class="text">Рекомендовано АЛОЛЬ </span>
+		</div>
+		<div class="loader-bubbles" data-bind="classes: {hide: not(state_isCashbacksPreviewLoading) }"></div>
+		<ul class="cashbacks-list" data-bind="classes: {hide: state_isCashbacksPreviewLoading }, underscore: state_cashbacksPreviews">
+			<script type="text/template">
+				<@ _.each(obj, function(cashback, i) { @>
+					<li class="cashback-preview-item" data-id="<@= cashback.id @>">
+						<a href="/wallet/offers/cashbacks/<@= cashback.company_id @>/<@= cashback.feedId @>?feed=true">
+							<div class="cashback-preview-item-header">
+								<span class="cashback-title"><@= cashback.title @></span>
+								<span class="cashback-amount"><@= cashback.cashback @>%</span>
+							</div>
+							<ul class="conditions">
+								<@ _.each(cashback.conditions, function(conditionText, i) { @>
+									<li class="condition-item hint"><@= conditionText @></li>
+								<@ }); @>
+							</ul>
+						</a>
+					</li>
+				<@ }); @>
+			</script>
+		</ul>
+		{{ object_data.cashbackCount -= 2 }}
+		{{ if (object_data.cashbackCount > 1) { }}
+			<span class="cashback-counter">И еще {{- object_data.cashbackCount}} CashBack</span>
+		{{ } }}
+	</div>
+	{{ } }}
+	<div class="social">
+		<a href="#" class="show-all" data-bind="attr: {href: state_detailsHref}">Показать все</a>
+		<!--<span class="button-with-icon hide-feed-item hide" data-bind="classes:{hide: not(state_isHideButtonShown)}">-->
+		<!--<span class="icon ic-cross-circle"></span>-->
+		<!--<span class="text">Скрыть группу</span>-->
+		<!--</span>-->
+	</div>
+	<div class="hidden-feed-item-overlay">
+		<div class="hidden-feed-item-inner">
+			Предложение скрыто. Вы больше не увидите его в ленте предложений. Для того чтобы восстановить предложение
+			нажмите
+			<button class="reestablish-feed-item blue text">Восстановить</button>
+		</div>
+	</div>
+</div>

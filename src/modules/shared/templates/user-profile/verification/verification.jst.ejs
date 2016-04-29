@@ -1,0 +1,55 @@
+<div class="text-block">В соответствии с требованиями законодательства просим Вас предоставить данные:</div>
+
+<form>
+	<label>Имя</label>
+	<input type="text" name="first_name" id="first_name"
+	       data-bind="value:trim(first_name), events: ['input', 'paste', 'change']"
+	       maxlength="100"/>
+
+	<label>Фамилия</label>
+	<input type="text" name="last_name" id="last_name"
+	       data-bind="value:trim(last_name), events: ['input', 'paste', 'change']"
+	       maxlength="100"/>
+
+	<label>Отчество</label>
+	<input type="text" name="middle_initial_name" id="middle_initial_name"
+	       data-bind="value:trim(middle_initial_name), events: ['input', 'paste', 'change']"
+	       maxlength="100"/>
+
+	<label>Дата рождения</label>
+	<input type="date" name="date_of_birth" id="date_of_birth"
+	       data-bind="value:date_of_birth, events: ['input', 'paste', 'change']"/>
+
+	<label>ИНН<a class="find-inn right" href="https://service.nalog.ru/inn.do" data-bypass target="_blank">узнать свой
+		ИНН</a></label>
+	<input type="text" name="inn" id="inn"
+	       data-bind="value:trim(inn), events: ['input', 'paste', 'change']" maxlength="12"/>
+
+	<label>СНИЛС</label>
+	<input type="text" name="snils" id="snils"
+	       data-bind="value:trim(snils), events: ['input', 'paste', 'change']" maxlength="11"/>
+
+	<label>Серия и номер паспорта</label>
+	<input type="text" name="passport_computed" id="passport_computed"
+	       data-bind="value:trim(passport_computed), events: ['input', 'paste', 'change']" maxlength="10"
+	       placeholder="Например, 4001778877"/>
+
+	<label>Кем выдан</label>
+	<input type="text" name="passport_issuer" id="passport_issuer"
+	       data-bind="value:trim(passport_issuer), events: ['input', 'paste', 'change']" maxlength="1000"/>
+
+	<label>Когда выдан</label>
+	<input type="date" name="passport_issued" id="passport_issued"
+	       data-bind="value:passport_issued, events: ['input', 'paste', 'change']"/>
+
+	<label>Код подразделения</label>
+	<input type="text" name="passport_department" id="passport_department"
+	       data-bind="value:trim(passport_department), events: ['input', 'paste', 'change']"
+	       placeholder="Например, 432234" maxlength="6"/>
+
+	<div class="hint">Если у Вас изменятся паспортные данные, просим Вас заполнить и отправить нам данную форму
+		повторно.
+	</div>
+
+	<button type="submit" class="theme filled" name="send-button">Отправить</button>
+</form>

@@ -1,0 +1,83 @@
+<div data-bind="toggle:not(state_cardSelectMode)">
+	<div class="available text-center">
+		<span class="text">Доступно к выплате:</span>
+		<span data-bind="text:state_balance" class="balance"></span>
+		<span class="rouble">№</span>
+	</div>
+
+	<div class="row">
+		<div class="small-12">
+
+			<!--<div class="row card-item collapse selected-card">-->
+				<!--<div class="small-12 columns">-->
+					<!--<div class="bank"-->
+					     <!--data-bind="attr: { 'data-id':get(card_bank, 'id') }, css: { 'background-color':format('$1', get(card_bank, 'color')) }">-->
+						<!--<div class="bank-logo">-->
+							<!--<img data-bind="attr: { src:get(get(card_bank, 'image'), 'url') }"/>-->
+						<!--</div>-->
+						<!--<div class="bank-name" data-bind="text:card_title"></div>-->
+					<!--</div>-->
+					<!--<div class="card-number" data-bind="text:card_card_number"></div>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<div class="card-item">
+				<a class="button list-item menu-item selected-card" data-bind="attr: { 'data-id':get(card_bank, 'id') }">
+					<img data-bind="attr: { src:get(get(card_bank, 'image'), 'url') }"/>
+
+					<div class="content">
+						<div class="info">
+							<div class="bank-name" data-bind="text:card_bank_name"></div>
+							<div class="title" data-bind="text:card_title"></div>
+							<div class="card-number" data-bind="text:card_card_number"></div>
+						</div>
+					</div>
+
+					<!--<i class="ic-chevron-right"></i>-->
+				</a>
+			</div>
+
+			<form class="body-padding">
+				<label>Сумма вывода</label>
+				<input type="number" class="radius" id="amount"/>
+				<input type="text" name="amount"/>
+
+				<div class="hint">
+					<div class="hint-text">Сумма вывода должна быть больше <span data-bind="text:state_minimumAmount"></span> руб.</div>
+					<div class="hint-info"><i class="ic-info-circle" role="tooltip" data-tooltip aria-haspopup="true"
+					                          data-options="disable_for_touch:true"
+					                          data-bind="attr: { title: format('Комиссия составляет $1 рублей.', state_totalFee) }"></i></div>
+				</div>
+
+				<label>Сумма к зачислению</label>
+				<input type="number" class="radius" id="actualAmount"/>
+				<input type="text" name="actualAmount"/>
+
+			</form>
+
+			<div class="text-center">
+				<button class="button continue-button blue filled" type="button">ПРОДОЛЖИТЬ</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div data-bind="toggle:state_cardSelectMode" class="card-select-view">
+
+	<div data-bind="toggle:state_hasCards">
+		<div class="verified-card-collection" role="region" data-bind="toggle:state_hasVerifiedCards"></div>
+		<!--<div data-bind="toggle:state_hasUnverifiedCards">-->
+			<!--<div class="unverified-card-header">Неподтвержденные карты</div>-->
+			<!--<div class="hint">Перевод CashBack возможен только на подтвержденные карты.</div>-->
+			<!--<div class="unverified-card-collection" role="region"></div>-->
+		<!--</div>-->
+	</div>
+
+	<div data-bind="toggle:all(not(state_hasCards), not(state_isLoading))" class="no-cards">
+		<div>Пожалуйста, добавьте хотя бы одну карту.</div>
+		<div><a href="/wallet/money/card/new">
+			<button type="button" class="button blue filled">Добавить</button>
+		</a></div>
+	</div>
+
+</div>

@@ -1,0 +1,15 @@
+<!--<div class="green">-->
+<!--<a class="green white button" name="create-delivery"-->
+<!--data-bind="attr: { href: format('/office/$1/messages/delivery/new', state_companyId) }">Создать рассылку</a>-->
+<!--</div>-->
+
+<div data-bind="toggle:state_isEmpty" class="empty-state">
+  <%= image_tag "empty-states/messages.svg" %>
+  <div class="empty-state-header">Еще нет рассылок</div>
+  <div class="hint">Оповещайте ваших клиентов о новый событиях, акциях и товарах через мессенджер или по смс.</div>
+</div>
+
+<div class="list-wrap" data-scroll>
+  <div class="list"></div>
+  <div class="loader-bubbles theme" data-bind="toggle: state_isLoadingMore"></div>
+</div>

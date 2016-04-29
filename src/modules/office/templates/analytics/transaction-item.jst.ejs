@@ -1,0 +1,27 @@
+<td class="date-amount">
+	<div class="date">{{= moment.unix(payment_time || date || updated_at || created_at).format('DD.MM.YYYY HH:mm') }}</div>
+	<div class="amount">{{= Iconto.shared.helpers.money(amount) }} руб.</div>
+</td>
+<td class="cashback">
+	<div class="cashback-percent">{{= Iconto.shared.helpers.money(cashback_percent) }} %</div>
+	<div class="cashback-amount">{{= Iconto.shared.helpers.money(cashback) }} руб.</div>
+</td>
+<td class="customer">
+	<div class="card-number">
+		{{ if (obj['card']) { }}
+		{{= card.card_number }}
+		{{ } }}
+	</div>
+	<div class="phone-number">
+		{{ if (obj['user']) { }}
+			{{ if (user.phone) { }}
+				+7 {{= Iconto.shared.helpers.phone.format7(user.phone) }}
+			{{ } else if (obj['card']) { }}
+				{{= card.login }}
+			{{ } }}
+		{{ } }}
+	</div>
+</td>
+<td class="address">
+	<div class="address-item">{{- address.address }}</div>
+</td>

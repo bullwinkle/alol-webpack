@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="block-type">
+        <label>Тип</label>
+        <select name="type-select" id="type-select" data-select-or-die data-bind="value: integer(type)">
+            <option value="{{= Iconto.REST.CompanyReview.TYPE_SMILE }}" selected>Доволька</option>
+            <option value="{{= Iconto.REST.CompanyReview.TYPE_SAD }}">Печалька</option>
+            <option value="{{= Iconto.REST.CompanyReview.TYPE_IDEA }}">Хотелка</option>
+        </select>
+    </div>
+
+    <div class="block-phone">
+        <label>Телефон клиента</label>
+
+        <div>
+            <div class="phone-input">
+                <div class="phone-prefix">+7</div>
+                <div class="input-wrapper">
+                    <input type="tel" name="user_phone" id="user_phone" data-bind="value:state_phone, events: ['input', 'paste', 'change']"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-textarea">
+    <label>Отзыв</label>
+    <textarea name="review-text" id="review-text" rows="5" placeholder="Текст отзыва" data-bind="value:trim(message), events: ['input', 'paste', 'change']"></textarea>
+</div>
+
+<div class="block-images">
+    <input type="file" name="">
+    <div class="upload-button">
+        <i class="ic ic-upload"></i> Загрузить фото
+    </div>
+    <div class="images-region" role="region"></div>
+</div>
+
+<div class="form-buttons">
+    <button type="button" name="submit-review-button" class="theme filled">Добавить отзыв</button>
+</div>

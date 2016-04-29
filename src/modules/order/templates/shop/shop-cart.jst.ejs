@@ -1,0 +1,65 @@
+<div data-bind="toggle:not(state_gotItems)" class="t-centered l-pt-20">
+	<div class="empty-cart-image"></div>
+	<div class="l-mt-20 t-grey">Ваша корзина пуста</div>
+	<a class="l-mt-10 f-sz-13 l-block close-cart" href="#">Вернуться к каталогу</a>
+</div>
+
+<div class="l-table l-m-0 l-w-100p">
+	<div class="l-table-header-group _hide-for-small-only"
+		 data-bind="classes:{'l-table-header-group':state_gotItems,'hide':not(state_gotItems)}">
+		<div class="l-table-row">
+			<div class="l-table-cell nowrap l-plr-10 l-ptb-5 f-sz-11 t-grey">Товар</div>
+			<div class="l-table-cell nowrap l-plr-10 l-ptb-5 f-sz-11 t-grey">Цена за товар</div>
+			<div class="l-table-cell nowrap l-plr-10 l-ptb-5 f-sz-11 t-grey">Количество</div>
+			<div class="l-table-cell nowrap l-plr-10 l-ptb-5 f-sz-11 t-grey">Сумма</div>
+			<div class="l-table-cell nowrap l-plr-10 l-ptb-5 f-sz-11 t-grey"></div>
+		</div>
+	</div>
+	<div class="l-table-row-group list-container"></div>
+</div>
+
+<form class="summary l-pt-20" data-bind="toggle: state_gotItems">
+	<div class="row">
+		<div class="columns small-12 medium-6">
+			<label class="theme" for="user-phone">Контактный телефон:</label>
+			<div class="phone-input">
+				<div class="phone-prefix">+7</div>
+				<div class="input-wrapper">
+					<input type="tel" name="phone" id="user-phone" placeholder="Номер телефона"
+						   data-bind="phoneValue:phone, countryCode:7, events: ['input', 'paste', 'change']"/>
+				</div>
+			</div>
+			<label for="address_id">Откуда хотите забрать товар?</label>
+			<select name="address_id"
+					id="address_id"
+					data-bind="value:number(address_id),underscore: state_addresses, events:['change']"
+					class="s-bg-white">
+				<script type="text/template">
+					<option default selected>Не выбрано</option>
+					<@ _.each(obj, function (address, i) { @>
+					<option value="<@- address.id @>"><@- address.address @></option>
+					<@ }) @>
+				</script>
+			</select>
+		</div>
+		<div class="columns small-12 medium-6">
+			<label class="theme" for="order-comment">Комментарий к заказу:</label>
+			<textarea name="description"
+					  rows="4"
+					  id="order-comment"
+					  data-bind="value: description, events: ['input', 'paste', 'change']"
+					  placeholder="Введите комментарий">
+			</textarea>
+		</div>
+		<div class="columns small-12 medium-6">
+			<div class="block t-a-right f-w-600">
+				<span class="theme">Итого:</span>
+				<span class="f-sz-22" data-bind="text: toFixed(total_amount,2)"></span>
+				<span class="rouble">№</span>
+			</div>
+			<button type="submit" name="submit-order" class="theme filled l-mt-20 l-w-200 l-right"
+					data-bind="disabled: any(delta_min_and_current_amount, state_orderSubmitted)">Заказать
+			</button>
+		</div>
+	</div>
+</form>

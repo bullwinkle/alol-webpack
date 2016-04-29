@@ -1,0 +1,47 @@
+{{ if (status!=STATUS_APPROVED && status!=STATUS_CANCELLED) { }}
+<button class="button text">
+{{ } else { }}
+<div class="discount-card-view-content">
+{{ } }}
+
+	<div class="left">
+		<div class="status {{= status==STATUS_APPROVED ? 'approved' : (status==STATUS_CANCELLED ? 'cancelled' : 'pending') }}">
+			<i class="ic-circle-checked"></i>
+			<i class="ic-circle-alert"></i>
+		</div>
+
+	</div>
+
+	{{ if (type != Iconto.REST.DiscountCard.TYPE_WISH) { }}
+	<div class="right">
+		<div class="percent">
+			{{= discount }} %
+		</div>
+	</div>
+	{{ } }}
+
+	<div class="user-name">
+		{{ if (first_name && second_name) { }}
+		{{= first_name }} {{= second_name }}
+		{{ } else if (phone) { }}
+		+7 {{= Iconto.shared.helpers.phone.format7(phone) }}
+		{{ } else if (email) { }}
+		{{= email }}
+		{{ } else if (title) { }}
+		{{= title }}
+		{{ } else { }}
+			{{ if (type == Iconto.REST.DiscountCard.TYPE_DISCOUNT_CARD) { }}
+			Дисконтная карта
+			{{ } }} #{{= id }}
+		{{ } }}
+	</div>
+	<div class="date">
+		{{= moment.unix(created_at).calendar() }}
+	</div>
+	<div class="comment">{{= comment }}</div>
+
+{{ if (status!=STATUS_APPROVED && status!=STATUS_CANCELLED) { }}
+</button>
+{{ } else { }}
+</div>
+{{ } }}

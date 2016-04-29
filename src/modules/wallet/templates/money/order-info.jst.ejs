@@ -1,0 +1,43 @@
+<div class="header block">
+	<i class="ic-cashback"></i>
+	<span class="sender-name">CashBack</span>
+</div>
+
+<div class="block">
+	<div class="flexbox">
+		<span class="caption">Дата и время</span>
+		<div class="datetime" data-bind="text:state_datetime"></div>
+	</div>
+</div>
+
+<div class="block">
+	<div class="flexbox">
+		<span class="caption">Сумма перевода</span>
+		<div class="total">
+			<span data-bind="text:money(amount)"></span>
+			<span class="rouble">:</span>
+		</div>
+	</div>
+</div>
+
+<div class="block">
+	<div class="flexbox">
+		<span class="caption">Комиссия</span>
+		<span class="fee-percent" data-bind="toggle:state_showFeePercent">
+			<span data-bind="text:fee_percent"></span>%
+		</span>
+		<div class="fee-amount">
+			<span data-bind="text:money(fee_amount)"></span>
+			<span class="rouble">:</span>
+		</div>
+	</div>
+</div>
+
+<div class="block">
+	<div class="flexbox">
+		<span class="caption">Карта</span>
+		<div class="card-number" data-bind="text:card_card_number"></div>
+	</div>
+	<div class="card-name" data-bind="text:card_title"></div>
+	<div class="bank-name" data-bind="text:bank_name"></div>
+</div>

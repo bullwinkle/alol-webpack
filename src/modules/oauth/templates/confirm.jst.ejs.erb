@@ -1,0 +1,52 @@
+<div class="flexbox user-profile">
+  <div class="iconto">
+    <a href="https://iconto.net" data-bypass target="_blank">
+      <%= image_tag "logo.png" %>
+    </a>
+  </div>
+  <div class="user">
+    <div class="user-image"></div>
+    <div class="user-name">
+      <a href="https://{{= (window.ICONTO_API_URL.indexOf('dev') > -1) ? 'dev.' : (window.ICONTO_API_URL.indexOf('stage') > -1) ? 'stage.' : '' }}iconto.net/wallet/profile" data-bypass target="_blank"></a>
+    </div>
+  </div>
+</div>
+
+<div class="flexbox company-info">
+  <div class="image">
+    <!--<img src="" alt="" class="company-image"/>-->
+  </div>
+  <div class="info">Компания <a class="company-name" target="_blank" data-bypass></a> запрашивает разрешение на доступ к
+    следующим ресурсам:
+  </div>
+</div>
+
+<div class="text-left">
+  <div class="permissions">
+
+    <div class="user-info flexbox">
+      <div class="ic-person"></div>
+      <div class="description">Пользовательские данные</div>
+    </div>
+
+    <div class="user-transactions flexbox">
+      <div class="ic-cashback"></div>
+      <div class="description">История транзакций</div>
+    </div>
+
+    <div class="user-statistics flexbox">
+      <div class="ic-chart"></div>
+      <div class="description">Статистика</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="flexbox buttons">
+  <div>
+    <button class="button blue filled" name="accept">Разрешить</button>
+  </div>
+  <div>
+    <button class="button blue" name="cancel">Отмена</button>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div data-bind="toggle:state_status_is_error">
+	<div class="row">
+		<div class="small-12 columns text-center">
+			<h2>Ошибка</h2>
+			<h6>Операция не может быть осуществлена</h6>
+			{{ if (!window.ICONTO_WEBVIEW) { }}
+			<h6 data-bind="toggle:order_redirect_url">
+				<a data-bind="attr: { href: order_redirect_url }" class="return-button" data-bypass>Вернуться</a>
+			</h6>
+			{{ } }}
+		</div>
+	</div>
+</div>
+
+<div class="order-ready" data-bind="toggle:any(state_status_is_processing, state_status_is_ready)">
+	<div class="row">
+		<div class="small-12 columns">
+			<h6 class="text-center">
+				<!--Платеж №<span data-bind="text:order_id"></span> в обработке<br/>-->
+				Дождитесь окончания операции
+			</h6>
+			<div class="loader-bubbles blue"></div>
+			<!--<h6 class="text-center">-->
+			<!--<small>Осталось <span data-bind="text:timeFromSeconds(state_timer)"></span></small>-->
+			<!--</h6>-->
+		</div>
+	</div>
+</div>
+
+<div class="order-completed" data-bind="toggle:state_status_is_completed">
+	<!--<div class="row">-->
+		<!--<div class="small-12 columns text-center">-->
+			<!--<a href="#" class="button blue filled">Продолжить</a>-->
+
+			<!--<h6 data-bind="toggle:order_redirect_url">-->
+				<!--Происходит переадресация...-->
+			<!--</h6>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<h2>Операция успешно завершена</h2>
+
+	<div class="block">
+		<div class="flexbox">
+			<span class="caption">Имя</span>
+
+			<div class="datetime" data-bind="text: cardholder_name"></div>
+		</div>
+	</div>
+
+	<div class="block">
+		<div class="flexbox">
+			<span class="caption">Дата и время</span>
+
+			<div class="datetime" data-bind="text: state_orderUpdatedAt"></div>
+		</div>
+	</div>
+
+	<div class="block">
+		<div class="flexbox">
+			<span class="caption">Карта</span>
+
+			<div class="card-number" data-bind="text:card_card_number"></div>
+		</div>
+		<div class="card-name" data-bind="text:card_title"></div>
+		<div class="payment-system" data-bind="text:paymentSystem_title"></div>
+		<div class="bank-name" data-bind="text:bank_name"></div>
+	</div>
+
+	<button type="button" class="blue filled done" name="done">Продолжить</button>
+
+</div>
+
+<div class="order-timeout" data-bind="toggle:state_status_is_timeout">
+	<div class="row">
+		<div class="small-12 columns text-center">
+			<h2>Ошибка</h2>
+			<h6>Время ожидания истекло</h6>
+			{{ if (!window.ICONTO_WEBVIEW) { }}
+			<h6 data-bind="toggle:order_error_redirect_url">
+				<a data-bind="attr: { href: order_error_redirect_url }" class="return-button" data-bypass>Вернуться</a>
+			</h6>
+			{{ } }}
+		</div>
+	</div>
+</div>

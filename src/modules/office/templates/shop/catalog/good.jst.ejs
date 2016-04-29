@@ -1,0 +1,11 @@
+<div class="image" style="background-image: url({{= image_url }}?resize=w[140]h[140]e[true])"></div>
+
+<div class="info">
+	<div class="i-title">{{= title }}</div>
+	{{ if (description) { }}
+	<div class="i-description">{{= description }}</div>
+	{{ } }}
+	<div class="i-price">{{= price }} <span class="rouble">№</span></div>
+
+	<!--<button class="green order">Заказать</button>-->
+</div>

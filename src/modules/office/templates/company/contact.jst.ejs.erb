@@ -1,0 +1,24 @@
+<form class="contact-form">
+  <h5>Контактное лицо</h5>
+
+  <label>Фамилия*</label>
+  <input type="text" name="last_name" id="last_name" maxlength="128">
+
+  <label>Имя*</label>
+  <input type="text" name="first_name" id="first_name" maxlength="128">
+
+  <label>Номер телефона*</label>
+
+  <div class="phone-input">
+    <div class="phone-prefix">+7</div>
+    <div class="input-wrapper">
+      <input type="tel" name="phone" id="phone" maxlength="20"/>
+    </div>
+  </div>
+
+  <label>E-mail*</label>
+  <input type="text" name="email" id="email" maxlength="50">
+
+  <input type="checkbox" name="send-sms" id="send-sms" class="theme switch"/>
+  <label for="send-sms" class="inline">Отправлять сообщения пользователей по SMS, если не онлайн</label>
+</form>

@@ -1,0 +1,12 @@
+<input type="text" class="radius" autocomplete="off" data-autocomplete  placeholder="{{= state.placeholder || '' }}" {{= state.maxLength ? 'maxlength="'+state.maxLength+'"' : '' }}/>
+<div class="autocomplete-list">
+  <div class="list"></div>
+  <div class="text-center">
+    <div class="ajax-loader-small"></div>
+  </div>
+  <!--<img alt="Ajax loader" class="loader" src="/assets/ajax-loader.gif" />-->
+  <div class="empty-text">Ничего не найдено</div>
+	<div class="powered-by-google">
+		<%= image_tag 'powered-by-google-on-white.png' %>
+	</div>
+</div>

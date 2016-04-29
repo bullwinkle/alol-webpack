@@ -1,0 +1,21 @@
+<div class="bbm-modal">
+	{{ if (title) { }}
+	<div class="bbm-modal__topbar">
+		<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+	</div>
+	{{ } }}
+
+
+	<div class="bbm-modal__section">
+		{{ if (message) { }}
+			<p class="text-center">{{- message }}</p>
+		{{ } }}
+		<input type="{{- type }}" class="radius" name="input" value="{{- value }}"/>
+		<div class="error-message validation-error"></div>
+	</div>
+
+	<div class="bbm-modal__bottombar">
+		<button class="blue theme filled" name="ok">{{- submitButtonText }}</button>
+		<button class="grey" name="cancel">{{- cancelButtonText }}</button>
+	</div>
+</div>

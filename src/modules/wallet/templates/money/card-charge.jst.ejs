@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="small-12 columns">
+		<label>Карта</label>
+		<select class="card radius" data-bind="value:sourceCardId, options:state_cards, optionsDefault: {label:'Пополнить с другой карты...', value:'0000'}">
+		</select>
+		<label>Сумма перевода</label>
+		<input type="tel" name="amount" data-bind="value:amount, events: ['input','paste','change']" class="radius" maxlength="9"/>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 medium-4 medium-centered columns">
+		<button class="button radius tiny expand charge-commit" data-bind="disabled: not(state_chargeCommitButtonDisabled)">Пополнить</button>
+	</div>
+</div>

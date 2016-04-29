@@ -1,0 +1,86 @@
+<form id="add-transaction">
+	<div class="flexbox flex-v-center">
+	</div>
+	<div>
+		<label class="label" for="client-phone-input">Введите телефон клиента</label>
+
+		<div class="phone-input input-with-loader" data-bind="classes: {'is-loading': state_isLoadingContact}">
+			<div class="phone-prefix radius">+7</div>
+			<div class="input-wrapper">
+				<input type="tel"
+				       id="client-phone-input"
+				       name="phone"
+				       class="radius is-loading"
+				       placeholder="Введите телефон"
+				       maxlength="20"
+				       value="7"
+				       autocomplete="on"
+				       autocorrect="off"
+				       autofocus=""
+				       data-bind="phoneValue:phone,countryCode:7, events: ['input', 'paste', 'change'], disabled: state_isLoadingContact">
+			</div>
+			<div class="loader-bubbles theme"></div>
+		</div>
+	</div>
+	<div>
+		<div data-bind="toggle: not(get(client, 'id'))" class="hint l-mb-10">Клиент будет добавлен автоматически</div>
+		<div class="client flexbox l-mb-10" data-bind="classes: {hide: not(get(client, 'id'))}">
+			<div class="avatar"
+			     data-bind="css:{'background-image': format( 'url($1)',get(client,'image.url') )}">
+			</div>
+			<div class="info l-ml-10">
+				<div class="name" data-bind="text: get(client, 'nickname')"></div>
+				<div class="phone" >+<span data-bind="text: get(client, 'phone')"></span></div>
+			</div>
+		</div>
+	</div>
+	<label for="address">Адрес:</label>
+	<select data-select-or-die class="address-select"
+	        id="address"
+	        name="address"
+	        data-bind="underscore: addresses, value: integer(address_id)">
+		<script type="text/template">
+			<option default selected value="0">Не выбрано</option>
+			<@ _.each(obj, function(addressObj, i) { @>
+			<option value="<@- addressObj.id @>"><@- _.escape(addressObj.address) @></option>
+			<@ }); @>
+		</script>
+	</select>
+
+	<label for="amount">Сумма без скидки (р.):</label>
+
+	<div class="input-with-currency">
+		<input type="text" id="amount" name="amount"
+		       data-bind="value: number(amount), events: ['input','paste','change']">
+		<span class="currency">руб.</span>
+	</div>
+
+	<label for="discount-percent">Процент скидки:</label>
+	<input id="discount-percent" name="discountPercent" type="text"
+	       data-bind="value: number(discountPercent), events: ['input','paste','change']""/>
+
+	<!--<label for="employee">Сотрудник:</label>-->
+	<!--<select data-select-or-die class="employee-select"-->
+	<!--id="employee"-->
+	<!--name="employee"-->
+	<!--data-bind="underscore: employees, value: integer(employee_id)">-->
+	<!--<script type="text/template">-->
+	<!--<option default selected value="0">Не выбрано</option>-->
+	<!--<@ _.each(obj, function(employeeObj, i) { console.log(employeeObj) @>-->
+	<!--<option value="<@- employeeObj.id @>"><@- employeeObj.nickname || ('Аноним #'+ employeeObj.id) @></option>-->
+	<!--<@ }); @>-->
+	<!--</script>-->
+	<!--</select>-->
+
+	<div class="total l-mb-20">Итого:
+		<span class="validation-error" data-bind="toggle: not(state_isValid)">введены некорректные данные</span>
+		<span data-bind="toggle: state_isValid">
+			<span data-bind="text: totalAmount"></span> р. (скидка <span data-bind="text: totalDiscount"></span> р.)
+		</span>
+	</div>
+
+	<div class="buttons-block">
+		<button class="theme filled" type="submit" data-bind="classes:{'is-loading': state_isSaving}">Подтвердить</button>
+	</div>
+
+</form>

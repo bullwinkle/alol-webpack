@@ -1,0 +1,67 @@
+<div data-bind="attr: { 'data-task-status': task_status }">
+	<div class="form task-status-pending">
+		<div class="hint">Система понимает файлы в формате XLS и XLSX.<br/>
+			Один контакт - одна строка: <b>номер телефона, имя, фамилия, e-mail, день рождения, пол, vip</b>.<br/>
+			Номер телефона обязателен, остальные поля опциональны.
+		</div>
+		<ul class="hint">
+			<li>Номер телефона, 11 цифр (например, 79218884422)</li>
+			<li>Имя (например, Иван)</li>
+			<li>Фамилия (например, Иванов)</li>
+			<li>Email (например, ivan.ivanov@gmail.com)</li>
+			<li>День рождения (например, 01.03.1989)</li>
+			<li>Пол (мужской - М, женский - Ж)</li>
+			<li>VIP (VIP - если это vip клиент, иначе пустое поле)</li>
+		</ul>
+
+		<div class="l-vcentered">
+			<button type="button" class="needsclick file-select-button green l-mr-10">Выбрать файл</button>
+			<div class="files-name" data-bind="text: fileName(file)"></div>
+		</div>
+		<input
+				type="file"
+				class="needsclick file hide"
+				name="file"
+				id="file-input"
+				data-bind="value: file"
+				accept=".xls, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+
+		<div class="form-buttons" data-bind="toggle: fileName(file)">
+			<button type="button" name="file-upload-button" class="green filled secondary load-csv">Загрузить</button>
+		</div>
+	</div>
+
+	<div class="task-status-processing">
+		<div class="text-center">
+			<h6>Пожалуйста, подождите..</h6>
+
+			<div class="hint">Загружено <span data-bind="text: state_processed"></span></div>
+
+			<div data-bind="toggle:not(state_progressVisible)">
+				<div class="ajax-loader-small"></div>
+			</div>
+
+			<div class="progress radius" data-bind="toggle:state_progressVisible">
+				<div class="meter" data-bind="css: { width: format('$1%', state_progressPercents) }"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="task-status-completed">
+		<div class="header">Загрузка завершена</div>
+		<div class="upload-details">
+			<div>Добавлено: <span data-bind="text: get(state_result, 'added')"></span></div>
+			<div>Дубликатов: <span data-bind="text: get(state_result, 'duplicated')"></span></div>
+			<div>Ошибок: <span data-bind="text: get(state_result, 'failed')"></span></div>
+		</div>
+
+		<a data-bind="attr: { href: format('/office/$1/customers', state_companyId) }" class="button theme">Назад</a>
+	</div>
+
+	<div class="task-status-error text-center">
+		<h2>Ошибка</h2>
+		<h6>К сожалению, файл загрузить не удалось. Пожалуйста, проверьте, корректно ли он составлен и попробуйте загрузить
+			заново.</h6>
+	</div>
+
+</div>

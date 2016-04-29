@@ -1,0 +1,24 @@
+<div class="bbm-modal">
+	{{ if (title) { }}
+	<div class="bbm-modal__topbar offer-row">
+		<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+	</div>
+	{{ } }}
+
+	{{ if (documentUrl) { }}
+	<div class="bbm-modal__section offer-row">
+		<iframe class="offer-frame" id="doc" src="about:blank" frameborder="0"></iframe>
+	</div>
+	{{ } }}
+
+	<div class="bbm-modal__bottombar offer-row">
+		<div class="row collapse">
+			<div class="small-6 columns">
+				<button class="blue  filled" name="ok">{{- submitButtonText }}</button>
+			</div>
+			<div class="small-6 columns">
+				<button class="blue  filled" name="cancel">{{- cancelButtonText }}</button>
+			</div>
+		</div>
+	</div>
+</div>

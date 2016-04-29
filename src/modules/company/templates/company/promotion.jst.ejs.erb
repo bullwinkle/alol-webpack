@@ -1,0 +1,23 @@
+<div class="promotion-container">
+  <div class="promotion-image">
+    {{ if (cashback) { }}
+    <div class="promotion-cashback">{{= cashback }} %</div>
+    {{ } }}
+  </div>
+  <div class="promotion-body">
+    <div class="promotion-title">{{= object_data.title }}</div>
+    {{ if (cashback) { }}
+    <div class="promotion-conditions">
+	    <div class="promotion-condition">{{= period() }}</div>
+	    <div class="promotion-condition">{{= time() }}</div>
+    </div>
+    {{ } else { }}
+    <div class="promotion-description">{{= object_data.description }}</div>
+    {{ } }}
+  </div>
+  <div class="promotion-action-bar">
+    <div class="action-button">
+      <i class="ic-heart"></i><span>{{= likes_count }}</span>
+    </div>
+  </div>
+</div>

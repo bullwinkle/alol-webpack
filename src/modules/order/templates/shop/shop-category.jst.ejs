@@ -1,0 +1,10 @@
+<a class="head button list-item menu-item" data-bind="attr:{href:headHref}">
+	<!--<span class="content" data-bind="text: title">{{-title}}</span>-->
+	<span class="content f-lh-40" data-bind="text: headTitle"></span>
+	<i class="ic-check theme checked"></i>
+	<i class="ic-chevron-right arrow theme"></i>
+</a>
+<div class="list-container">
+	<ul class="list menu-items" data-bind="classes:{hide: state_isLoading }"></ul>
+	<div class="loader-bubbles theme" data-bind="classes:{hide: all(not(infiniteScrollState_isLoadingMore),not(state_isLoading)) }"></div>
+</div>

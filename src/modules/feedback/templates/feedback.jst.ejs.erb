@@ -1,0 +1,127 @@
+{{
+
+var backgroundColor = '';
+
+if (
+	window.ICONTO_APPLICATION_DOMAIN_SETTINGS &&
+	(backgroundColor = window.ICONTO_APPLICATION_DOMAIN_SETTINGS.background_color) &&
+	Iconto.shared.helpers.color.luminance(backgroundColor, 0.25).toLowerCase() !== '#ffffff'
+) {
+	var backgroundColorHover = Iconto.shared.helpers.color.luminance(backgroundColor, -0.1)
+	var backgroundColorActive = Iconto.shared.helpers.color.luminance(backgroundColor, -0.2)
+}}
+<style type="text/css">
+	.feedback-page, button {
+		background-color: {{= backgroundColor }} !important;
+	}
+
+	.bbm-modal__title.text-center, .rules {
+		color: {{= backgroundColor }} !important;
+	}
+
+	button {
+		border-color: {{= backgroundColor }} !important;
+	}
+
+	#workspace div.bubble-with-padding div.send-message-block button.button-send:active {
+		background-color: {{= backgroundColorActive }} !important;
+		border-color: {{= backgroundColorActive }} !important;
+	}
+
+	#modals .bbm-modal__bottombar button:active, button.button-send:hover {
+		background-color: {{= backgroundColorHover }} !important;
+		border-color: {{= backgroundColorHover }} !important;
+	}
+
+	.rules:hover, #workspace div.login .login-buttons a:active {
+		color: {{= backgroundColorHover }} !important;
+	}
+</style>
+{{ } }}
+
+<div class="feedback-wrapper">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="text-center">
+	      <%= image_tag 'alol-black.svg' %>
+        <h5 class="moto">Нам важно Ваше мнение!</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 medium-centered columns text-center">
+      <div class="bubble">
+        <div class="bubble-with-padding">
+          <div data-bind="toggle:state_companyImageUrl">
+            <img id="company-logo" data-bind="attr: { src:state_companyImageUrl }">
+          </div>
+          <!-- Message -->
+          <div class="send-message-block">
+            <textarea placeholder="Напишите - Вас услышат!"></textarea>
+
+            <div class="send-success opacity0">
+	            <a href="#" class="signup">Зарегистрируйтесь</a>, чтобы общаться с оператором online и получать информацию о Ваших скидках и бонусах
+            </div>
+            <button type="button" class="button blue filled button-send">ОТПРАВИТЬ</button>
+          </div>
+
+	        <div class="row collapse">
+		        <div class="small-12 medium-8 medium-centered columns">
+
+		          <!-- Register -->
+		          <div class="registration-block">
+
+							  <div class="phone-input">
+								  <div class="phone-prefix">+7</div>
+								  <div class="input-wrapper">
+										<input type="tel" name="contact_phone" id="contact_phone" class="phone-input-field" maxlength="10" placeholder="Номер телефона" autofocus/>
+								  </div>
+							  </div>
+
+		            <div class="registration-rules-hint">Нажимая "Зарегистрироваться", Вы <br/>принимаете
+		              <a class="rules" data-bypass target="_blank" href="/rules">Условия
+		                оферты</a>.
+		            </div>
+		            <div class="registration-hint"></div>
+		            <button type="button" class="button blue filled expand button-register" disabled="disabled">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+		          </div>
+
+		          <!-- Authorization -->
+		          <div class="authorization-block">
+
+							  <div class="phone-input">
+								  <div class="phone-prefix">+7</div>
+								  <div class="input-wrapper">
+									  <input type="tel" name="contact_phone" id="contact_phone" class="phone-authorize-input" maxlength="10" placeholder="Номер телефона" autofocus/>
+								  </div>
+							  </div>
+
+		            <input type="password" placeholder="Пароль" class="password-authorize-input radius" maxlength="16">
+
+		            <div class="authorization-hint"></div>
+		            <button type="button" class="button filled blue expand button-authorize" disabled="disabled">ВОЙТИ</button>
+		          </div>
+
+		        </div>
+	        </div>
+        </div>
+        <div class="login" data-bind="toggle:not(state_isAuthorized)">
+          <div class="login-buttons clearfix">
+            <a class="signup">РЕГИСТРАЦИЯ</a>
+            <a class="signin">ВХОД</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottombar">
+    <div class="row">
+      <div class="small-12 medium-6 medium-centered columns">
+        <%= image_tag 'alol-black.svg', :class => 'bottombar-wrt-logo' %>
+        <a href="https://iconto.net" target="_blank" data-bypass class="right">АЛОЛЬ</a>
+      </div>
+    </div>
+  </div>
+</div>

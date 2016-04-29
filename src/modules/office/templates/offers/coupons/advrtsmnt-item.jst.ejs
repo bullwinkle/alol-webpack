@@ -1,0 +1,12 @@
+<button class="button text">
+
+	{{ if (images.length > 0) { }}
+	<div class="logo">
+		<img src="{{= images[0].url }}" alt=""/>
+	</div>
+	{{ } }}
+
+	<div class="title">{{= title }}</div>
+	<div class="description">{{= description }}</div>
+
+</button>

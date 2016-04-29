@@ -1,0 +1,12 @@
+<div class="notification-container">
+	{{ if (icon && icon.length > 0) { }}
+		<div class="icon" style="background-image: url({{= icon }})"></div>
+	{{ } }}
+	<div class="data">
+		<div class="title">{{= title }}</div>
+		<div class="body">{{= body }}</div>
+	</div>
+	<!--<pre>-->
+		<!--{{= JSON.stringify(obj,null, '\t') }}-->
+	<!--</pre>-->
+</div>

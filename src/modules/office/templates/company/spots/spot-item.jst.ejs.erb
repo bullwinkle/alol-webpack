@@ -1,0 +1,24 @@
+<div class="qr-code">
+  <a href="//chart.googleapis.com/chart?chs=500x500&cht=qr&chl={{= url() }}" data-bypass target="_blank">
+    <i class="ic-qr-code-download"></i>
+  </a>
+</div>
+
+<div class="spot-info">
+  <div class="description">{{- description }}</div>
+
+  <div class="on-edit">
+    <input type="text" name="description" value="{{- description }}">
+    <span class="save-button">Сохранить</span><span class="splitter">|</span><span class="cancel-button">Отмена</span>
+  </div>
+
+  <div class="address">{{- address() }}</div>
+  <div class="url">
+    <a class="theme" data-bypass target="_blank" href="{{= url() }}">{{= url() }}</a>
+  </div>
+</div>
+
+<div class="spot-delete">
+  <i class="ic-pencil-black"></i>
+  <i class="ic-cross-circle"></i>
+</div>

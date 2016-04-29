@@ -1,0 +1,90 @@
+@Iconto.module 'wallet.views.messages', (Messages) ->
+
+	class Messages.NewChatQRView extends Marionette.LayoutView
+		className: 'new-chat-qr-view mobile-layout'
+		template: JST['wallet/templates/messages/chats/new-chat-qr']
+
+		behaviors:
+			Epoxy: {}
+			Layout:
+				template: JST['shared/templates/mobile-layout']
+
+		ui:
+			qrRegion: '[name=qr-region]'
+
+		regions:
+			qrRegion: '[name=qr-region]'
+
+		initialize: =>
+			@state = new Iconto.wallet.models.StateViewModel @options
+			@state.set
+				topbarTitle: 'QR'
+				isLoading: false
+
+				text: ''
+				error_text: ''
+
+			unless Iconto.shared.services.media.available
+				@state.set error_text: 'Ваш браузер не поддерижвает видео'
+
+		onRender: =>
+			if Iconto.shared.services.media.available
+				Q($.getScript("#{document.location.origin}<%= asset_path 'html5-qrcode.min.js' %>"))
+				.then =>
+					@reader = new Iconto.shared.views.qr.QRReaderView()
+					@listenTo @reader, 'qr:read', @onQRRead
+					@listenTo @reader, 'qr:fail', @onQRFail
+					@listenTo @reader, 'qr:success', @onQRSuccess
+					@listenTo @reader, 'qr:error', @onQRError
+					@qrRegion.show @reader
+				.dispatch(@)
+				.catch (error) =>
+					console.error error
+					Iconto.shared.views.modals.ErrorAlert.show error
+				.done()
+
+		onQRFail: (e) =>
+			@state.set text: e
+
+		onQRRead: (code) =>
+			Iconto.shared.services.vibration.vibrate 200
+			@state.set text: ''
+			@reader.pause()
+			spotId = "#{code}".replace(/^.+\/feedback\/(\d+)(\/)?$/,"$1") - 0
+			Q.fcall =>
+				throw message: "Неверный QR-код" unless spotId
+				spot = new Iconto.REST.AddressSpot(id: spotId)
+				spot.fetch()
+				.catch (error) =>
+					console.error error
+					throw message: "Неверный QR-код" if error.status is 200004
+				.then (spot) =>
+					reasons = [
+						{type: Iconto.REST.Reason.TYPE_USER, user_id: @options.user.id},
+						{type: Iconto.REST.Reason.TYPE_ADDRESS, address_id: spot.address_id}
+					]
+					roomView = new Iconto.REST.RoomView()
+					roomView.save(reasons: reasons)
+					.then (response) =>
+						Iconto.wallet.router.navigate "/wallet/messages/chat/#{response.id}", trigger: true
+			.dispatch(@)
+			.catch (error) =>
+				console.error error
+				Iconto.shared.views.modals.ErrorAlert.show _.extend error, onCancel: =>
+					@reader.resume()
+			.done()
+
+		onQRSuccess: =>
+			@state.set isLoading: false
+
+		onQRError: (error) =>
+			console.error error
+			message = switch error.name
+				when 'DevicesNotFoundError'
+					'Камера не найдена'
+				when 'PermissionDeniedError'
+					'Доступ к камере запрещен'
+				else
+					JSON.stringify error
+			@state.set error_text: message
+#			Iconto.shared.views.modals.ErrorAlert.show message: message

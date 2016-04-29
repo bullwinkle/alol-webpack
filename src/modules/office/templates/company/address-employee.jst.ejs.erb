@@ -1,0 +1,21 @@
+<form>
+  <div class="employee-add-input">
+    <label>Фамилия</label>
+    <input type="text" name="last_name" class="radius" id="last_name" maxlength="128"/>
+
+    <label>Имя</label>
+    <input type="text" name="first_name" class="radius" id="first_name" maxlength="128"/>
+
+    <label>Номер телефона</label>
+    <div class="phone-input">
+      <div class="phone-prefix">+7</div>
+      <div class="input-wrapper">
+        <input type="tel" name="phone" id="phone" maxlength="20"/>
+      </div>
+    </div>
+
+    <input type="checkbox" name="send_sms" id="send_sms" class="theme switch"/>
+    <label for="send_sms" class="inline">Отправлять сообщения пользователей по SMS, если не онлайн</label>
+	  <i class="ic-info-circle has-tip right" data-message="Стоимость смс - 0,60 рублей. Средства за смс списываются с баланса компании."></i>
+  </div>
+</form>

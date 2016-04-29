@@ -1,0 +1,59 @@
+<div class="flexbox">
+  {{ var image = image.id ? Iconto.shared.helpers.image.resize(image.url,
+  Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) : Iconto.shared.helpers.image.anonymous() }}
+  <div class="chat-logo">
+    <img src="{{= image }}" alt=""/>
+  </div>
+
+  <div class="info">
+    <div class="title">{{- name }}</div>
+
+    <div class="additional-group-names">
+      <img src="{{= Iconto.shared.helpers.image.resize(group.image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) }}" alt="{{= group.name }}" class="group-image"/>
+      {{ var additionalName = additional_group_names || source_group_additional_name; }}
+      <span class="group-name">{{= group.name }}</span>{{ if (additionalName) { }}, {{= additionalName }}{{ } }}
+    </div>
+
+    <div class="last-message">
+      {{ if (obj['last_message'] && (obj['last_message'].body || obj['last_message'].attachments)) { }}
+
+      {{ var image = Iconto.shared.helpers.image.anonymous();
+      if (last_message.user && last_message.user.image && last_message.user.image.id) {
+      image = Iconto.shared.helpers.image.resize(last_message.user.image.url,
+      Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL);
+      }
+      }}
+      <img class="sender-image" src="{{= image }}" alt=""/>
+      <span class="message-body">{{- getMessageBody(last_message) }}</span>
+
+      {{ } else { }}
+      <span class="empty message-body">Сообщений еще нет</span>
+      {{ } }}
+    </div>
+  </div>
+  <div class="additional">
+    <img alt="" class="operator-image"/>
+
+    {{ if (obj['last_message']) { }}
+    <div class="date">{{= getDateString(last_message.created_at || created_at) }}</div>
+    {{ } }}
+  </div>
+
+</div>
+
+<!--<div class="actions">-->
+<!--<i class="dots ic-dots"></i>-->
+<!--</div>-->
+
+<div class="overlay">
+  <div class="wrap-overlay">
+    <a href="#" class="overlay-button white hide-chat">
+      <i class="ic-circle-minus"></i>
+      <span>Скрыть</span>
+    </a>
+    <!--<div class="block-chat">-->
+    <!--<i class="ic-lock"></i>-->
+    <!--<div>Заблокировать</div>-->
+    <!--</div>-->
+  </div>
+</div>

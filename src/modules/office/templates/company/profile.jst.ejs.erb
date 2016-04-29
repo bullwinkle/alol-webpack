@@ -1,0 +1,132 @@
+<div class="form">
+  <h5>Компания</h5>
+
+  <div class="company-image-block">
+    <div class="company-image">
+      <img data-bind="attr: { src: customResize(get(image, 'url')) }" alt=""/>
+    </div>
+    <div class="buttons">
+      <div>
+        <button class="theme upload-image-button needsclick">Изменить изображение</button>
+        <button class="red delete-image-button" data-bind="toggle: image_id">Удалить</button>
+        <input type="file" accept="image/jpeg, image/png" class="needsclick"/>
+
+        <div class="small">Вы можете загрузить логотип в формате jpg или png.</div>
+        <div class="small">Размер файла не должен превышать 1Mb.</div>
+      </div>
+    </div>
+  </div>
+
+  <form>
+    <label>Название компании</label>
+    <input type="text" class="radius" name="name" id="name" maxlength="50" data-bind="value:name" readonly>
+
+    <label>Категория</label>
+    <select class="radius" name="category_id" id="category_id" data-bind="value:integer(category_id), underscore:state_categories, events: ['change']">
+      <script type="text/template">
+        <@ _.each(obj, function(value, key) { @>
+        <optgroup label="<@- key @>">
+          <@ _.each(value, function (category) { @>
+          <@ if (category.id == {{= category_id }}) { @>
+          <option value="<@- category.id @>" selected><@- category.name @></option>
+          <@ } else { @>
+          <option value="<@- category.id @>"><@- category.name @></option>
+          <@ }}); @>
+        </optgroup>
+        <@ }); @>
+      </script>
+    </select>
+
+    <label>Описание компании</label>
+    <i class="ic-info-circle has-tip right" data-message="Текст, добавленный в это поле, будет отображаться на детальной странице компании."></i>
+    <textarea class="radius" name="description" id="description" data-bind="value:description, events: ['input','paste','change']" maxlength="1024" rows="5"></textarea>
+
+    <label>Корпоративный e-mail</label>
+    <input type="text" class="radius" name="email" id="email" maxlength="50" data-bind="value:email, events: ['input','paste','change']">
+
+    <label>Сайт компании</label>
+    <input type="text" class="radius" name="site" id="site" maxlength="40" data-bind="value:ignoreWhitespace(site), events: ['input','paste','change']">
+
+    <!--<label>Псевдоним отправителя SMS</label>-->
+    <!--<input type="text" class="radius" name="sender_name" id="sender_name" maxlength="11" data-bind="value:ignoreWhitespace(sender_name), events: ['input','paste','change']"/>-->
+
+    <div>
+      <label>Приветственное сообщение</label>
+      <i class="ic-info-circle has-tip right" data-message="Текст, добавленный в это поле, автоматически отправляется всем пользователям, которые инициируют чат с компанией."></i>
+    </div>
+    <textarea name="welcome_message" id="welcome_message" class="radius" data-bind="value:welcome_message, events: ['input','paste','change']" maxlength="1024" rows="5"></textarea>
+
+    <div>
+      <label>Автоответ в чате</label>
+      <i class="ic-info-circle has-tip right" data-message="Текст, добавленный в это поле, автоматически отправляется всем пользователям в качестве ответа на отправленное ими сообщение в чат."></i>
+    </div>
+    <textarea name="greeting_message" id="greeting_message" class="radius" data-bind="value:greeting_message, events: ['input','paste','change']" maxlength="1024" rows="5" rows="5"></textarea>
+
+    <div>
+      <label>Теги</label>
+      <i class="ic-info-circle has-tip right" data-message="Пожалуйста, введите теги через запятую."></i>
+    </div>
+    <textarea name="tags" id="tags" class="radius" data-bind="value:tags, events: ['input','paste','change']" maxlength="3000" placeholder="Например: бар, кафе, паэлья, коктейли" rows="3"></textarea>
+
+    <button name="company-save-button" type="button" class="theme filled">Сохранить</button>
+  </form>
+
+  <h5>Юридическое лицо</h5>
+
+  <div data-bind="toggle: legal_legalName">
+    <a data-bind="text: legal_legalName, attr: { href: format('/office/$1/legal', id) }" class="theme edit-legal-link"></a>
+  </div>
+
+  <div data-bind="toggle: not(legal_id)">
+    <a href="/office/{{= id }}/legal/new" class="theme button">Добавить юридическое лицо</a>
+  </div>
+
+  <h5>Адреса</h5>
+
+  <div class="address-region">
+    <div data-bind="underscore:state_addresses">
+      <script type="text/template">
+        <@ _.each(obj, function(value, key) { @>
+        <div class="address">
+          <a class="green" href="/office/{{= id }}/address/<@- value.id @>" data-id="<@- value.id @>"><@- value.address
+            @></a>
+          <span><@- value.city.name ? value.city.name : 'Город не указан' @></span>
+        </div>
+        <@ }); @>
+      </script>
+    </div>
+    <a href="/office/{{= id }}/address/new" class="add-more theme button">Добавить адрес</a>
+  </div>
+
+  <!-- Company contact part -->
+
+  <!-- New Company contact -->
+  <div data-bind="toggle:not(contact_id)">
+    <div class="contact-name-region" role="region"></div>
+    <div>
+      <button class="theme filled button contact-save-button">Сохранить</button>
+    </div>
+  </div>
+
+  <!-- Existing Company contact -->
+  <div data-bind="toggle:contact_id">
+    <h5>Контактное лицо</h5>
+
+    <div class="name">
+      <span data-bind="text:contactUser_name, attr: { title:contactUser_name }"></span>
+      <i class="ic-cross-circle right contact-delete-button" data-bind="toggle:state_showContactDeleteButton"></i>
+    </div>
+    <a class="phone" data-bypass data-bind="text:format('+7 $1', phoneFormat7(contactUser_phone)), attr: { href:format('tel:+$1', contactUser_phone) }, toggle:contactUser_phone"></a>
+    <span class="phone" data-bypass data-bind="toggle: not(contactUser_phone)">+7 *** *** ** **</span>
+    <a class="email" data-bypass data-bind="text:contactUser_email, attr: { title:contactUser_email, href:format('mailto:$1', contactUser_email) }"></a>
+
+    <div class="send-sms">
+      <div class="checkbox">
+        <input type="checkbox" id="send_sms" class="green switch" data-bind="checked:contact_send_sms"/></div>
+      <div class="label">
+        <label class="inline" for="send_sms">Отправлять сообщения пользователей по SMS, если не онлайн</label></div>
+	      <i class="ic-info-circle has-tip right" data-message="Стоимость смс - 0,60 рублей. Средства за смс списываются с баланса компании."></i>
+    </div>
+  </div>
+  <!-- End Company contact -->
+</div>

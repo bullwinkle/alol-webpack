@@ -1,0 +1,56 @@
+<div class="user-info flex-1">
+  <div class="flexbox">
+    <div class="user-image flex-0" data-bind="attr: { style: format('background-image: url($1?resize=w[40]h[40]e[true])', get(image, 'url')) }"></div>
+    <div class="user">
+      <div class="user-name" data-bind="text: name"></div>
+      <div class="user-code" data-bind="text: format('#$1', client_external_id), toggle: client_external_id"></div>
+      <div class="user-phone" data-bind="text: format('+7 $1', phoneFormat7(contact_phone))"></div>
+      <div class="user-email" data-bind="text: client_email"></div>
+    </div>
+  </div>
+</div>
+
+<div class="additional-info flex-1">
+
+  <div class="company flexbox">
+    <div class="company-image flex-0" data-bind="attr: { style: format('background-image: url($1?resize=w[40]h[40]e[true])', get(company_image, 'url')) }"></div>
+    <div class="company-name" data-bind="text: company_name"></div>
+  </div>
+
+  <div class="operator flexbox" data-bind="classes: { hide: not(operator_id) }">
+    <div class="operator-image flex-0" data-bind="attr: { style: format('background-image: url($1?resize=w[40]h[40]e[true])', get(operator_image, 'url')) }"></div>
+    <div class="operator-name" data-bind="text: operator_nickname"></div>
+  </div>
+
+  <div class="tag">
+    <div class="tag-image">
+      <img src="" alt="">
+    </div>
+    <div class="tag-name"></div>
+  </div>
+
+</div>
+
+<div class="review-info" data-bind="toggle: review_id">
+  <div class="review flexbox">
+    <div class="review-image">
+      <i class="ic" data-bind="attr: { class: review_className }"></i>
+    </div>
+    <div>
+      <div class="review-name" data-bind="text: review_name"></div>
+      <div class="review-id" data-bind="text: format('# $1', review_id)"></div>
+    </div>
+  </div>
+</div>
+
+<div class="transfer-button flexbox flex-h-center flex-v-center flex-column" data-bind="classes: { hide: not(equal(operator_id, Iconto.api.userId)) }">
+  <i class="ic ic-arrow-transfer"></i>
+
+  <div class="text">Передать</div>
+</div>
+
+<div class="close-button flexbox flex-h-center flex-v-center flex-column" data-bind="classes: { hide: not(equal(operator_id, Iconto.api.userId)) }">
+  <i class="ic ic-check"></i>
+
+  <div class="text">Завершить</div>
+</div>

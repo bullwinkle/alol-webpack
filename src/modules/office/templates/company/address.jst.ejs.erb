@@ -1,0 +1,65 @@
+{{ if (id) { /* edit address */ }}
+
+<div class="form">
+  <label>Страна</label>
+  <input type="text" readonly name="country-name"/>
+
+  <label>Город</label>
+  <input type="text" readonly name="city-name"/>
+
+  <div data-bind="toggle: equal(type, {{- (Iconto.REST.Address.TYPE_ADDRESS) }})">
+    <label>Адрес</label>
+    <input type="text" readonly data-bind="value:address"/>
+  </div>
+
+  <label>Номер телефона</label>
+
+  <form class="form">
+    <div class="phone-input">
+      <div class="phone-prefix">+7</div>
+      <div class="input-wrapper">
+        <input type="tel" name="contact_phone" id="contact_phone" data-bind="value:state_phone, events: ['paste', 'input', 'change']" maxlength="20"/>
+      </div>
+    </div>
+
+    <div class="form-buttons">
+      <button type="button" class="theme filled" name="save-button">Сохранить</button>
+      <button type="button" class="grey" name="delete-button" data-bind="toggle:not(state_isNew)">Удалить адрес</button>
+    </div>
+  </form>
+</div>
+
+{{ } else { /* new address */ }}
+
+<form class="form">
+  <label>Страна</label>
+  <select name="country_id" id="country_id" data-bind="options: state_countries, sodValue:integer(country_id)"></select>
+
+  <div data-bind="toggle: country_id">
+    <label>Город</label>
+    <select name="city_id" id="city_id" data-bind="options: state_cities, sodValue:integer(city_id)"></select>
+  </div>
+
+  <div class="addresses" data-bind="classes: { green: state_loading, 'loader-bubbles': state_loading }"></div>
+  <div class="addresses-inputs" data-bind="toggle:not(type)"></div>
+
+  <div class="addresses-input-template">
+    <label>Адрес</label>
+    <input type="text" class="address"/>
+  </div>
+
+  <label>Номер телефона</label>
+
+  <div class="phone-input">
+    <div class="phone-prefix">+7</div>
+    <div class="input-wrapper">
+      <input type="tel" name="contact_phone" id="contact_phone" maxlength="20" data-bind="value:state_phone, events: ['paste', 'input', 'change']"/>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" name="save-addresses-button" class="theme filled">Сохранить</button>
+    <button type="button" name="cancel-button" class="grey">Отмена</button>
+  </div>
+</form>
+{{ } }}

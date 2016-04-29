@@ -1,0 +1,17 @@
+<div class="topbar-region">
+	<div class="flexbox">
+		<button class="left-small" type="button" data-bind="attr: { class: state_topbarLeftButtonResultClass }, disabled: state_topbarLeftButtonDisabled">
+			<span data-bind="attr: { class: state_topbarLeftButtonSpanClass }, text: state_topbarLeftButtonSpanText"></span>
+		</button>
+
+		<div class="middle-small" data-bind="attr: { 'data-padding-left': state_topbarLeftButtonVisible, 'data-padding-right': state_topbarRightButtonVisible }">
+			<div class="title" data-bind="text: state_topbarTitle"></div>
+			<div class="subtitle" data-bind="text: state_topbarSubtitle"></div>
+		</div>
+
+		<button class="right-small" type="button" data-bind="attr: { class: state_topbarRightButtonResultClass }, disabled: state_topbarRightButtonDisabled">
+			<span data-bind="attr: { class: state_topbarRightButtonSpanClass }, text: state_topbarRightButtonSpanText"></span>
+		</button>
+
+	</div>
+</div>

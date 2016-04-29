@@ -1,0 +1,25 @@
+<button class="list-item">
+
+	<!--title-->
+	<div class="title">{{- title}}</div>
+
+	<!--description-->
+	<!--<div class="description">{{- description}}</div>-->
+
+	<!--<div class="right"></div>-->
+
+	<div class="address-amount">
+		{{ if (address_ids.length == addressCount) { }}
+		Все адреса
+		{{ } else { }}
+		{{= address_ids.length }}
+		{{= Iconto.shared.helpers.declension(address_ids.length, ['адрес','адреса','адресов']) }}
+		{{ } }}
+	</div>
+
+	<div class="status {{- (is_active ? 'active' : 'inactive') }}">
+		{{- (is_active ? 'Активен' : 'Не активен') }}
+	</div>
+
+</button>
+

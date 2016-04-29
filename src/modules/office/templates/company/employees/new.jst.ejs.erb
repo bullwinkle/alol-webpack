@@ -1,0 +1,22 @@
+<div class="hint">Сотрудника можно добавить по номеру телефона. Ему будет выслано уведомление.
+  Если сотрудник незарегистрирован в системе, профиль будет создан автоматически.
+  Данная компания уже будет привязана к его профилю.
+</div>
+
+<label>Телефон</label>
+<div class="phone-input">
+  <div class="phone-prefix">+7</div>
+  <div class="input-wrapper">
+    <input type="tel" name="phone" id="phone" data-bind="value:state_phone, events: ['paste', 'input', 'change']" maxlength="20"/>
+  </div>
+</div>
+
+<div class="send-sms">
+  <div class="checkbox"><input data-bind="checked: send_sms" id="contact-{{= id }}" type="checkbox" class="switch theme" name="send-sms"{{ if (send_sms) { }} checked{{ } }}/></div>
+  <label class="label" for="contact-{{= id }}">Отправлять <span>сообщения пользователей по</span> SMS<span>, если контакт не онлайн</span></label>
+</div>
+
+<div class="form-buttons">
+  <button type="button" class="theme filled" name="save-button">Сохранить</button>
+  <a href="/office/{{= company_id }}/employees" class="button grey" name="cancel-button">Отмена</a>
+</div>

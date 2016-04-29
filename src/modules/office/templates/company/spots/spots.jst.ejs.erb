@@ -1,0 +1,30 @@
+<div data-bind="toggle: all(state_spot_count, state_hasAddresses, state_hasDomain, not(equal(state_mode, 2)))">
+  <div class="address-spots-region"></div>
+</div>
+
+<div data-bind="toggle: equal(state_mode, 2)" class="spot-add">
+  <label>Название точки</label>
+  <input type="text" name="description" data-bind="value: trim(spot_description), events: ['input', 'paste', 'change']">
+  <label>Адрес</label>
+  <select name="address-id" data-bind="underscore: state_addresses, value: integer(spot_address_id)">
+    <script type="text/template">
+      <@ _.each(obj, function(value, key) { @>
+      <option value="<@- value.id @>"><@- _.escape(value.address) @></option>
+      <@ }); @>
+    </script>
+  </select>
+
+	<button name="save-button" type="button" class="theme filled">Добавить</button>
+	<button name="cancel-button" type="button" class="grey">Отмена</button>
+
+</div>
+
+<div data-bind="toggle: not(state_hasAddresses)" class="error-message">
+  <div class="hint">Необходимо добавить хотя бы один адрес.</div>
+  <div><a class="theme button" href="/office/{{= id }}/address/new">Добавить адрес</a></div>
+</div>
+
+<div data-bind="toggle: all(not(state_hasDomain), state_hasAddresses)" class="error-message">
+  <div class="hint">Необходимо заполнить доменное имя компании.</div>
+  <div><a class="theme button" href="/office/{{= id }}/branding">Заполнить доменное имя</a></div>
+</div>

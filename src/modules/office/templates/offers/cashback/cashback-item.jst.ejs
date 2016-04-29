@@ -1,0 +1,37 @@
+<button class="list-item">
+
+	<div class="right">
+		<div class="percent">
+			{{= cashback }} %
+		</div>
+
+		<div class="price">
+			{{ if (price > 0) { }}
+			Цена: {{= Iconto.shared.helpers.money(price) }} руб.
+			{{ } else { }}
+			Бесплатный
+			{{ } }}
+		</div>
+	</div>
+
+	<div class="title">{{- title }}</div>
+
+	<div class="address-amount">
+		{{ if (address_ids.length == addressCount) { }}
+			Все адреса
+		{{ } else { }}
+			{{= address_ids.length }}
+			{{= Iconto.shared.helpers.declension(address_ids.length, ['адрес','адреса','адресов']) }}
+		{{ } }}
+	</div>
+	<div class="condition-amount">
+		{{ var conditionAmount = countConditions(); }}
+		{{= conditionAmount }}
+		{{= Iconto.shared.helpers.declension(conditionAmount, ['условие','условия','условий']) }}
+	</div>
+
+	<div class="status {{- (is_active ? 'active' : 'inactive') }}">
+		{{- (is_active ? 'Активен' : 'Не активен') }}
+	</div>
+
+</button>

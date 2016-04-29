@@ -1,0 +1,15 @@
+<div class="piece-image">
+	{{ if (obj['facebook_link']) { }}
+  <a href="{{= obj['facebook_link'] }}" data-bypass target="_blank"></a>
+	{{ } }}
+</div>
+<div class="piece-body">
+  <div class="piece-title">{{= title }}</div>
+  <div class="piece-message line-clamp">{{= message }}</div>
+  <div class="piece-actions">
+    {{ if (message.length > 360) { }}
+    <div class="piece-show-more"><span>раскрыть</span> <i class="ic-chevron-left"></i></div>
+    {{ } }}
+    <div class="piece-date">{{= moment.unix(created_at).format('DD MMMM YYYY') }}</div>
+  </div>
+</div>

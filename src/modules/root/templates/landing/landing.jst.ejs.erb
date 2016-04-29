@@ -1,0 +1,114 @@
+<div class="landing-view-wrapper">
+	<div class="iconto main-logo"><%= image_tag "landing/iconto@2x.png" %></div>
+	<div class="moto">Make your money back</div>
+
+	<div class="login-and-apps">
+		<form name="login" id="login_form"  class="login hide-validation-errors" data-bind="classes: { 'mode-register':state_registration, 'mode-restore':state_restore, 'mode-auth':state_auth }" method="POST" action="/blank" target="landing-blank-frame">
+
+			<div class="wrap-login">
+				<div class="phone-input">
+					<div class="phone-prefix">+7</div>
+					<div class="input-wrapper">
+						<input type="tel" name="login" class="radius" placeholder="Номер телефона" maxlength="20" value="7" autocomplete="on" autocorrect="off"
+							   data-bind="value:state_phone, events: ['input', 'paste', 'change']"/>
+					</div>
+				</div>
+
+
+				<input type="password" name="password" class="radius" placeholder="Пароль" value="" autocomplete="on" autocorrect="off"
+				       data-bind="value:password, events: ['input', 'paste', 'change']"/>
+
+				<label class="accept-offer">
+					<!--<input type="checkbox" data-bind="checked: is_offer_accepted"/>-->
+					Нажимая кнопку "Зарегистрироваться", <br/> я принимаю <a href="/rules" data-bypass target="_blank" class="terms">условия оферты</a>
+				</label>
+				<button type="submit" class="submit-button button blue large filled" name="submit-button">
+					<span class="login-text">ВОЙТИ</span>
+					<span class="register-text">ЗАРЕГИСТРИРОВАТЬСЯ</span>
+					<span class="restore-text">ПОЛУЧИТЬ НОВЫЙ ПАРОЛЬ</span>
+				</button>
+				<div class="validation-error landing-errors"></div>
+
+				<a href="#" class="blue forget-password" name="forget-password">Забыли пароль?</a>
+			</div>
+
+			<button class="blue" type="button" name="switch-state-button">
+				<span class="login-text">РЕГИСТРАЦИЯ</span>
+				<span class="register-text">ВХОД</span>
+				<span class="restore-text">ВХОД</span>
+			</button>
+		</form>
+		<iframe id="landing-blank-frame" name="landing-blank-frame" style="position: absolute; width: 20px; height: 20px; visibility: hidden;"></iframe>
+
+
+		<div class="apps">
+			<header>Скачивайте приложения АЛОЛЬ</header>
+
+			<!--<div>Доступны для мобильных устройств<br/> в AppStore и Google Play</div>-->
+			<div>Доступны для мобильных устройств<br/> в AppStore</div>
+
+			<div class="stores">
+				<a href="https://itunes.apple.com/ru/artist/iconto-llc/id619881883?l=en" data-bypass target="_blank"><%=
+					image_tag "landing/dowload-apple@2x.png" %></a>
+				<!--<a href="https://play.google.com/store/apps/developer?id=АЛОЛЬ+Rus" data-bypass target="_blank"><%= image_tag "landing/dowload-google@2x.png" %></a>-->
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div class="footer">
+		<div class="footer-wrapper">
+			<div class="desktop-footer">
+				<div class="address address-swiss">
+					<div>Masanserstr. 17,</div>
+					<div>CH-7000 Chur.,</div>
+					<div>Switzerland</div>
+					<div>+41 44 586 30 08</div>
+				</div>
+
+				<div class="address address-russia">
+					<div>Санкт-Петербург,</div>
+					<div>Невский проспект,</div>
+					<div>д. 147</div>
+					<div>+7 (812) 385 00 45</div>
+				</div>
+
+				<div class="pci">
+					<div class="email"><a href="mailto:welcome@alol.io" data-bypass target="_blank">welcome@alol.io</a>
+					</div>
+					<div><%= image_tag "landing/pci.png" %></div>
+				</div>
+
+				<div class="copyright">Copyright © 2016 Alol.io</div>
+			</div>
+			<div class="mobile-footer">
+				<div class="info-1">
+					<div class="address address-swiss">
+						<div>Masanserstr. 17,</div>
+						<div>CH-7000 Chur.,</div>
+						<div>Switzerland</div>
+						<div>+41 44 586 30 08</div>
+					</div>
+
+					<div class="pci">
+						<div class="email"><a href="mailto:welcome@alol.io" data-bypass target="_blank">welcome@alol.io</a>
+						</div>
+						<div><%= image_tag "landing/pci.png" %></div>
+						<div>Copyright © 2016 Alol.io</div>
+					</div>
+				</div>
+
+				<div class="info-2">
+					<div class="address address-russia">
+						<div>Санкт-Петербург,</div>
+						<div>Невский проспект,</div>
+						<div>д. 147</div>
+						<div>+7 (812) 385 00 45</div>
+					</div>
+
+					<div class="address"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

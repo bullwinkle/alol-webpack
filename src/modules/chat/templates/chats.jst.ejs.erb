@@ -1,0 +1,19 @@
+<input type="text" name="query" id="query" placeholder="Поиск"
+       data-bind="value: trim(state_query), events: ['input', 'paste', 'change']"
+       autocomplete="off"
+       class="search"/>
+
+<div class="not-found hint">
+	Ничего не найдено, попробуйте изменить Ваш запрос
+</div>
+
+<div class="no-chats empty-state">
+  <%= image_tag "empty-states/mailbox.svg" %>
+  <div class="empty-state-header">Еще нет сообщений</div>
+  <div class="hint">Здесь будут сообщения от ваших пользователей.</div>
+</div>
+
+<div class="list-wrap" data-scroll>
+	<div class="list"></div>
+	<div class="loader-bubbles blue theme" data-bind="toggle: infiniteScrollState_isLoadingMore"></div>
+</div>

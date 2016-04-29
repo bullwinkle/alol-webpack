@@ -1,0 +1,36 @@
+<div class="clientcode text-center">
+  <div class="clientcode-image">
+    <%= image_tag 'ulmart-logo.png' %>
+  </div>
+
+	<h5 class="clientcode-header">Вы уже зарегистрированы<br>в Юлмарте?</h5>
+
+  <div class="clientcode-text">
+    Тогда введите Ваш код клиента Юлмарта:
+  </div>
+
+  <div class="clientcode-input">
+    <input type="number" name="external_id" id="external_id" data-bind="value: external_id, events: ['input', 'paste', 'change']">
+    <i class="ic ic-submit"></i>
+  </div>
+
+  <div class="hint">
+	  Код клиента доступен в личном кабинете
+	  <a href="http://www.ulmart.ru" data-bypass target="_blank">www.ulmart.ru</a>
+  </div>
+
+	<div class="clientcode-text">
+		Это поможет нам связать Ваши аккаунты в&nbsp;АЛОЛЬ и&nbsp;Юлмарт,
+		а Вам - получать бонусы на счёт в&nbsp;Юлмарте
+		за&nbsp;покупки через приложение АЛОЛЬ
+	</div>
+
+	<div class="hint skip">
+		Вы можете пропустить данный шаг и сообщить свой код
+		в&nbsp;чат Юлмарта в разделе "Сообщения" позднее
+	</div>
+
+  <div class="buttons">
+    <button type="button" name="skip-button" class="grey">Пропустить</button>
+  </div>
+</div>

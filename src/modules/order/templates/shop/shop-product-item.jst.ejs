@@ -1,0 +1,127 @@
+<div class="show-for-medium-up">
+	<div class="flexbox">
+		<div class="product-icon l-w-140 l-h-100">
+			{{ obj.image = obj.image || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}
+			<div class="image" style="background-image: url({{- obj.image }}?resize=w[200]h[160])"></div>
+		</div>
+
+		<div class="flex-1 flexbox flex-column container l-plr-10">
+			{{ if (obj.title) { }}
+			<div class="title s-line-clamp-2 l-h-40 f-sz-14 f-w-600 f-lh-20">{{-title}}</div>
+			{{}}}
+			<div class="flexbox flex-v-center l-mt-5 l-mb-5">
+				{{ if (obj.vendor_code) { }}
+					<div class="t-grey-light f-sz-12 l-mb-0">Артикул: {{- vendor_code}}</div>
+				{{}}}
+				<div class="{{- obj.is_active ? 'is-active':'not-active' }} l-ml-15 f-sz-12">{{- obj.is_active ? 'В наличии':'Нет в наличии' }}</div>
+			</div>
+			{{ if (obj.description) { }}
+				<div class="description s-line-clamp-2">{{- description }}</div>
+			{{}}}
+
+			<!--{{ if (obj.categories && obj.renderedInSearchResult && Iconto.wallet) { }}-->
+			<!--<div class="categories">-->
+			<!--{{ _.each(obj.categories, function (category, index) { }}-->
+			<!--{{ if (index === obj.categories.length-1) { }}-->
+			<!--<a class="category" href="{{- category.url }}">{{- category.title }}</a>-->
+			<!--{{} else { }}-->
+			<!--<span class="category">{{- category.title }}</span>-->
+			<!--{{}}}-->
+			<!--{{})}}-->
+			<!--</div>-->
+			<!--{{}}}-->
+		</div>
+		<div class="flexbox flex-column l-pl-10">
+			<div class="flex-self-end t-a-right l-h-40">
+				{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}
+					<div class="price f-sz-18 f-lh-18 f-w-900">{{-discount_price}} <span class="rouble">№</span></div>
+					<div class="price t-grey-light f-sz-12 l-mb-0 f-strike">{{-price}} <span class="rouble">№</span></div>
+				{{} else if (obj.price) { }}
+					<div class="price f-sz-18 f-lh-22 f-w-900">{{-price}} <span class="rouble">№</span></div>
+				{{}}}
+			</div>
+
+			<!--<div class="flex-0">-->
+				<!--<button name="add-to-cart" class="green theme order-button l-left" data-add-to-cart>Заказать</button>-->
+				<!--<div class="count-selector" data-count-selector>-->
+					<!--<span class="decrement s-cp t-centered"><i>-</i></span>-->
+					<!--<input type="number" class="count-input" value="{{-count}}" data-count/>-->
+					<!--<span class="increment s-cp t-centered"><i>+</i></span>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<!--
+			<button class="add-to-comparison small blue l-block">
+				<i class="ic-compare"></i>
+				<span data-add-to-comparison>К&nbsp;сравнению</span>
+			</button>
+			-->
+			<button class="add-to-cart small blue filled l-block l-mt-5">
+				<i class="ic-cart-2 "></i>
+				<span data-add-to-cart>В&nbsp;корзину</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="show-for-small-only">
+	<div class="content l-pt-10">
+		{{ if (obj.title) { }}
+		<div class="title s-ellipsis l-mb-15 l-plr-20 f-sz-16 f-w-600 f-lh-20">{{-title}}</div>
+		{{}}}
+		<div class="flexbox l-plr-20 l-pb-10">
+			<div class="flex-08">
+				<div class="product-icon l-h-100">
+					{{ obj.image = obj.image || obj.image_url || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}
+					<div class="image" style="background-image: url({{- image }}?resize=w[200]h[120])"></div>
+				</div>
+				<!--
+				<div class="flexbox flex-row-wrap flex-v-center">
+					<div class="rating">
+						<span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+					</div>
+					<div class="f-sz-12 f-lh-20">({{- parseFloat(obj.rating) || 0 }})</div>
+					<div class="f-sz-12 f-lh-20 l-pl-5">({{- parseInt(obj.rating_count) || 0 }})</div>
+				</div>
+				-->
+			</div>
+			<div class="flex-1 flexbox l-pl-15">
+				<div class="container flexbox flex-column">
+					{{ if (obj.description) { }}
+					<div class="description s-line-clamp-2 l-mb-10">{{- description }}</div>
+					{{ } }}
+					{{ if (obj.vendor_code) { }}
+					<div class="t-grey-light f-sz-12 l-mb-0">арт.: {{- vendor_code }}</div>
+					{{ } }}
+					<div class="{{- obj.is_active ? 'is-active':'not-active' }} l-mt-2 f-sz-11">{{- obj.is_active ? 'В наличии':'Нет в наличии' }}</div>
+
+					<div class="flexbox flex-1 flex-v-bottom">
+						<div>
+							{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}
+								<div class="price t-grey-light f-sz-12 l-mb-0 f-strike">{{-price}} <span class="rouble">№</span></div>
+								<div class="price f-sz-20 f-lh-24 f-w-900">{{-discount_price}} <span class="rouble">№</span></div>
+							{{} else if (obj.price) { }}
+								<div class="price f-sz-20 f-lh-24 f-w-900">{{-price}} <span class="rouble">№</span></div>
+							{{}}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flexbox flex-v-center actions">
+		<!--
+		<div class="add-to-comparison flex-1 flexbox flex-v-center flex-h-center l-pt-5 l-pb-5">
+			<i class="ic-compare f-sz-26 l-pr-10 l-pb-7"></i>
+			<span data-add-to-comparison>К&nbsp;сравнению</span>
+		</div>
+		-->
+		<div class="add-to-cart flex-1 flexbox flex-v-center flex-h-center l-pt-5 l-pb-5 t-primary">
+			<i class="ic-cart-2 f-sz-26 l-pr-10 l-pb-7"></i>
+			<span data-add-to-cart>В&nbsp;корзину</span>
+		</div>
+	</div>
+</div>
+

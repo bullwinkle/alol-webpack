@@ -1,0 +1,72 @@
+<!-- User image -->
+<div class="flexbox user-image-block">
+	<div class="user-image">
+		<img src="{{= Iconto.shared.helpers.image.resize(image.url) }}"
+		     alt="{{- Iconto.shared.helpers.user.getName(obj) }}"/>
+	</div>
+	<div class="change-user-image-button">
+		<button class="button theme needsclick" name="upload-button">Изменить изображение</button>
+		<button class="red delete-image-button" data-bind="toggle: image_id">Удалить</button>
+		<input type="file" accept="image/*" class="needsclick"/>
+	</div>
+</div>
+
+<!-- User info -->
+<div class="user-info">
+	<form>
+		<label>Телефон</label>
+		<input type="text" value="+7 {{= Iconto.shared.helpers.phone.format7(login) }}" disabled/>
+
+		<!-- User first and last name -->
+		<div class="user-name">
+			<div class="user-first-name">
+				<label>Имя</label>
+				<input type="text" name="first_name" id="first_name"
+				       data-bind="value:trim(first_name), events: ['input', 'paste']" maxlength="99"/>
+			</div>
+			<div class="user-last-name">
+				<label>Фамилия</label>
+				<input type="text" name="last_name" id="last_name"
+				       data-bind="value:trim(last_name), events: ['input', 'paste']" maxlength="100"/>
+			</div>
+		</div>
+
+		<label>Email</label>
+		<input type="email" name="email" id="email"
+		       data-bind="value:trim(email), events: ['input', 'paste']" maxlength="50"/>
+
+		<!-- Email server error if email is already taken -->
+		<div class="server-error" data-bind="toggle:not(state_isEmailValid)">Данный email уже зарегистрирован</div>
+
+		<!-- Email confirmation notification -->
+		<div class="hint" data-bind="toggle:not(is_email_confirmed)">На указанный Вами адрес электронной почты было
+			отправлено письмо. Пожалуйста, пройдите по ссылке, указанной в письме, чтобы подтвердить адрес. <button class="blue theme text send-confirmation-email">Выслать письмо повторно</button>
+		</div>
+
+		<label>Дата рождения</label>
+		<input type="date" name="birthday" id="birthday"
+		       data-bind="value:birthday, events: ['input', 'paste']"/>
+
+		<label class="sex">Пол</label>
+
+		<div class="flexbox user-sex">
+			<div class="user-sex-male">
+				<input type="radio" name="sex" class="theme" id="sex-male" value="1" data-bind="checked:integer(sex)"/>
+				<label for="sex-male" class="inline">Мужской</label>
+			</div>
+			<div class="user-sex-female">
+				<input type="radio" name="sex" class="theme" id="sex-female" value="2" data-bind="checked:integer(sex)"/>
+				<label for="sex-female" class="inline">Женский</label>
+			</div>
+			<div class="user-sex-unknown" data-bind="toggle:not(integer(sex))">
+				<input type="radio" name="sex" class="theme" id="sex-unknown" value="0" data-bind="checked:integer(sex)"/>
+				<label for="sex-unknown" class="inline">Не задан</label>
+			</div>
+		</div>
+
+		<div>
+			<button name="exit-button" type="button" class="red" data-bind="toggle:state_isEmptyUser">Выйти</button>
+			<button name="save-button" type="submit" class="theme filled">Сохранить</button>
+		</div>
+	</form>
+</div>

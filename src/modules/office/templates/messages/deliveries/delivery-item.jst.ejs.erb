@@ -1,0 +1,9 @@
+<div class="details">
+  <div class="title">{{- title }}</div>
+  <div class="message">{{- message }}</div>
+</div>
+
+<div class="additional-details">
+	<div class="date">{{= moment.unix(created_at).format('DD.MM.YYYY') }}</div>
+	<div class="status" title="{{= statusText }}"><i class="ic {{= statusIcon }} status-{{= statusColor }}"></i></div>
+</div>

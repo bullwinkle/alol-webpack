@@ -1,0 +1,12 @@
+<div class="text first">Подтверждение номера телефона</div>
+<label>Телефон</label>
+<div class="phone-number">+7 {{= Iconto.shared.helpers.phone.format7(login || phone) }}</div>
+<div class="text">Нажмите кнопку ниже, чтобы получить SMS сообщение с кодом подтверждения.</div>
+<button class="button theme" type="button" name="get-code-button">Получить код</button>
+
+<div data-bind="classes: { hide:state_codeInputHidden }">
+	<div class="text">Введите полученный код</div>
+	<label>Код</label>
+	<input type="text" maxlength="10" name="code-input"/>
+	<button class="button filled theme" type="button" name="continue-button">Продолжить</button>
+</div>

@@ -1,0 +1,30 @@
+<div class="header">
+	<div class="balance">
+		<span class="amount" data-bind="text:money(state_balance)"></span>&nbsp;<span class="rouble">№</span>
+		<div class="text">в вашем кошельке</div>
+	</div>
+
+	<div class="withdraw">
+		<a href="#" name="transfer" class="white small">ПЕРЕВЕСТИ</a>
+		<!--<a href="/wallet/money/payment" class="white small">ОПЛАТИТЬ</a>-->
+	</div>
+</div>
+
+<div class="list-wrap">
+	<div class="list-width-wrap">
+		<div class="list clearfix"></div>
+
+		<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingMore"></div>
+
+		<div class="add-new-card" data-bind="toggle: all(not(state_isEmpty), not(state_isLoadingMore))">
+			<a href="/wallet/money/card/new" class="button blue filled">ДОБАВИТЬ НОВУЮ КАРТУ</a>
+		</div>
+
+		<div data-bind="toggle: all(state_isEmpty, not(state_isLoadingMore))">
+			<div class="big-add-new-card">
+				<a href="/wallet/money/card/new" class="button white">ДОБАВИТЬ КАРТУ</a>
+			</div>
+		</div>
+
+	</div>
+</div>

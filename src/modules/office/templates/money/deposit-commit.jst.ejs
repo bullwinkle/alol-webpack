@@ -1,0 +1,23 @@
+<div class="hint" data-bind="toggle:not(state_hasAddressCredentials)">
+	Для того, чтобы пополнить счет с банковской карты, необходимо корректно заполнить данные <a class="theme"
+	                                                                            href="/office/{{= company_id }}/legal">юридического
+	лица</a>.
+</div>
+
+<div data-bind="toggle:state_hasAddressCredentials">
+	<div class="hint">Введите сумму, на которую необходимо пополнить счет</div>
+
+	<form class="form">
+		<label>Сумма пополнения</label>
+		<input type="tel" name="amount" data-bind="value:amount, events: ['input','paste']" maxlength="15"/>
+
+		<label>Сумма пополнения с комиссией</label>
+		<input type="tel" name="amount-with-fee"
+		       data-bind="value:state_amountWithFee, events: ['input','paste']" maxlength="15" disabled/>
+
+		<div class="hint">Комиссия составляет 1%.</div>
+
+		<button type="submit" class="green filled">Пополнить с карты</button>
+		<button type="button" class="grey" name="cancel">Отмена</button>
+	</form>
+</div>

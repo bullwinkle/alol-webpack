@@ -1,0 +1,38 @@
+<div class="mastercard" data-bind="toggle: not(state_isRegistering)">
+  <div class="mastercard-header">Зарегистрируйте Вашу МАСТЕР-КАРТУ!</div>
+  <div class="mastercard-image">
+    <%= image_tag 'mastercard.svg' %>
+  </div>
+
+  <div class="get-mastercard text-center">Получите её <a href="wallet/cards/mastercard/get" class="get-mastercard">здесь</a>.</div>
+
+  <div class="mastercard-number-hint text-center">
+    Введите номер сюда.
+    <%= image_tag 'mastercard-arrow.svg', :class => 'mastercard-arrow' %>
+  </div>
+
+  <div class="mastercard-input">
+    <input type="text" name="card_number" id="card_number" data-bind="value: trim(card_number), events: ['input', 'paste', 'change']" maxlength="16">
+    <i class="ic ic-submit"></i>
+  </div>
+
+  <div class="hint text-center">В дальнейшем для добавления МАСТЕР-КАРТ используйте раздел "Профиль"</div>
+</div>
+
+<div class="mastercard-register" data-bind="toggle: state_isRegistering">
+  <div class="mastercard-header">МАСТЕР-КАРТА <br/>выдана компанией:</div>
+
+  <div class="mastercard-company-placeholder">
+    <%= image_tag 'mastercard-company-placeholder.svg' %>
+    <img alt="" data-bind="attr: { src: state_companyImageUrl }" class="company-image">
+    <div class="company-name" data-bind="text: state_companyName"></div>
+  </div>
+  <div class="mastercard-offer text-center">
+    Регистрируя карту, Вы соглашаетесь с <a href="#" class="offer-button">условиями Программы лояльности</a>.
+  </div>
+
+  <div class="buttons text-center">
+    <button type="button" name="register-button" class="theme filled">Зарегистрировать</button>
+    <button type="button" name="cancel-button" class="grey">Отмена</button>
+  </div>
+</div>

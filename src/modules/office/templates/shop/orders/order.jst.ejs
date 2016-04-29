@@ -1,0 +1,58 @@
+<div class="order-wrapper">
+	<div class="info">
+		<div class="order-number">
+			<div class="number">Заказ № {{= id }}</div>
+			<div class="date">{{= moment.unix(created_at).format("DD MMMM YYYY в HH:mm") }}</div>
+		</div>
+
+		<div class="status">
+			<label class="inline filled" data-bind="attr: { class: statusClass }, text: statusText">Ожидает</label>
+		</div>
+
+		<div class="order-amount">
+			<div class="amount">{{= Iconto.shared.helpers.money(total_amount) }} <span class="rouble">№</span></div>
+			<div class="goods-count">Кол-во товаров: {{= goods_count }}</div>
+		</div>
+	</div>
+
+	<div class="details">
+		<div class="goods">
+			<div class="title">Товары:</div>
+			<table class="goods-list" data-bind="underscore: goods">
+                <script type="text/template">
+                <@ _.each(obj, function(value, key) { @>
+                <tr>
+                    <td> <@- value.title.trim() @> </td>
+                    <td> <@- value.vendor_code @> </td>
+                    <td class="nowrap"> <@- value.count @> x <@- value.price @> <span class="rouble">№</span> </td>
+                    <td class="nowrap"> <@- value.count * value.price @> <span class="rouble">№</span> </td>
+                </tr>
+                <@ }); @>
+                </script>
+			</table>
+		</div>
+
+        <div class="nickname" data-bind="classes:{'hide': hideNickname}">
+            <span class="title">Клиент: </span>
+            <span data-bind="text: nickname"></span>
+        </div>
+
+        <div class="phone"><span class="title">Телефон:</span>
+            {{= phone || 'не указан' }}
+        </div>
+		{{ if (description) { }}<div class="comment"><span class="title">Комментарий: </span>{{= description || 'не указан' }}</div>{{ } }}
+
+		<div class="amount"><span>Сумма:</span> {{= amount }} <span class="rouble">№</span></div>
+
+		{{ if (status == Iconto.REST.ShopOrder.ORDER_STATUS_PENDING) { }}
+		<div class="buttons" data-bind="toggle: equal(status, Iconto.REST.ShopOrder.ORDER_STATUS_PENDING)">
+			<button class="green filled" name="approve">Выполнено</button>
+			<button class="red" name="cancel">Отклонено</button>
+		</div>
+		{{ } }}
+	</div>
+
+	<div class="expand">
+		<i class="ic-chevron-right"></i>
+	</div>
+</div>

@@ -1,0 +1,127 @@
+{{
+var objectName;
+switch (object_type) {
+case 1:
+objectName = 'promotion';
+break;
+case 2:
+objectName = 'cashback';
+break;
+case 3:
+objectName = 'cashbacks';
+break;
+default:
+objectName = 'unknown';
+}
+}}
+<div class="feed-item {{= objectName }}">
+	<!--<div class="info-container flexbox flex-v-center">-->
+		<!--{{ if (object_data.company && object_data.company.image && object_data.company.image.url) { }}-->
+		<!--<a href="/wallet/company/{{= obj.company_id }}/info" class="feed-item-link">-->
+			<!--<div class="company-icon" style="background-image:url('{{- object_data.company.image.url }}');"></div>-->
+		<!--</a>-->
+		<!--{{ } }}-->
+		<!--<div class="company-info-container flex-v-center">-->
+			<!--{{ if (object_data.company && object_data.company.name){ }}-->
+			<!--<div class="company-name">-->
+				<!--<a href="/wallet/company/{{= obj.company_id }}/info">{{- object_data.company.name}}</a>-->
+			<!--</div>-->
+			<!--{{ } }}-->
+			<!--{{ if (object_data.company && object_data.company.category && object_data.company.category.name) { }}-->
+			<!--<div class="company-category">{{- object_data.company.category.name}}</div>-->
+			<!--{{ } }}-->
+		<!--</div>-->
+		<!--{{ if (object_data.cashback){ }}-->
+		<!--<div class="cashback-amount">{{- object_data.cashback }}%</div>-->
+		<!--{{ } }}-->
+		<!--&lt;!&ndash;<div class="right drop-down">&ndash;&gt;-->
+			<!--&lt;!&ndash;<i class="ic-dots"></i>&ndash;&gt;-->
+			<!--&lt;!&ndash;<ul class="drop-down-list">&ndash;&gt;-->
+				<!--&lt;!&ndash;<li class="favourite" data-bind="classes: {'is-favourite': is_favourite}">&ndash;&gt;-->
+					<!--&lt;!&ndash;<span class="icon ic-star"></span>&ndash;&gt;-->
+					<!--&lt;!&ndash;<span class="icon filled ic-star-filled"></span>&ndash;&gt;-->
+					<!--&lt;!&ndash;<span class="text favourite-button-text"&ndash;&gt;-->
+					      <!--&lt;!&ndash;data-bind="text: select(is_favourite, 'В избранном', 'В избранное' )">В избранное</span>&ndash;&gt;-->
+				<!--&lt;!&ndash;</li>&ndash;&gt;-->
+				<!--&lt;!&ndash;<li class="hide-feed-item hide" data-bind="classes:{hide: not(state_isHideButtonShown)}">&ndash;&gt;-->
+					<!--&lt;!&ndash;<span class="icon ic-cross-circle"></span>&ndash;&gt;-->
+					<!--&lt;!&ndash;<span class="text">Скрыть</span>&ndash;&gt;-->
+					<!--&lt;!&ndash;<span class="button-with-icon hide-feed-item hide">&ndash;&gt;-->
+				<!--&lt;!&ndash;</li>&ndash;&gt;-->
+			<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+	<!--</div>-->
+	<!--<hr/>-->
+	<a href="#" data-bind="attr: {href: state_detailsHref}" class="feed-item-link">
+		<div class="content">
+			<div class="is-recommended" data-bind="classes: {hide: not(is_recommended)}">
+				<div class="plate-left"></div>
+				<div class="plate-right"></div>
+				<span class="text">Рекомендовано АЛОЛЬ </span>
+			</div>
+			{{ if (object_data){ }}
+			{{ if (object_data.images){ }}
+			{{ if (object_data.images.length > 0) {}}
+			<div class="images-container">
+				<div class="image"
+				     style="background-image: url( {{- object_data.images[0]}}?resize=height[200]-width[700]-exact[true] )"></div>
+			</div>
+			{{ } else { }}
+			<div class="images-container empty ic-cashback"></div>
+			{{ } }}
+			{{ } }}
+			<div class="offer-info">
+				{{ if (object_data.title){ }}
+				<div class="offer-title">
+					<div class="text">{{- object_data.title}}</div>
+				</div>
+				{{ } }}
+				{{ if (object_data.description){ }}
+				<div class="description">{{- object_data.description}}</div>
+				{{ } }}
+			</div>
+			{{ } }}
+		</div>
+	</a>
+
+	<div class="social l-pr-0 l-pl-0">
+		<!--<span class="button-with-icon comment">-->
+			<!--<span class="icon ic-bubble-round"></span>-->
+			<!--<span class="text likes-amount">0</span>-->
+		<!--</span>-->
+
+		<span class="button-with-icon like" data-bind="classes: {'is-liked': is_liked}">
+			<span class="icon ic-heart"></span>
+			<span class="icon-filled ic-heart-filled"></span>
+			<!--<span class="text likes-amount" data-bind="text: likes_count">0</span>-->
+		</span>
+
+		<!--<span class="share-wrapper right" data-bind="classes: {'is-liked': is_liked}">-->
+			<!--<span class="icon share vk ic-vk"></span>-->
+			<!--<span class="icon share fb ic-facebook"></span>-->
+			<!--<span class="icon share tw ic-twitter"></span>-->
+			<!--<span class="icon ic-share"></span>-->
+		<!--</span>-->
+
+		<button class="blue green use-this-offer-authorized">
+			<!--<span class="icon ic-cross-circle"></span>-->
+			<!--<span class="text">Написать в компанию</span>-->
+			Написать в компанию
+		</button>
+		<a data-bypass href="http://ic.gy/1on" target="_blank" class="use-this-offer-unauthorized">
+			<button class="blue green">
+				<!--<span class="icon ic-cross-circle"></span>-->
+				<!--<span class="text">Воспользоваться</span>-->
+				Воспользоваться
+			</button>
+		</a>
+
+	</div>
+	<div class="hidden-feed-item-overlay">
+		<div class="hidden-feed-item-inner">
+			Предложение скрыто. Вы больше не увидите его в ленте предложений. Для того чтобы восстановить предложение
+			нажмите
+			<button class="reestablish-feed-item blue text">Восстановить</button>
+		</div>
+	</div>
+</div>

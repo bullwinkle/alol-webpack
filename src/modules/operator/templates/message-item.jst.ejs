@@ -1,0 +1,68 @@
+{{ if (showDate) { }}
+<div class="date" data-sequence-number="{{= sequence_number }}" data-date="{{= startOfDay }}"
+     data-created-at="{{= createdAt.valueOf() }}">
+	<div>
+		<span>
+			{{= createdAt.format('LL') }}
+		</span>
+	</div>
+</div>
+{{ } }}
+
+{{ itemClass = isClient ? ' user-item' : '' }}
+
+<div class="flexbox{{= itemClass }}">
+	<div class="user-logo"><img src="{{= getImageUrl() }}" alt=""/></div>
+
+	<div class="info">
+		<div class="sender-bar">
+			<div class="sender">{{= getSenderName() }}</div>
+
+			{{ var showTime = !createdAt.isBefore(moment().startOf('day')); }}
+			{{ if (showTime) { }}
+			<div class="time">{{= createdAt.format('HH:mm') }}</div>
+			{{ } else { }}
+			<div class="time" title="{{= createdAt.format('HH:mm') }}">{{= createdAt.format('DD.MM.YYYY') }}</div>
+			{{ } }}
+		</div>
+
+		{{ var companyReviewResolve = _.find(attachments, function(a) { return a.type === Iconto.REST.Attachment.TYPE_META && a.meta.type === 'company_review_resolve' } ) }}
+
+		{{ if (!companyReviewResolve) { }}
+		<div class="message-body">{{%= Iconto.shared.helpers.string.vkLinkify(body) }}</div>
+		{{ } else { }}
+		<div class="message-body">Ваше обращение закрыто. Пожалуйста, оцените нашу работу.</div>
+		{{ } }}
+
+		<div class="attachments"></div>
+
+		<!-- Attachment type META & meta type COMPANY_REVIEW -->
+		{{ var attachment = _.find(attachments, function(a) { return a.type === Iconto.REST.Attachment.TYPE_META && a.meta.type === 'company_review' } ) }}
+		{{ if (attachment) { }}
+		<div class="go-to-company-review-chat" data-company-review-id="{{= attachment.meta.id }}">Перейти в чат</div>
+		{{ } }}
+
+		<!-- Attachments SPOT -->
+		{{ var spot = _.find(attachments, function(a) { return a.type == Iconto.REST.Attachment.TYPE_SPOT; }); }}
+		{{ if (spot) { }}
+		<div class="spot" data-spot-id="{{= spot.spot.id }}">{{- spot.spot.name }}</div>
+		{{ } }}
+
+		<!-- Attachments type META & meta type COMPANY_REVIEW_RESOLVED -->
+		{{ if (companyReviewResolve) { }}
+		<div class="like-dislike" data-review-loaded="false" data-review-id="{{= companyReviewResolve.meta.id }}">
+			<div class="like"><i class="ic ic-thumb-up"></i></div>
+			<div class="dislike"><i class="ic ic-thumb-up"></i></div>
+		</div>
+		{{ } }}
+
+		{{ if (isRead) { }}
+		<div class="is-read">Прочитано</div>
+		{{ } }}
+
+		<div class="not-delivered">
+			<span class="status">Не отправлено</span>
+			<a href="#" name="resend" class="red">Повторить</a>
+		</div>
+	</div>
+</div>

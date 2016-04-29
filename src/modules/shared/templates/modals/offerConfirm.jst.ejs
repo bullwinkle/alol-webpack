@@ -1,0 +1,28 @@
+<div class="bbm-modal">
+	{{ if (title) { }}
+	<div class="bbm-modal__topbar">
+		<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+	</div>
+	{{ } }}
+
+	{{ if (message) { }}
+	<div class="bbm-modal__section">
+		<p class="text-center">{{- message }}</p>
+	</div>
+	{{ } }}
+
+	<div class="bbm-modal__bottombar">
+		<div class="row collapse">
+			<div class="small-6 columns">
+				{{ if (cancelButtonText) { }}
+					<button name="cancel">{{- cancelButtonText }}</button>
+				{{ } }}
+			</div>
+			<div class="small-6 columns">
+				{{ if (submitButtonText) { }}
+					<button name="ok">{{- submitButtonText }}</button>
+				{{ } }}
+			</div>
+		</div>
+	</div>
+</div>

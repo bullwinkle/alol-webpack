@@ -1,0 +1,106 @@
+<div class="l-table-cell t-va-middle l-p-10 _hide-for-small-only">
+	<div class="flexbox">
+		<div class="product-icon l-w-80 l-h-70">
+			{{ obj.image = obj.image || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}
+			<div class="image" style="background-image: url({{- obj.image }}?resize=w[200]h[160])"></div>
+		</div>
+		<div class="flex-1 l-pl-10">
+			{{ if (obj.title) { }}
+			<div class="title s-line-clamp-2 l-h-40 f-sz-14 f-lh-20">{{- title }}</div>
+			{{ } }}
+			{{ if (obj.vendor_code) { }}
+			<div class="t-grey-light f-sz-12 l-mb-0">Артикул: {{- vendor_code}}</div>
+			{{ } }}
+		</div>
+	</div>
+</div>
+<div class="l-table-cell t-va-top	 l-p-10  _hide-for-small-only">
+	{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}
+	<div class="price t-grey-light f-sz-12 f-strike">{{- price }}&nbsp;<span class="rouble">№</span></div>
+	<div class="price f-sz-18 f-lh-18 f-w-900">{{- discount_price }}&nbsp;<span class="rouble">№</span></div>
+	{{ } else if (obj.price) { }}
+	<div class="price f-sz-18 f-lh-22 f-w-900">{{- price }}&nbsp;<span class="rouble">№</span></div>
+	{{ } }}
+</div>
+<div class="l-table-cell t-va-middle l-p-10 _hide-for-small-only">
+	<div class="count-selector">
+		<i class="decrement ic-minus-circle f-sz-24"></i>
+		<input data-count
+			   name="count"
+			   type="number"
+			   min="1"
+			   max="999"
+			   maxlength="3"
+			   size="4"
+			   class="count-input"
+			   value="{{- count }}"/>
+		<i class="increment ic-plus-circle f-sz-24"></i>
+	</div>
+</div>
+<div class="l-table-cell t-va-middle l-p-10 _hide-for-small-only">
+	<div class="t-primary f-sz-18 f-lh-22 f-w-900">
+			<span data-total-sum
+				  class="t-primary">
+			</span>&nbsp;<span class="rouble">№</span>
+	</div>
+</div>
+<div class="l-table-cell t-va-middle l-p-10 _hide-for-small-only">
+	<div class="remove-from-cart s-cp t-right">
+		<i class="ic-trash"></i>
+	</div>
+</div>
+
+<div class="l-table-cell _hide-for-medium-up l-plr-10 l-ptb-15">
+	<div class="flexbox">
+		<div class="product-icon l-w-70 l-h-60">
+			{{ obj.image = obj.image || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}
+			<div class="image" style="background-image: url({{- obj.image }}?resize=w[200]h[160])"></div>
+		</div>
+
+		<div class="flex-1 l-pl-10">
+			<div class="flexbox">
+				{{ if (obj.title) { }}
+				<div class="title flex-1 s-line-clamp-4 f-sz-16 f-lh-20 f-w-600 ">{{- title }}</div>
+				{{ } }}
+				<div class="remove-from-cart l-pl-10">
+					<i class="ic-trash"></i>
+				</div>
+			</div>
+			{{ if (obj.vendor_code) { }}
+			<div class="t-grey-light f-sz-12 l-mb-0 l-pb-5">Арт.: {{- vendor_code}}</div>
+			{{ } }}
+
+		</div>
+	</div>
+	{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}
+	<div class="price t-grey-light f-sz-12 l-mb-0 f-strike">{{- price }}&nbsp;<span class="rouble">№</span></div>
+	{{ } }}
+	<div class="flexbox flex-v-center flex-space-between">
+		<div class="">
+			{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}
+			<div class="price f-sz-18 f-lh-18 f-w-900">{{- discount_price }}&nbsp;<span class="rouble">№</span></div>
+			{{ } else if (obj.price) { }}
+			<div class="price f-sz-18 f-lh-22 f-w-900">{{- price }}&nbsp;<span class="rouble">№</span></div>
+			{{ } }}
+		</div>
+		&nbsp;<span>X</span>&nbsp;
+		<div class="flex-0">
+			<input data-count-2
+				   name="count"
+				   type="number"
+				   min="1"
+				   max="999"
+				   maxlength="3"
+				   size="4"
+				   class="count-input small"
+				   value="{{- count }}"/>
+		</div>
+		&nbsp;<span>=</span>&nbsp;
+		<div class="t-primary f-sz-18 f-lh-22 f-w-900">
+			<span data-total-sum
+				  class="t-primary">
+			</span>&nbsp;<span class="rouble">№</span>
+		</div>
+	</div>
+</div>
+

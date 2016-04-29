@@ -1,0 +1,22 @@
+<!--<div class="bbm-modal">-->
+
+	<div class="bbm-modal__topbar">
+		<%= image_tag "error.svg", :class => 'logo' %>
+		{{ if (title) { }}
+		<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+		{{ } }}
+	</div>
+
+	{{ if (message) { }}
+	<div class="bbm-modal__section">
+		<p class="text-center">{{- message }}</p>
+	</div>
+	{{ } }}
+
+	{{ if (status) { }}
+	<div class="status">НОМЕР ОШИБКИ: {{- status }}</div>
+	{{ } }}
+	<div class="bbm-modal__bottombar">
+		<button class="blue theme filled" name="ok">{{- submitButtonText }}</button>
+	</div>
+<!--</div>-->

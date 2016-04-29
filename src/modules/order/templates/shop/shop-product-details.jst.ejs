@@ -1,0 +1,231 @@
+<a class="head button list-item menu-item" data-bind="attr:{href: headHref}">
+	<!--<i class="ic-dish"></i>-->
+	<span class="content f-lh-40" data-bind="text:headTitle"></span>
+	<i class="ic-check theme checked"></i>
+	<i class="ic-chevron-right arrow theme"></i>
+</a>
+<div class="product-wrapper s-bg-white">
+
+	<div class="show-for-medium-up l-plr-20 l-pt-10 l-pb-10">
+
+		<div class="title f-w-600" data-bind="text:title"></div>
+		<div class="l-vcentered l-mb-10">
+			<span class="t-grey-light f-sz-12 l-mb-0"
+				  data-bind="toggle:external_id, text: format('Арт: $1&emsp;',external_id), classes:{'hide':not(external_id)}">
+            </span>
+			<span class="l-ml-15 f-sz-12"
+				  data-bind="classes:{'is-active': is_active, 'not-active': not(is_active)}, text: select(is_active, 'В наличии', 'Нет в наличии')"></span>
+		</div>
+
+		<div class="row">
+			<div class="l-left l-w-50p l-pr-15">
+				<div class="product-icon l-h-200 l-mb-20" data-bind="underscore: images">
+					<script type="text/template">
+						<@ var images = obj @>
+						<@ if (!_.get(images,'length')) images = Iconto.REST.ShopGood.prototype.defaults.images @>
+						<@ _.each(images, function (src,i) { @>
+						<div class="image">
+							<img data-lazy="<@- src @>?resize=w[300]h[300]" data-src="<@- src @>"/>
+						</div>
+						<@ }) @>
+					</script>
+				</div>
+			</div>
+
+			<div class="l-left l-w-50p l-pr-0">
+				<div class="l-mb-30">
+					<div class="flexbox flex-row-wrap flex-v-center s-bg-grey-light l-ptb-5 l-plr-10">
+						<div class="rating-wrapper"></div>
+						<div class="f-sz-12 f-lh-20">
+							&nbsp;
+							<span data-bind="text: rating"></span>/5
+							&nbsp;
+							(<span data-bind="text: rating_count"></span>
+							&nbsp;
+							<span data-bind="text: declension(rating_count,['оценка','оценки','оценок'])"></span>)
+						</div>
+					</div>
+				</div>
+				<div class="flexbox l-plr-10">
+					<div class="flex-1">
+						<div class="l-h-45" data-bind="underscore: $model">
+							<script type="text/template">
+								<@ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { @>
+								<div class="f-sz-20 f-lh-22 f-w-900"><@- discount_price @> <span class="rouble">№</span>
+								</div>
+								<div class="t-grey-light f-sz-12 f-sz-13 l-mb-0 f-strike"><@- price @> <span
+											class="rouble">№</span>
+								</div>
+								<@ } else if (obj.price) { @>
+								<div class="price f-sz-20 f-lh-24 f-w-900"><@- price @> <span class="rouble">№</span>
+								</div>
+								<@ } @>
+							</script>
+						</div>
+						<div class="count-selector l-w-70">
+							<i class="decrement ic-minus-circle f-sz-27"></i>
+							<input class="count-input"
+								   type="number"
+								   value="{{-count}}"
+								   min="1"
+								   max="999"
+								   maxlength="3"
+								   data-bind="value: number(count), events: ['paste','change']"/>
+							<i class="increment ic-plus-circle f-sz-27"></i>
+						</div>
+					</div>
+					<div class="flex-1">
+						<!--
+						<button class="add-to-comparison blue l-block l-mb-10 l-w-100p">
+							<i class="ic-compare"></i>
+							<span data-bind="text: select(inComparison, 'В сравнении', 'К сравнению')"></span>
+						</button>
+						-->
+						<button class="add-to-cart blue filled l-block l-w-100p">
+							<i class="ic-cart-2 "></i>
+							<span data-bind="text: select(inCart, 'Еще в корзину', 'В корзину')"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="show-for-small-only">
+		<div class="l-p-r">
+			<div class="product-icon l-h-225 l-mb-0" data-bind="underscore: images">
+				<script type="text/template">
+					<@ var images = obj @>
+					<@ if (!_.get(images,'length')) images = Iconto.REST.ShopGood.prototype.defaults.images @>
+					<@ _.each(images, function (src,i) { @>
+					<div class="image">
+						<img data-lazy="<@- src @>?resize=w[300]h[300]" data-src="<@- src @>"/>
+					</div>
+					<@ }) @>
+				</script>
+			</div>
+			<div class="rating-wrapper-small"></div>
+		</div>
+
+		<div class="container l-plr-10 l-pt-20 l-pb-10">
+			<!--{{ if (obj.categories && obj.renderedInSearchResult && Iconto.wallet) { }}-->
+			<!--<div class="categories">-->
+			<!--{{ _.each(obj.categories, function (category, index) { }}-->
+			<!--{{ if (index === obj.categories.length-1) { }}-->
+			<!--<a class="category" href="{{- category.url }}">{{- category.title }}</a>-->
+			<!--{{} else { }}-->
+			<!--<span class="category">{{- category.title }}</span>-->
+			<!--{{}}}-->
+			<!--{{})}}-->
+			<!--</div>-->
+			<!--{{}}}-->
+			<div class="title f-w-600" data-bind="text:title"></div>
+			<div class="l-vcentered">
+				<span class="t-grey-light f-sz-12 l-mb-0"
+					  data-bind="toggle:external_id, text: format('Арт: $1&emsp;',external_id), classes:{'hide':not(external_id)}">
+                </span>
+				<span class="l-ml-15 f-sz-12"
+					  data-bind="classes:{'is-active': is_active, 'not-active': not(is_active)}, text: select(is_active, 'В наличии', 'Нет в наличии')"></span>
+			</div>
+			<div class="flexbox flex-v-bottom l-mb-10">
+				<div class="flex-1">
+					<div data-bind="underscore: $model">
+						<script type="text/template">
+							<@ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { @>
+							<div class="price t-grey-light f-sz-12 l-mb-0 f-strike"><@- price @> <span
+										class="rouble">№</span></div>
+							<div class="price f-sz-20 f-lh-24 f-w-900"><@- discount_price @> <span
+										class="rouble">№</span></div>
+							<@ } else if (obj.price) { @>
+							<div class="price f-sz-20 f-lh-24 f-w-900 l-mt-10"><@- price @> <span
+										class="rouble">№</span></div>
+							<@ } @>
+						</script>
+					</div>
+				</div>
+				<div class="count-selector l-w-90">
+					<i class="decrement ic-minus-circle f-sz-34"></i>
+					<input class="count-input"
+						   type="number"
+						   value="{{-count}}"
+						   min="1"
+						   max="999"
+						   maxlength="3"
+						   data-bind="value: number(count), events: ['paste','change']"/>
+					<i class="increment ic-plus-circle f-sz-34"></i>
+				</div>
+			</div>
+
+			<button class="add-to-cart blue filled l-block l-w-100p l-mb-15"
+					data-bind="text: select(inCart, 'Еще в корзину', 'В корзину')">
+			</button>
+			<!--
+			<button
+					class="blue l-block l-w-100p l-mb-15"
+					data-bind="text: select(inComparison, 'В сравнении', 'К сравнению')">
+				К сравнению
+			</button>
+			-->
+		</div>
+
+	</div>
+
+	<div class="shop-product-details-info l-plr-10">
+		<ul class="tabs l-plr-20" data-tabs>
+			<li class="tab-title active">
+				<a href="#info">Информация</a>
+			</li>
+			<li class="tab-title">
+				<a href="#reviews">Отзывы&emsp;<span class="s-bg-grey-dark t-white s-circle"
+													 data-bind="text: rating_count"></span>
+				</a>
+			</li>
+		</ul>
+		<div class="tabs-content">
+			<div class="content active" id="info">
+				<div class="l-pt-10 l-plr-10">
+					<div data-bind="toggle:description">
+						<div class="f-sz-18 f-w-900 l-mb-10">Описание</div>
+						<div class="description f-sz-12 f-lh-20 l-mb-20"
+							 data-bind="text: description"></div>
+					</div>
+					<div data-bind="toggle:not(empty(params))">
+						<div class="f-sz-18 f-w-900 l-mb-10">Характеристики</div>
+						<div class="product-properties f-sz-12 f-lh-20 l-mb-20">
+							<table class="table" data-bind="underscore:params">
+								<script type="text/template">
+									<@ _.each(obj, function (prop) { @>
+									<tr>
+										<td class="l-w-45p t-va-top"><@- prop.name @></td>
+										<td class="l-w-55p t-va-top">
+											<@ _.each(prop.values, function (propValue) { @>
+											<div class="l-ptb-5">
+												<@ if (_.isObject(propValue)) { @>
+												<ul>
+													<@ _.each(propValue, function (propValueObjKey,propValueObjValue ) { @>
+													<li>
+														<span><@- propValueObjKey @> :</span>
+														<span><@- propValueObjValue @></span>
+													</li>
+													<@ }) @>
+												</ul>
+												<@ } else { @>
+												<@- propValue @>
+												<@ } @>
+											</div>
+											<@ }) @>
+										</td>
+									</tr>
+									<@ }) @>
+								</script>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content" id="reviews" reviews-region></div>
+		</div>
+	</div>
+</div>

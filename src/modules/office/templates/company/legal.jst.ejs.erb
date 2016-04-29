@@ -1,0 +1,69 @@
+{{%= outlet('officeTopbar') }}
+
+<div class="inner-view-content">
+  <div class="hint">Заполните поля ниже для корректного документооборота. Обязательными полями являются только название
+    и ИНН.
+  </div>
+
+  <form class="form">
+    <label>Форма собственности</label>
+    <select name="ownership_type_id" id="ownership_type_id" data-bind="sodValue:integer(type), events: ['change']" data-select-or-die>
+      <option value="1">ООО</option>
+      <option value="2">ОАО</option>
+      <option value="3">ИП</option>
+      <option value="4">ЗАО</option>
+    </select>
+
+    <label>Название</label>
+    <input type="text" name="name" id="name" data-bind="value:name, events: ['change', 'paste', 'input']" maxlength="50">
+
+    <div class="inline-blocks">
+      <div class="block">
+        <label>ИНН</label>
+        <input type="text" name="inn" id="inn" data-bind="value:inn, events: ['change', 'paste', 'input']" maxlength="12">
+        <input type="hidden" name="state_inn_is_free" class="has-validation-error"/>
+
+        <div class="validation-error" data-bind="toggle:not(state_inn_is_free)">Такой ИНН уже зарегистрирован в системе.
+        </div>
+      </div>
+
+      <div class="block">
+        <label>ОГРН</label>
+        <input type="text" name="ogrn" id="ogrn" data-bind="value:ogrn, events: ['change', 'paste', 'input']" maxlength="15"/>
+      </div>
+    </div>
+
+    <div class="inline-blocks">
+      <div class="block">
+        <label>Расчетный счет</label>
+        <input type="text" name="account_check" id="account_check" data-bind="value:account_check, events: ['change', 'paste', 'input']" maxlength="20"/>
+      </div>
+
+      <div class="block">
+        <label>Корреспондентский счет</label>
+        <input type="text" name="cor_check" id="cor_check" data-bind="value:cor_check, events: ['change', 'paste', 'input']" maxlength="20"/>
+      </div>
+    </div>
+
+    <div data-bind="toggle:not(state_is_ip)">
+      <label>КПП</label>
+      <input type="text" name="kpp" id="kpp" data-bind="value:kpp, events: ['change', 'paste', 'input']" maxlength="9"/>
+    </div>
+
+    <h5>Адрес юридического лица</h5>
+
+    <label for="country">Страна</label>
+    <div id="country-autocomplete"></div>
+
+	<label for="city">Город</label>
+    <div id="city-autocomplete"></div>
+
+    <label for="address">Адрес</label>
+    <input type="text" name="address" id="address" data-bind="value:address, events: ['change', 'paste', 'input']" maxlength="200"/>
+
+    <div>
+      <button type="button" class="theme filled" name="save-button">Сохранить</button>
+      <a href="/office/{{= company.id }}/profile" class="button grey" name="cancel-button">Отмена</a>
+    </div>
+  </form>
+</div>

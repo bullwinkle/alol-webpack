@@ -1,0 +1,172 @@
+<div class="company">
+	<div class="image" style="background-image: url({{= image.url }})">
+		<div class="delete">
+			<i class="ic-cross"></i>
+		</div>
+		<div class="upload needsclick">
+			<i class="ic-camera needsclick"></i>
+		</div>
+		<input type="file" accept="image/jpeg, image/png" class=""/>
+	</div>
+	<div class="info">
+		<div class="name">{{= name }}</div>
+		<div class="category" data-bind="text: state_category_name"></div>
+		<div class="legal" data-bind="text: state_legal_name"></div>
+	</div>
+	<div class="edit">
+		<a href="/office/{{= id }}/main" class="button green white">Редактировать</a>
+	</div>
+</div>
+
+<div class="inner-view-content">
+	{{ if (email) { }}
+	<div class="list">
+		<div class="icon">
+			<i class="ic-letter"></i>
+		</div>
+		<div class="content">
+			<a href="mailto:{{= email }}" class="link" data-bypass>{{= email }}</a>
+		</div>
+	</div>
+	{{ } }}
+
+	{{ if (site) { }}
+	<div class="list">
+		<div class="icon">
+			<i class="ic-basketball"></i>
+		</div>
+		<div class="content">
+			<a href="{{= Iconto.shared.helpers.navigation.parseUri(site).href }}" class="link" data-bypass target="_blank">{{- Iconto.shared.helpers.navigation.parseUri(site).href
+				}}</a>
+		</div>
+	</div>
+	{{ } }}
+
+  {{ if (rules_url) { }}
+  <div class="list">
+    <div class="icon">
+      <i class="ic-shield-document"></i>
+    </div>
+    <div class="content">
+      <a href="{{= Iconto.shared.helpers.navigation.parseUri(rules_url).href }}" class="link" data-bypass target="_blank">{{- Iconto.shared.helpers.navigation.parseUri(rules_url).href}}</a>
+    </div>
+  </div>
+  {{ } else if (rules_text) { }}
+  <div class="list">
+    <div class="icon">
+      <i class="ic-shield-document"></i>
+    </div>
+    <div class="content">
+      {{= rules_text }}
+    </div>
+  </div>
+  {{ } }}
+
+  <div class="list" data-bind="toggle: length(state_employees)">
+    <div class="icon">
+      <i class="ic-person"></i>
+    </div>
+    <div class="content">
+      <div class="title">Сотрудники (<span data-bind="text: length(state_employees)"></span>)</div>
+
+      <!-- Employees -->
+      <div data-bind="underscore:state_employees">
+        <script type="text/template">
+          <@ _.each(obj, function(employee, key) { @>
+          <div class="user<@- (key > 2) ? ' hidden hide': '' @>">
+            <div class="image" style="background-image: url(<@- employee.image.url @>)"></div>
+            <div class="nickname"><@- employee.nickname || ('Пользователь #' + employee.id) @></div>
+          </div>
+          <@ }); @>
+        </script>
+      </div>
+
+	    <div class="show-more users" data-bind="toggle: gt(length(state_employees), 3)">Показать все</div>
+    </div>
+  </div>
+
+  <div class="list" data-bind="toggle: length(state_addresses)">
+    <div class="icon">
+      <i class="ic-marker"></i>
+    </div>
+    <div class="content">
+      <div class="title">Адреса (<span data-bind="text: length(state_addresses)"></span>)</div>
+
+      <!-- Addresses -->
+      <div data-bind="underscore:state_addresses">
+        <script type="text/template">
+          <@ _.each(obj, function(address, key) { @>
+          <div class="address<@- (key > 2) ? ' hidden hide': '' @>">
+            <div class="address-name">
+	            <@- (address.address || 'Интернет-представительство') @>
+            </div>
+
+	          <@ if (address.contact_phone) { @>
+            <div class="phone">+7 <@- Iconto.shared.helpers.phone.format7(address.contact_phone) @></div>
+	          <@ } else { @>
+            <div class="phone">Телефон не указан</div>
+	          <@ } @>
+          </div>
+          <@ }); @>
+        </script>
+      </div>
+
+      <div class="show-more addresses" data-bind="toggle: gt(length(state_addresses), 3)">Показать все</div>
+    </div>
+  </div>
+
+  {{ if (description) { }}
+  <div class="list">
+    <div class="icon">
+      <i class="ic-bubble-round"></i>
+    </div>
+    <div class="content">
+      <div class="title">Описание компании</div>
+      <div class="text">{{%= description }}</div>
+    </div>
+  </div>
+  {{ } }}
+
+  {{ var tagsArr = tags.split(','); tagsArr = _.compact(tagsArr); if (tagsArr.length) { }}
+  <div class="list">
+    <div class="icon">
+      <i class="ic-hanger"></i>
+    </div>
+    <div class="content">
+      {{
+      var tagsArr = tags.split(',');
+      tagsArr = _.compact(tagsArr);
+      for (var i=0;i< tagsArr.length;i++) { }}
+      <span class="tag">{{= tagsArr[i].trim() }}</span>
+      {{ } }}
+    </div>
+  </div>
+  {{ } }}
+
+  <div class="list">
+    <div class="icon">
+      <i class="ic-bubble-round"></i>
+    </div>
+    <div class="content">
+      <div class="title">Онлайн консультант</div>
+      {{ var parsedUrl = Iconto.shared.helpers.navigation.parseUri(window.ICONTO_API_URL); }}
+      {{ var url = parsedUrl.protocol + '//' + parsedUrl.hostname; }}
+      <textarea name="consultant" id="consultant" cols="30" rows="10" readonly><!-- OneApp -->
+<script type='text/javascript'>
+    (function (window) {
+        window.ICONTO_COMPANY_ID = {{= id }};
+        window.ICONTO_ROOT_URL = "{{= url }}";
+        window.ICONTO_WEBSOCKET_URL = "{{= window.ICONTO_WEBSOCKET_URL }}";
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = window.ICONTO_ROOT_URL + '/consultant/widget.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(script, node);
+    })(window);
+</script>
+<!-- End OneApp --></textarea>
+    </div>
+  </div>
+
+</div>

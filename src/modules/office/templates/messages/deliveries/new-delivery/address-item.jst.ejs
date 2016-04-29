@@ -1,0 +1,4 @@
+<input type="radio" class="green" name="selected-address" id="selected-address-{{= id }}" value="{{= id }}" {{ if (selected) { }} checked="checked" {{ } }}  />
+<label for="selected-address-{{= id }}">
+	{{= (address || 'Интернет-представительство') }}
+</label>

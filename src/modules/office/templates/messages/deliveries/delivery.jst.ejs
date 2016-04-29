@@ -1,0 +1,49 @@
+<div class="status"
+     data-bind="text: state_statusText, toggle: equal(status, Iconto.REST.Delivery.STATUS_PENDING)"></div>
+
+<div class="content"><label>Название</label>
+
+	<div class="title" data-bind="text: title"></div>
+
+	<label>Текст рассылки</label>
+
+	<div class="message" data-bind="text: message"></div>
+
+	<label>Адрес</label>
+
+	<div class="address" data-bind="text: state_addressesText"></div>
+
+	<label>Прочитано в Messenger</label>
+
+	<div class="chat-read-count" data-bind="text: chat_read_count, toggle: not(state_running)"></div>
+
+	<div data-bind="toggle: sms_use">
+		<label>Отправлено по SMS</label>
+
+		<div>
+			<div class="sms-total-count" data-bind="text: sms_total_count, toggle: not(state_running)"></div>
+			<div data-bind="toggle: state_running" class="hint">
+				Детальная информация будет доступна после завершения рассылки
+			</div>
+		</div>
+
+		<label>Стоимость рассылки</label>
+
+		<div class="sms-total-price">
+			<span data-bind="text: money(sms_total_price)"></span>
+			<span>руб.</span>
+		</div>
+
+	</div>
+
+	<!--<div class="status">-->
+	<!--<label class="inline filled"-->
+	<!--data-bind="text: state_statusText, attr: { class: format('inline filled $1', state_statusColor) }"></label>-->
+	<!--</div>-->
+
+	<div class="form-buttons" data-bind="toggle: equal(status, 'pending')">
+		<button class="green filled" name="confirm-button">Подтвердить</button>
+		<button class="red" name="delete-button">Удалить</button>
+		<button class="grey" name="cancel-button">Назад</button>
+	</div>
+</div>

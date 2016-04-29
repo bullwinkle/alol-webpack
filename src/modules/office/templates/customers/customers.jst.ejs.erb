@@ -1,0 +1,28 @@
+<div class="header">
+	<div class="balance">
+		<span class="amount" data-bind="text: state_amount"></span>&nbsp;<i class="ic-info-circle has-tip"></i>
+
+		<div class="text" data-bind="text: declension(state_amount, ['клиент', 'клиента', 'клиентов'])"></div>
+	</div>
+
+	<div class="button-group">
+		<a href="#" data-bind="classes: {last:all(not(state_amount), not(state_showUploadBtn))}" class="white"
+		        name="add-contact">Добавить клиента
+		</a>
+		<a href="#" data-bind="toggle: state_showUploadBtn, classes: {last:not(state_amount)}" class="white"
+		        name="upload-contacts">Загрузить из файла
+		</a>
+		<a href="#" data-bind="toggle:state_amount" class="white" name="delete-all-contacts">Удалить всех</a>
+	</div>
+</div>
+
+<input class="search" type="text" name="query" autocomplete="off" placeholder="Введите фамилию, имя или телефон"
+       data-bind="toggle: gt(state_amount, 1), value:state_query, events:['input', 'paste']"/>
+
+<div class="empty-state" data-bind="toggle: not(state_amount)">
+	<%= image_tag "empty-states/search.svg" %>
+	<div class="empty-state-header">Еще нет клиентов</div>
+	<div class="hint">Ваши клиенты - это те пользователи, кто вам писал, совершил покупку в вашем магазине или был добавлен вручную.</div>
+</div>
+
+<div class="list" data-scroll></div>

@@ -1,0 +1,14 @@
+<div class="content-slider-viewport">
+	<div class="slider clearfix"></div>
+</div>
+{{ if ( images.length > 1 ){ }}
+	<div class="prev"><i class="ic-chevron-left"></i></div>
+	<div class="pagination">
+		{{ for (var i=0; i<images.length; i++) { }}
+			<span class="pagination-item" data-index="{{-i}}"></span>
+		{{ } }}
+	</div>
+	<div class="next"><i class="ic-chevron-right"></i></div>
+	<!--<div class="content-slider-controls">-->
+	<!--</div>-->
+{{ } }}

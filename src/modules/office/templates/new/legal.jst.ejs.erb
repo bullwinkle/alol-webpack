@@ -1,0 +1,77 @@
+<div class="steps">
+  {{ for (var i=0;i< stepIcons.length;i++) { }}
+  {{ var state = (step - 1) == i ? 'active' : (step - 1) < i ? '' : 'done'; }}
+  <div class="step {{= state }}">
+    <i class="ic-{{= stepIcons[i] }}"></i>
+  </div>
+  {{ if (i< stepIcons.length-1) { }}
+  <div class="flexbox dots">
+    {{ for (var j=0;j< stepIcons.length;j++) { }}
+    <div class="dot{{= (i >= step - 1) ? ' light' : '' }}"></div>
+    {{ } }}
+  </div>
+  {{ } }}
+  {{ } }}
+</div>
+
+<div class="content form">
+  <div class="content-padding">
+    <div class="title"><span>Шаг 4.</span> Юридическое лицо</div>
+
+    <div class="hint">Вы можете заполнить эти данные позже. Они позволят вам выполнять рассылки SMS и настраивать
+      шаблоны CashBack.
+    </div>
+
+    <div class="loader-bubbles green" data-bind="toggle: state_loading"></div>
+
+    <div data-bind="toggle: not(state_loading)" class="form">
+      <div class="legal-radio">
+        <div>
+          <input type="radio" name="creating" class="theme from-existing" id="from-existing" value="0" data-bind="checked: integer(state_creatingFromScratch), events: ['change']"/>
+          <label for="from-existing">Использовать ранее добавленное юридическое лицо</label>
+        </div>
+        <div>
+          <input type="radio" name="creating" class="theme from-scratch" id="from-scratch" value="1" data-bind="checked: integer(state_creatingFromScratch), events: ['change']"/>
+          <label for="from-scratch">Добавить новое юридическое лицо</label>
+        </div>
+      </div>
+
+      <div class="legal-select">
+        <select name="legal_id" id="legal_id" data-bind="options: state_legals, sodValue: integer(state_legalId)"></select>
+      </div>
+
+      <div class="legal-create">
+        <label>Форма собственности</label>
+        <select name="type" id="type" data-bind="value:integer(type)" data-select-or-die>
+          <option value="1">ООО</option>
+          <option value="2">ОАО</option>
+          <option value="3">ИП</option>
+          <option value="4">ЗАО</option>
+        </select>
+
+        <label>Название</label>
+        <input type="text" name="name" id="name" maxlength="255" data-bind="value:name, events: ['paste', 'input', 'change']">
+
+        <label>ИНН</label>
+        <input type="text" name="inn" id="inn" maxlength="12" data-bind="value:inn, events: ['paste', 'input', 'change']">
+
+	      <label for="country">Страна</label>
+	      <div id="country-autocomplete"></div>
+
+	      <label for="city">Город</label>
+	      <div id="city-autocomplete"></div>
+
+	      <label for="address">Адрес</label>
+	      <input type="text" name="address" id="address" data-bind="value:address, events: ['change', 'paste', 'input']" maxlength="200"/>
+
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="grey" name="back-button">Назад</button>
+        <button type="button" class="green filled" name="continue-no-validation-button" data-bind="toggle: not(state_creatingFromScratch)">Отправить заявку</button>
+        <button type="button" class="green filled" name="continue-button" data-bind="toggle: state_creatingFromScratch">Отправить заявку</button>
+        <button type="button" class="green text" name="skip-button">Пропустить и отправить заявку</button>
+      </div>
+    </div>
+  </div>
+</div>

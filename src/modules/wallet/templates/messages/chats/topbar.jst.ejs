@@ -1,0 +1,114 @@
+<!--<div class="topbar-region theme" data-bind="classes: { 'has-tabs': length(state_tabs), 'has-breadcrumbs': length(state_breadcrumbs), 'has-title': state_topbarTitle, 'has-subtitle': state_topbarSubtitle  }">-->
+	<!--<div class="flexbox">-->
+		<!--<button class="left-small" type="button" data-bind="toggle: state_topbarLeftButtonVisible, attr: { class: state_topbarLeftButtonResultClass }, disabled: state_topbarLeftButtonDisabled">-->
+			<!--<span data-bind="attr: { class: state_topbarLeftButtonSpanClass }, text: state_topbarLeftButtonSpanText"></span>-->
+		<!--</button>-->
+
+		<!--<div class="middle-small" data-bind="attr: { 'data-padding-left': state_topbarLeftButtonVisible, 'data-padding-right': state_topbarRightButtonVisible }">-->
+			<!--<div class="title" data-bind="text: state_topbarTitle"></div>-->
+			<!--<div class="subtitle" data-bind="text: state_topbarSubtitle"></div>-->
+			<!--<div class="topbar-tabs" data-bind="underscore: state_tabs">-->
+				<!--<script type="text/template">-->
+					<!--<@ _.each(obj, function(tab) { @>-->
+					<!--<a class="tab white <@= tab.active ? 'active' : '' @>" href="<@- tab.href || '#' @>">-->
+						<!--<@- tab.title @>-->
+					<!--</a>-->
+					<!--<@ }); @>-->
+				<!--</script>-->
+			<!--</div>-->
+
+			<!--&lt;!&ndash; BREADCRUMBS&ndash;&gt;-->
+			<!--<div class="breadcrumbs theme" data-bind="underscore: state_breadcrumbs, classes: { empty: not(length(state_breadcrumbs)) }">-->
+				<!--<script type="text/template">-->
+					<!--<@ for (var i = 0, len = obj.length; i < len; i++) { @>-->
+					<!--<@ var breadcrumb = obj[i]; @>-->
+					<!--<a href="<@- breadcrumb.href || '#' @>" class="breadcrumb white">-->
+						<!--<@- breadcrumb.title @>-->
+					<!--</a>-->
+
+					<!--<@ if (i < len - 1) { @>-->
+					<!--<span class="splitter">/</span>-->
+					<!--<@ } @>-->
+
+					<!--<@ } @>-->
+				<!--</script>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<a  href="#"-->
+			<!--name="phone-call"-->
+			<!--data-bypass-->
+			<!--data-bind="classes: { disabled: not( get(state_company, 'phone') ) }, attr: { href: format('tel:+$1', get(state_company, 'phone')) }"-->
+			<!--title="Позвонить">-->
+			<!--<i class="ic-phone"></i>-->
+		<!--</a>-->
+
+
+		<!--<button class="right-small" type="button" data-bind="toggle: state_topbarRightButtonVisible, attr: { class: state_topbarRightButtonResultClass }, disabled: state_topbarRightButtonDisabled">-->
+
+			<!--<div data-bind="toggle: not(get(state_company, 'image.url')), attr:{class:format('room-view-logo icon $1', get(state_company, 'categoryClassName'))}"></div>-->
+			<!--<img alt="" class="room-view-logo" data-bind="toggle: get(state_company, 'image.url'), attr: { src: get(state_company, 'image.url') }">-->
+
+			<!--<span data-bind="attr: { class: state_topbarRightButtonSpanClass }, text: state_topbarRightButtonSpanText"></span>-->
+		<!--</button>-->
+
+	<!--</div>-->
+<!--</div>-->
+
+<div class="topbar-region theme" data-bind="classes: { 'has-tabs': length(state_tabs), 'has-breadcrumbs': length(state_breadcrumbs), 'has-title': state_topbarTitle, 'has-subtitle': state_topbarSubtitle  }">
+	<div class="flexbox">
+		<button class="left-small" type="button" data-bind="attr: { class: state_topbarLeftButtonResultClass }, disabled: state_topbarLeftButtonDisabled">
+			<span data-bind="attr: { class: state_topbarLeftButtonSpanClass }, text: state_topbarLeftButtonSpanText"></span>
+		</button>
+
+		<div class="middle-small" data-bind="attr: { 'data-padding-left': state_topbarLeftButtonVisible, 'data-padding-right': state_topbarRightButtonVisible }">
+			<div class="title" data-bind="text: state_topbarTitle"></div>
+			<div class="subtitle" data-bind="text: state_topbarSubtitle"></div>
+			<div class="topbar-tabs" data-bind="underscore: state_tabs">
+				<script type="text/template">
+					<@ _.each(obj, function(tab) { @>
+					<a class="tab white <@= tab.active ? 'active' : '' @>" href="<@- tab.href || '#' @>">
+						<@- tab.title @>
+					</a>
+					<@ }); @>
+				</script>
+			</div>
+
+		</div>
+
+		<a  href="#"
+			name="phone-call"
+			data-bypass
+			data-bind="classes: { disabled: not( get(state_company, 'phone') ) }, attr: { href: format('tel:+$1', get(state_company, 'phone')) }"
+			title="Позвонить">
+			<i class="ic-phone"></i>
+		</a>
+
+		<button class="right-small" type="button" data-bind="attr: { class: state_topbarRightButtonResultClass }, disabled: state_topbarRightButtonDisabled">
+
+			<div data-bind="toggle: not(state_topbarRightLogoUrl), attr:{class:format('room-view-logo icon $1', state_topbarRightLogoIcon)}"></div>
+			<div data-bind="toggle: state_topbarRightLogoUrl, css: { 'background-image': format('url($1)', state_topbarRightLogoUrl) }" class="room-view-logo image"></div>
+
+			<span data-bind="attr: { class: state_topbarRightButtonSpanClass }, text: state_topbarRightButtonSpanText"></span>
+		</button>
+
+	</div>
+
+	<!-- BREADCRUMBS-->
+	<div class="breadcrumbs theme" data-bind="underscore: state_breadcrumbs, classes: { empty: not(length(state_breadcrumbs)) }">
+		<script type="text/template">
+			<@ for (var i = 0, len = obj.length; i < len; i++) { @>
+			<@ var breadcrumb = obj[i]; @>
+			<a href="<@- breadcrumb.href || '#' @>" class="breadcrumb white">
+				<@- breadcrumb.title @>
+			</a>
+
+			<@ if (i < len - 1) { @>
+			<span class="splitter">/</span>
+			<@ } @>
+
+			<@ } @>
+		</script>
+	</div>
+
+</div>

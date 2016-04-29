@@ -1,0 +1,50 @@
+<form name="transactions-return">
+	<label for="card-number">Номер карты</label>
+	<input id="card-number" name="card_number" type="text" data-bind="value: state_card_number, events: ['input', 'paste', 'change']"/>
+
+	<label>Выберите дату</label>
+	<div class="dates flexbox">
+
+		<div class="date flexbox">
+			<span>От</span>
+
+			<div class="date-input flexbox">
+				<input type="date" data-bind="value: unixDate(date_from), events: ['input','paste','change']" name="date_from" id="date-from"
+				       max="{{= moment().subtract(1, 'day').format('YYYY-MM-DD') }}"/>
+			</div>
+
+
+			<i data-bind="toggle: state_showResetDate" class="reset-date-from ic-cross-circle"></i>
+		</div>
+
+		<div class="date flexbox">
+			<span>До</span>
+
+			<div class="date-input flexbox">
+				<input type="date" data-bind="value:unixDate(date_to), events: ['input','paste','change']" name="date_to" id="date-to"
+				       max="{{= moment().format('YYYY-MM-DD') }}"/>
+			</div>
+
+			<i data-bind="toggle: state_showResetDate" class="reset-date-to ic-cross-circle"></i>
+		</div>
+	</div>
+	<button type="submit" class="theme filled send l-mb-10">Показать</button>
+</form>
+
+
+<div class="list-wrapper">
+	<table>
+		<thead>
+			<tr>
+				<td>Дата</td>
+				<td>Сумма</td>
+				<td>Cashback</td>
+				<td>RRN</td>
+			</tr>
+		</thead>
+		<tbody class="list hide">
+
+		</tbody>
+	</table>
+	<button class="theme load-more" data-bind="toggle:all( state_gotItems, not(infiniteScrollState_complete) )">Загрузить еще</button>
+</div>

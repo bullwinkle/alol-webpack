@@ -1,0 +1,59 @@
+<form>
+  <label>Заголовок страницы</label>
+  <input type="text" name="welcome-text" id="welcome-text" maxlength="400" data-bind="value:welcome_text, events: ['paste', 'input']"/>
+
+  <label>Доменное имя:</label>
+  <input type="text" name="domain" id="domain" maxlength="20" data-bind="value: domain, events: ['paste', 'input', 'change']"/>
+
+  <label>Цвет фона и кнопки:</label>
+  <input type="text" id="color" name="color" class="minicolors" data-bind="value:background_color">
+
+  <div class="buttons">
+    <a class="theme" data-bypass target="_blank" download data-bind="attr: { href: format('https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=$1', state_brandingUrl), download: state_companyName }">
+      <button type="button" class="theme">Скачать QR-код со ссылкой на вход</button>
+    </a>
+    <button type="button" class="theme filled" name="save-button">Сохранить настройки</button>
+  </div>
+</form>
+
+<label>Предварительный просмотр страницы</label>
+
+<div class="preview" data-bind="css: { 'background-color':state_background_color }">
+  <div class="query-string">
+    <div class="dots">
+      <div class="red"></div>
+      <div class="yellow"></div>
+      <div class="green"></div>
+    </div>
+    <div class="domain" data-bind="text: state_brandingUrl"></div>
+  </div>
+
+  <div class="branding-bubble-wrap">
+    <div class="branding-bubble">
+      <!-- Company logo -->
+      <img class="company-logo" data-bind="attr: { src:state_companyImageUrl }">
+
+      <!-- Welcome text -->
+      <div class="welcome-text" data-bind="text:welcome_text"></div>
+
+      <div class="inner-bounds">
+        <div>
+			<div class="phone-input">
+				<div class="phone-prefix">+7</div>
+				<div class="input-wrapper">
+            		<input type="tel" placeholder="№ телефона" maxlength="10" class="radius"/>
+				</div>
+			</div>
+          <input type="password" placeholder="Пароль" name="password" class="radius"/>
+        </div>
+
+        <button class="button signin-button" data-bind="css: { 'background-color':state_background_color }">Войти</button>
+
+        <div class="bottom-links">
+          <a href="#" data-bind="css: { color:'#666666' }">Забыли пароль?</a>
+          <a href="#" data-bind="css: { color:'#666666' }">Регистрация</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

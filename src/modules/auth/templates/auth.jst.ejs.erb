@@ -1,0 +1,83 @@
+<div class="wrapper">
+  <div class="iconto-main-logo">
+    <a data-bypass href="/"><%= image_tag "alol-white.svg" %></a>
+  </div>
+  <div class="form auth-form-wrapper mode-signin" data-bind="classes: { 'mode-signup': equal(state_action,'signup' ),'mode-signin':equal(state_action,'signin' ), 'mode-restore':equal(state_action,'restore')}">
+    {{ if (page == 'signup') { }}
+    <form name="signup" autocomplete="off" id="signup_form" class="signup" method="POST">
+      <div class="title">Регистрация</div>
+      <div class="description grey-text">Единая учетная запись для всех продуктов</div>
+
+      <div class="phone-input">
+        <div class="phone-prefix radius">+7</div>
+        <div class="input-wrapper">
+          <input type="tel" name="login" class="radius" placeholder="Номер телефона" maxlength="20" value="7" autocomplete="off" autocorrect="off" autofocus
+                 data-bind="phoneValue:login,countryCode:7, events: ['input', 'paste', 'change']"/>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-button button blue filled" name="submit" data-bind="classes:{'is-loading': state_isLoading}">Зарегистрироваться</button>
+      <div class="auth-errors"></div>
+
+      <span class="grey-text accept-offer">
+	      Нажимая кнопку "Зарегистрироваться",<br>я принимаю
+	      <a href="/rules" data-bypass target="_blank" class="terms">Условия оферты</a> <br>
+	      и <a href="/terms" data-bypass target="_blank" class="terms">Правила сервиса</a>.
+      </span>
+
+      <div class="bottom">
+        <a href="/auth/signin" class="blue" name="forget-password">Вход</a>
+      </div>
+    </form>
+    {{ } }}
+    {{ if (page == 'signin' || page == 'restore') { }}
+    <form name="signin" id="signin_form" autocomplete="on" class="login" method="POST" action="/blank" target="auth-blank-frame">
+      <div class="title">Вход</div>
+      <div class="description grey-text">Единая учетная запись для всех продуктов</div>
+
+      <div class="phone-input">
+        <div class="phone-prefix radius">+7</div>
+        <div class="input-wrapper">
+          <input type="tel" name="login" class="radius" placeholder="Номер телефона" maxlength="20" value="7" autocomplete="on" autocorrect="off" autofocus
+                 data-bind="phoneValue:login,countryCode:7, events: ['input', 'paste', 'change']"/>
+        </div>
+      </div>
+      <input type="password" name="password" class="radius" placeholder="Пароль" value="" autocomplete="on" autocorrect="off"
+             data-bind="value:password, events: ['input', 'paste', 'change']"/>
+
+      <button type="submit" class="submit-button button blue filled" name="submit-button" data-bind="classes:{'is-loading': state_isLoading}">Войти</button>
+      <div class="auth-errors"></div>
+      <a href="/auth/restore" class="forgot-password-link blue" name="forget-password">Забыли пароль?</a>
+
+      <div class="bottom">
+        <span class="grey-text">Еще не с нами? </span><a href="/auth/signup" class="blue" name="forget-password">Регистрация</a>
+      </div>
+    </form>
+
+    <form name="restore" id="restore_form" autocomplete="on" class="restore" method="POST">
+      <div class="title">Восстановление пароля</div>
+      <div class="description grey-text">Единая учетная запись для всех продуктов</div>
+
+      <div class="phone-input">
+        <div class="phone-prefix radius">+7</div>
+        <div class="input-wrapper">
+          <input type="tel" name="login" class="radius" placeholder="Номер телефона" maxlength="20" value="7" autocomplete="on" autocorrect="off" autofocus
+                 data-bind="phoneValue:login,countryCode:7, events: ['input', 'paste', 'change']"/>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-button button blue filled" name="submit" data-bind="classes:{'is-loading': state_isLoading}">Восстановить пароль</button>
+      <div class="auth-errors"></div>
+
+      <div class="bottom">
+        <a href="/auth/signin" class="blue" name="forget-password">Вход</a><span> | </span>
+        <a href="/auth/signup" class="blue" name="forget-password">Регистрация</a>
+      </div>
+    </form>
+    {{ } }}
+
+    <iframe id="auth-blank-frame" name="auth-blank-frame" class="hide"></iframe>
+
+  </div>
+  <div class="copyright grey-text"><span class="year">2016</span> © АЛОЛЬ. All rights reserved</div>
+</div>

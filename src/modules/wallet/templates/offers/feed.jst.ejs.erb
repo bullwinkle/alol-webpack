@@ -1,0 +1,182 @@
+<!-- Feed -->
+<div class="feed-list-wrapper" data-scroll>
+	<!-- Search -->
+	<div class="search" data-bind="classes: {'is-visible': all(equal(state_subpage, 'feed'), state_isSearchBlockVisible)} ">
+		<div class="search-input-wrapper" data-bind="classes: {'with-text': length(state_queryString)}">
+			<input class="search" type="text" placeholder="Поиск" maxlength="255"
+			       data-bind="value: trim(state_queryString), events: ['input','paste','change']"/>
+
+			<div class="clear-search ic-cross-thin"></div>
+		</div>
+		<!--<div class="get-geolocation">-->
+			<!--<i class="icon ic-geolocation"  data-bind="classes: { hide: state_isGeolocationDisabled}"></i>-->
+			<!--<i class="icon ic-geolocation-warning t-red"  data-bind="classes: { hide: not(state_isGeolocationDisabled)}"></i>-->
+		<!--</div>-->
+		<div class="serch-filters">
+			<div class="icon ic-settings"></div>
+			<div class="selected-filters-amount" data-bind="text: length(state_appliedFilterIds)"></div>
+		</div>
+	</div>
+	<!--Нет предложений-->
+	<div data-bind="toggle: equal(state_stateName, 'no_feeds')" class="text-center">
+		<div class="hint  l-mt-20">Здесь будут отображаться предложения, мы работаем над этим 😀</div>
+	</div>
+
+	<!--В избранном нет предложений-->
+	<div data-bind="toggle: equal(state_stateName, 'no_favourite_feeds')" class="text-center">
+		<div class="hint  l-mt-20">Вы не добавили ни одного предложения.</div>
+	</div>
+
+	<!--Если нет персональных предложений-->
+	<div data-bind="toggle: equal(state_stateName, 'no_personal_feeds')" class="text-center">
+		<div class="hint  l-mt-20">Здесь будут самые интересные предложения только для Вас от компаний, с которыми
+			вы общаетесь и где совершаете покупки. Никакого спама!
+		</div>
+		<div>
+			<button class="show-all-feeds theme">Показать все</button>
+		</div>
+	</div>
+
+	<!--Если в фильтре выбран город и/или категория, где нет предложений-->
+	<div data-bind="toggle: equal(state_stateName, 'no_feeds_with_conditions')" class="text-center">
+		<div class="hint  l-mt-20">Пока здесь нет предложений при заданных Вами условиях.</div>
+		<div>
+			<button class="show-all-feeds theme">Показать все</button>
+		</div>
+	</div>
+
+	<!--Произошла ошибка-->
+	<div data-bind="toggle: equal(state_stateName, 'error')" class="text-center">
+		<h5>Ошибка</h5>
+
+		<div>Что-то пошло не так 😔</div>
+	</div>
+
+	<ul class="feed-list row" data-bind="toggle:all( not(state_empty) )"></ul>
+
+	<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingMore"></div>
+</div>
+
+
+<div class="feed-overlay" data-bind="classes:{visible: state_showSidebar}"></div>
+
+<!--Settings-->
+<div class="sidebar-right" data-bind="classes:{visible: state_showSidebar}">
+
+	<div class="sidebar-content-panel settings visible">
+		<div class="sidebar-header clearfix">
+			<button class="button-right hide-sidebar">Готово</button>
+		</div>
+		<div class="sidebar-scrollable">
+			<div class="sidebar-content-block">
+				<div class="sidebar-content-block-heading">Предложения</div>
+				<div class="is-personal">
+					<!--<button class="button blue disable" data-bind="classes:{filled: state_publicFeed}">Все</button>-->
+					<!--<button class="button blue enable" data-bind="classes:{filled: state_publicFeed}">Персональные</button>-->
+					<input type="radio" id="all-feeds" name="is_personal" value="1"
+					       data-bind="checked: state_publicFeed"/>
+					<label class="button" for="all-feeds">Все</label>
+					<input type="radio" id="personal-feeds" name="is_personal" value="0"
+					       data-bind="checked: state_publicFeed"/>
+					<label class="button" for="personal-feeds">Персональные</label>
+
+				</div>
+				<div class="hint l-mt-20">
+					<div data-bind="classes:{hide: state_publicFeed}">
+						Включите "Все", чтобы видеть предложения от всех компаний партнеров.
+					</div>
+					<div data-bind="classes:{hide: not(state_publicFeed)}">
+						Включите "Персональные", чтобы видеть предложения от компаний, на которые Вы подписаны.
+					</div>
+				</div>
+			</div>
+
+			<a class="show-cities button list-item menu-item" data-bind="attr:{disabled: not(state_publicFeed)}">
+				<span class="content">
+					<div class="text">Город</div>
+					<div class="selected-city" data-bind="underscore: state_selectedCity">
+						<script type="text/template">
+							<@- obj.name ? obj.name : 'Автовыбор' @>
+						</script>
+					</div>
+				</span>
+				<i class="ic-chevron-right"></i>
+			</a>
+			<a class="show-filters button list-item menu-item">
+				<span class="content">
+					<span class="text">Фильтры</span>
+					<span class="selected-filters-amount" data-bind="text: length(state_appliedFilterIds)"></span>
+				</span>
+				<i class="ic-chevron-right"></i>
+			</a>
+
+		</div>
+	</div>
+
+	<div class="sidebar-content-panel filters" data-bind="classes:{visible: state_showFilters}">
+		<div class="sidebar-header">
+			<button class="button-left filters-ready">
+				<i class="ic-chevron-left"></i>
+			</button>
+			<button class="button-right  filters-reset">
+				<span class="selected-filters-amount" data-bind="text: length(state_appliedFilterIds)"></span>
+				Сбросить
+			</button>
+		</div>
+		<ul class="sidebar-scrollable" data-bind="underscore:state_filters">
+			<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingFilters"></div>
+			<script type="text/template">
+				<@ _.each(obj, function(category) { @>
+				<li class="filter-category">
+					<div class="filter-category-title"><@- category.name @></div>
+					<ul class="filters-list">
+						<@ _.each(category.items, function(filter) { @>
+						<li class="filter <@- filter.applied? 'is-applied' : '' @>"
+						    data-filter-id="<@- filter.id @>">
+							<i class="icon <@- ICONTO_COMPANY_CATEGORY[filter.id] @>"></i>
+							<span class="content">
+								<span class="checked ic-check"></span>
+								<span class="name"><@- filter.name @></span>
+							</span>
+						</li>
+						<@ }); @>
+					</ul>
+				</li>
+				<@ }); @>
+			</script>
+		</ul>
+	</div>
+
+	<div class="sidebar-content-panel cities" data-bind="classes:{visible: state_showCities}">
+		<div class="sidebar-header">
+			<button class="button-left cities-ready">
+				<i class="ic-chevron-left"></i>
+			</button>
+			<button class="button-right  cities-reset">
+				Сбросить
+			</button>
+		</div>
+		<div class="sidebar-content-block">
+			<div data-bind="underscore:state_selectedCity">
+				<script type="text/template">
+					<@ if (obj.id) { @>
+					<div class="selected-city hint l-mb-10 l-ml-3">Выбрано: <@- name @></div>
+					<@ } @>
+				</script>
+			</div>
+			<input class="city-input" name="city" type="text" placeholder="Введите город"
+			       data-bind="value: state_cityQueryString, events: ['input', 'paste', 'change']"/>
+		</div>
+		<div class="sidebar-scrollable cities-container">
+			<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingCities"></div>
+			<ul data-bind="underscore:state_cities">
+				<script type="text/template">
+					<@ _.each(obj, function(city) {  @>
+					<li class="city-item" data-city-id="<@- city.id @>"><@- city.name @></li>
+					<@ }); @>
+				</script>
+			</ul>
+		</div>
+	</div>
+
+</div>

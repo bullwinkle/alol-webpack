@@ -1,0 +1,52 @@
+<div class="steps">
+  {{ for (var i=0;i< stepIcons.length;i++) { }}
+  {{ var state = (step - 1) == i ? 'active' : (step - 1) < i ? '' : 'done'; }}
+  <div class="step {{= state }}">
+    <i class="ic-{{= stepIcons[i] }}"></i>
+  </div>
+  {{ if (i< stepIcons.length-1) { }}
+  <div class="flexbox dots">
+    {{ for (var j=0;j< stepIcons.length;j++) { }}
+    <div class="dot{{= (i >= step - 1) ? ' light' : '' }}"></div>
+    {{ } }}
+  </div>
+  {{ } }}
+  {{ } }}
+</div>
+
+<div class="content form">
+  <div class="content-padding">
+    <div class="title"><span>Шаг 1.</span> Профиль компании</div>
+
+    <form>
+      <label>Название</label>
+      <input type="text" name="name" id="name" maxlength="255" data-bind="value:name, events: ['paste', 'input']">
+
+      <label>Категория</label>
+      <!--<select name="category_id" id="category_id" data-bind="options: state_categories, sodValue:integer(category_id)"></select>-->
+
+      <select class="radius" name="category_id" id="category_id" data-bind="value:integer(category_id), underscore:state_categories" data-select-or-die>
+        <script type="text/template">
+          <@ _.each(obj, function(value, key) { @>
+          <optgroup label="<@- key @>">
+            <@ _.each(value, function (category) { @>
+            <option value="<@- category.id @>"><@- category.name @></option>
+            <@ }); @>
+          </optgroup>
+          <@ }); @>
+        </script>
+      </select>
+
+      <label>Корпоративный e-mail</label>
+      <input type="text" class="radius" name="email" id="email" maxlength="50" data-bind="value:email, events: ['paste', 'input']">
+
+      <label>Сайт</label>
+      <input type="text" class="radius" name="site" id="site" maxlength="40" data-bind="value:site, events: ['paste', 'input']">
+    </form>
+
+    <div class="buttons">
+      <a href="/office" class="grey button">Отмена</a>
+      <button type="button" class="filled green" name="continue-button">Продолжить</button>
+    </div>
+  </div>
+</div>

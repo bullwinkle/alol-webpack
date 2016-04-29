@@ -4,22 +4,11 @@ import ExtractPlugin from 'extract-text-webpack-plugin';
 
 const CWD = process.cwd();
 const SRC = CWD + '/src';
+const VENDOR = CWD + '/other_components';
 const DIST = CWD + '/dist';
 const TEST = CWD + '/test';
 const PAGES = SRC + '/pages';
 const PUBLIC = '/';
-
-// import {loader as _templateSettings} from './ejs';
-// console.log('interpolate',_templateSettings.interpolate)
-// console.log('escape',_templateSettings.escape)
-// console.log('evaluate',_templateSettings.evaluate)
-
-// require('lodash').templateSettings.interpolate = _templateSettings.interpolate;
-// require('lodash').templateSettings.escape = _templateSettings.escape;
-// require('lodash').templateSettings.evaluate = _templateSettings.evaluate;
-// require('ejs-loader/node_modules/lodash').templateSettings.interpolate = _templateSettings.interpolate;
-// require('ejs-loader/node_modules/lodash').templateSettings.escape = _templateSettings.escape;
-// require('ejs-loader/node_modules/lodash').templateSettings.evaluate = _templateSettings.evaluate;
 
 export default function ({dev, hot, test, port}) {
 
@@ -37,7 +26,7 @@ export default function ({dev, hot, test, port}) {
 		devtool: DEVTOOL,
 		entry: {
 			vendor: ['./src/vendor/vendor'],
-			app: ['./src/app/app']
+			app: ['./src/app/app.coffee']
 		},
 		output: {
 			path: DIST,
@@ -45,8 +34,9 @@ export default function ({dev, hot, test, port}) {
 			publicPath: PUBLIC
 		},
 		resolve: {
-			extensions: ['', '.js', '.json'],
+			extensions: ['', '.js', '.coffee', '.json'],
 			modulesDirectories: [
+				VENDOR,
 				'node_modules',
 				SRC,
 				SRC + '/modules'
@@ -59,7 +49,20 @@ export default function ({dev, hot, test, port}) {
 			loaders: [{
 				test: /\.js$/,
 				include: [SRC, TEST],
-				loader: 'babel!eslint!jscs'
+				// loader: 'babel!eslint!jscs'
+				loader: 'babel'
+			}, {
+				test: /\.js/,
+				include: VENDOR,
+				loader: "script"
+			}, {
+				test: /\.coffee$/,
+				include: VENDOR,
+				loader: "script!coffee"
+			}, {
+				test: /\.coffee$/,
+				include: SRC,
+				loader: "coffee"
 			}, {
 				test: /\.css$/,
 				include: SRC,
@@ -98,11 +101,7 @@ export default function ({dev, hot, test, port}) {
 			}]
 		},
 		plugins: [
-			new ExtractPlugin(CSS_NAME),
-			new webpack.ProvidePlugin({
-				_: "lodash",
-				jQuery: "jquery"
-			})
+			new ExtractPlugin(CSS_NAME)
 		]
 	};
 

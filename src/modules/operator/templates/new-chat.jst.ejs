@@ -1,0 +1,22 @@
+<input type="text" class="search large" name="query" id="query"
+       data-bind="value:state_query, events: ['input', 'paste', 'change']"
+       placeholder="Искать пользователя или партнера"/>
+
+<div class="addresses" data-bind="underscore: state_addresses">
+	<script type="text/template">
+		<div class="address">
+			<input type="radio" class="green" name="addresses" data-id="0" id="address_0" checked/>
+			<label for="address_0">Все адреса</label>
+		</div>
+		<@ _.each(obj, function(address) { @>
+		<div class="address">
+			<input type="radio" class="green" name="addresses" data-id="<@= address.id @>" id="address_<@= address.id @>"/>
+			<label for="address_<@= address.id @>"><@- address.address @></label>
+		</div>
+		<@ }); @>
+	</script>
+</div>
+
+<div class="list" data-scroll></div>
+
+

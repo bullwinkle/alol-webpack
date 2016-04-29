@@ -1,0 +1,32 @@
+<div class="flexbox">
+
+	{{ if (operation_type == Iconto.REST.Cashback.OPERATION_TYPE_CASHBACK_WITHDRAW || operation_type == Iconto.REST.Cashback.OPERATION_TYPE_CASHBACK_INCOME) { }}
+	<i class="ic-cashback"></i>
+	{{ } else { }}
+	<img class="logo" src="{{= Iconto.shared.helpers.image.resize(image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) }}"/>
+	{{ } }}
+
+	<div class="info">
+		<div class="description">
+			{{ if (operation_type == Iconto.REST.Cashback.OPERATION_TYPE_CASHBACK_WITHDRAW || operation_type == Iconto.REST.Cashback.OPERATION_TYPE_CASHBACK_INCOME) { }}
+			перевод CashBack
+			<div class="title">{{- title }}</div>
+			{{ } else { }}
+			<div class="sender">
+				от <span class="sender-name">{{- title }}</span>
+			</div>
+			{{ } }}
+		</div>
+
+		<div class="flexbox">
+			<div class="date">{{= moment.unix(created_at).format("DD MMM YYYY в HH:mm") }}</div>
+
+			<div class="amount {{= operation_type == Iconto.REST.Cashback.OPERATION_TYPE_CASHBACK_WITHDRAW ? 'red' : '' }}">
+				<span>{{= operation_type == Iconto.REST.Cashback.OPERATION_TYPE_CASHBACK_WITHDRAW ? '-' : '+' }}{{= Iconto.shared.helpers.money(amount) }}</span>
+				<span class="rouble">:</span>
+			</div>
+		</div>
+
+	</div>
+
+</div>

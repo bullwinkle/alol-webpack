@@ -1,0 +1,84 @@
+<div class="company">
+	<div class="company-image" data-bind="css: { 'background-image': format('url($1)', image_url) }"></div>
+	<div class="company-info">
+		<div class="company-name" data-bind="text: name"></div>
+		<div class="company-category-name" data-bind="text: state_categoryName"></div>
+	</div>
+</div>
+
+<div class="page-content">
+	<div class="item" data-bind="toggle: description">
+		<div class="header">
+			<i class="ic-info-italic"></i>
+
+			<div class="header-text">О компании</div>
+		</div>
+		<div class="content" data-bind="html:description">
+
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="header">
+			<i class="ic-phone"></i>
+
+			<div class="header-text">Контактная информация</div>
+		</div>
+		<div class="content">
+			<div class="has-splitter" data-bind="toggle:phone">Тел.:
+				<a data-bind="attr:{href:format('tel:+$1', phone)}, text:format('+7 $1', phoneFormat7(phone))"
+				   data-bypass target="_blank"></a>
+			</div>
+			<div class="has-splitter" data-bind="toggle:site">Сайт:
+				<a target="_blank" data-bind="text: site, attr: { href: state_site_href }" data-bypass></a></div>
+			<div data-bind="toggle:email">Email:
+				<a data-bind="text:email, attr: { href: format('mailto:$1', email) }" data-bypass></a>
+			</div>
+			{{ if (rules_url) { }}
+				<div >Правила:
+					<a href="{{= rules_url }}" data-bypass>"{{= Iconto.shared.helpers.toUnicode(rules_url) }}"</a>
+				</div>
+			<!--{{ } else if (rules_text) { }}-->
+				<!--<div class="list">-->
+					<!--<div class="icon">-->
+						<!--<i class="ic-shield-document"></i>-->
+					<!--</div>-->
+					<!--<div class="content">-->
+						<!--{{= rules_text }}-->
+					<!--</div>-->
+				<!--</div>-->
+			{{ } }}
+
+		</div>
+	</div>
+	<div class="item hide">
+		<div class="header clearfix">
+			<i class="ic-marker"></i>
+			<div class="header-text flexbox flex-v-center flex-space-between">
+				<div>Адреса <span class="bubble" data-bind="text: length(state_addresses)"></span></div>
+				<a class="show-all-addresses-on-map l-pr-20 flexbox flex-v-center s-cp" href="/wallet/company/{{- id }}/addresses">
+					Показать на карте<span class="ic-marker-on-map f-sz-22 l-ml-10"></span>
+					<!--<div class="show-all-addresses-on-map l-pr-20 flexbox flex-v-center s-cp">Показать на карте<span class="ic-marker-on-map f-sz-22 l-ml-10"></span></div>-->
+				</a>
+			</div>
+		</div>
+		<div class="addresses content menu-items" data-bind="underscore: state_addresses">
+			<script type="text/template">
+				<@ _.each(obj, function(addressData, i) { if (!addressData.deleted_at) { @>
+					<a data-address-id="<@- addressData.id @>"
+				        data-lat="<@- addressData.latitude @>"
+				        data-lon="<@- addressData.longitude @>"
+						class="address-item button list-item menu-item" href="/wallet/company/{{- id }}/address/<@- addressData.id @>" >
+						<span class="content">
+							<div><span class="f-sz-12"><@- i+1 @>.  </span><@- addressData.address || '(адрес не указан)' @></div>
+							<@ if (addressData.contact_phone) {@>
+								<div class="hint l-mb-0">+7 <@- Iconto.shared.helpers.phone.format7(addressData.contact_phone )@></div>
+							<@}@>
+						</span>
+						<i class="ic-chevron-right"></i>
+					</a>
+				<@ }}); @>
+			</script>
+		</div>
+	</div>
+</div>

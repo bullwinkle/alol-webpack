@@ -1,0 +1,32 @@
+<form class="form l-pt-20">
+	<label for="title">Вопрос</label>
+	<input name="title" type="text" id="title" data-bind="value:title, events:['input','paste','change']"/>
+	<label for="answer">Ответ</label>
+	<input name="answer" type="text" id="answer" data-bind="value:answer, events:['input','paste','change']"/>
+
+	<label for="parent_id">Категория</label>
+	<select name="parent_id" id="parent_id" data-bind="value:number(parent_id),underscore: state_FAQcategories, events:['change']">
+		<script type="text/template">
+			<@ var renderRecourcive = function(items, prefixArg){ @>
+				<@ _.each(items, function (item) {@>
+					<@ if (!prefixArg) prefixArg = ''; @>
+					<@ item.title = prefixArg+' '+item.title @>
+					<@ if (item.type == Iconto.REST.CompanyFAQ.TYPE_CATEGORY && item.id != {{- id }}) { @>
+						<option value="<@- item.id @>"><@- item.title @></option>
+					<@ } else if (item.type == Iconto.REST.CompanyFAQ.TYPE_CATEGORY) { @>
+						<option value="<@- item.id @>" disabled><@- item.title @></option>
+					<@ } @>
+					<@ if (_.get(item,'children.length',0) > 0) { @>
+						<@ renderRecourcive(item.children, prefixArg +'––––|' ) @>
+					<@ } @>
+				<@ }); @>
+			<@ };@>
+
+			<option default selected value="0">Не выбрано</option>
+			<@ renderRecourcive(obj) @>
+		</script>
+	</select>
+
+	<button class="theme filled" type="submit" data-bind="text:state_submitButtonText"></button>
+	<button class="delete red" type="button" data-bind="toggle:not(equal(id, null))">Удалить</button>
+</form>

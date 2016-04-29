@@ -1,0 +1,135 @@
+<div class="order-form-container">
+	<label for="city-select">Город</label>
+
+	<div class="flexbox input-with-icon l-mb-5">
+		<select id="city-select" class="city-select" name="city"
+		        data-bind="value: state_selectedCity, options:state_cities"></select>
+
+		<div class="icon l-p-r ic-marker-on-map show-slidable-region-map"></div>
+	</div>
+	<div class="hint l-mb-15 s-cp show-slidable-region-map" style="min-height: 15px;" data-bind="text: state_definedAddress"></div>
+	<label for="companyQuery">Имя компании</label>
+	<input id="companyQuery" class="l-mb-0" type="text"
+	       data-bind="value: state_companyQuery, events: ['input','paste','change'], disabled: not(state_selectedCity)"/>
+	<div class="loader-bubbles theme" data-bind="classes: {'s-visibility-h':not(infiniteScrollState_isLoadingMore), 's-visibility-v': infiniteScrollState_isLoadingMore}"></div>
+	<div class="text-center l-p-20" data-bind="classes: {hide: not( all(state_empty, not(state_isLoadingMore)) )}">Не найдено</div>
+
+	<ul class="menu-items l-mb-20 restaurants-list" data-bind="classes: {hide: state_empty}"></ul>
+</div>
+
+<div class="slidable-region-right map-region" data-bind="classes: {'is-visible': state_isAddressSelectVisible}">
+	<a class="head button menu-item close-slidable-region">
+		<i class="ic-chevron-left theme"></i>
+		<span class="content">
+		<div class="with-loader" data-bind="classes: {'is-loading': state_isAddressLoading }">
+			<!--<input type="text"-->
+			       <!--name="where"-->
+			       <!--id="where"-->
+			       <!--maxlength="20"-->
+			       <!--autocomplete="on"-->
+			       <!--autocorrect="off"-->
+			       <!--placeholder="Пункт назначения"-->
+			       <!--data-bind="value:state_definedAddress, events:['input','paste','change']">-->
+			<div data-bind="text: state_definedAddress"></div>
+
+			<div class="loader-bubbles theme"></div>
+		</div>
+
+		</span>
+	</a>
+
+	<div class="google-map-container">
+		<button class="map-loader theme text is-loading">blue text</button>
+	</div>
+</div>
+
+<div class="slidable-region-right order-form" data-bind="classes: {'is-visible': state_isOrderFormVisible}">
+	<a class="head button menu-item close-slidable-region ">
+		<i class="ic-chevron-left theme"></i>
+		<span class="content">Поиск ресторанов</span>
+		<!--<i class="ic-chevron-right get-location-button theme"></i>-->
+		<!--<i class="ic-check theme checked"></i>-->
+	</a>
+
+	<div class="content l-pt-10 l-pb-10 l-pr-20 l-pl-20">
+		<div class="restaurant-item flexbox l-mb-20">
+			<div class="ic- icon l-h-100 l-mr-10 left restaurant-thumbnail" data-bind="toggle: get(state_selectedRestaurant,'mainPhoto') ,css: {'background-image': format('url($1)', get(state_selectedRestaurant,'mainPhoto'))}"></div>
+			<div class="content">
+				<div class="clearfix">
+					<div class="type hint left" data-bind="text: get(state_selectedRestaurant,'prefix')"></div>
+					<div class="distance hint right"><span data-bind="text: get(state_selectedRestaurant,'distance')"></span>м</div>
+				</div>
+				<div class="name" data-bind="text: get(state_selectedRestaurant,'name')"></div>
+				<div class="address" data-bind="text: get(state_selectedRestaurant,'address')"></div>
+			</div>
+		</div>
+
+		<form action="/blank" method="POST" target="hidden-frame">
+
+			<div class="flexbox date-time">
+				<div class="date">
+					<!--<label for="when_date" class="green">Дата</label>-->
+					<div class="label" for="when_date">
+						<div class="icon ic-label-calendar t-yellow l-mr-5"></div>
+						<div class="text">Дата</div>
+					</div>
+					<input name="when_date" id="when_date" type="date"
+					       data-bind="value:state_when_date,events:['input','paste','change']"/>
+				</div>
+				<div class="time">
+					<!--<label for="when_time" class="green">Время</label>-->
+					<div class="label" for="when_time">
+						<div class="icon ic-label-time t-yellow l-mr-5"></div>
+						<div class="text">Время</div>
+					</div>
+					<input name="when_time" id="when_time" type="time"
+					       data-bind="value:state_when_time,events:['input','paste','change']"/>
+				</div>
+			</div>
+			<div class="label" for="user_name">
+				<div class="icon ic-label-edit t-yellow l-mr-5"></div>
+				<div class="text">Имя</div>
+			</div>
+			<input type="text" name="user_name" id="user_name" data-bind="value: user_name"/>
+
+			<div class="label" for="phone">
+				<div class="icon ic-label-phone t-yellow l-mr-5"></div>
+				<div class="text">Телефон</div>
+			</div>
+			<div class="phone-input">
+				<div class="phone-prefix radius">+7</div>
+				<div class="input-wrapper">
+					<input id="phone"
+					       name="phone"
+					       class="radius"
+					       type="tel"
+					       placeholder="Номер телефона"
+					       value="7"
+					       autocomplete="on"
+					       autocorrect="off"
+					       maxlength="20"
+					       data-bind="phoneValue:phone,countryCode:7, events: ['input', 'paste', 'change']"
+						/>
+				</div>
+			</div>
+
+			<div class="label" for="persons">
+				<div class="icon ic-label-people t-yellow l-mr-5"></div>
+				<div class="text">Количество человек</div>
+			</div>
+			<input name="persons" id="persons" type="number" data-bind="value: number(persons)"/>
+
+			<div class="label add-comment" for="comment">
+				<div class="icon ic-label-comment t-yellow l-mr-5"></div>
+				<div class="text"> Комментарий </div>
+			</div>
+			<textarea name="comment" id="comment" data-bind="value:comment"></textarea>
+
+			<button type="submit" class="theme filled large submit-button">Забронировать</button>
+		</form>
+	</div>
+
+</div>
+
+<iframe src="about:blank" name="hidden-frame" class="hide" frameborder="0"></iframe>
+

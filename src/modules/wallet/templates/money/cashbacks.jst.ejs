@@ -1,0 +1,28 @@
+<div class="header">
+	<div class="balance">
+		<span class="amount" data-bind="text:money(state_balance)"></span>&nbsp;<span class="rouble">№</span>
+		<div class="text">в вашем кошельке</div>
+	</div>
+	<div class="withdraw">
+		<a href="/wallet/money/withdraw" class="white small">ПЕРЕВЕСТИ</a>
+		<!--<a href="/wallet/money/payment" class="white small">ОПЛАТИТЬ</a>-->
+	</div>
+
+	<!--<div class="tabs">-->
+		<!--<a href="/wallet/cards" class="button">-->
+			<!--<i class="ic-card"></i>-->
+			<!--<div class="content">Мои карты</div>-->
+		<!--</a>-->
+
+		<!--<a href="/wallet/money/cashback" class="button active">-->
+			<!--<i class="ic-cashback"></i>-->
+			<!--<div class="content">История</div>-->
+		<!--</a>-->
+	<!--</div>-->
+</div>
+
+<div class="list-wrap">
+	<div class="hint" data-bind="toggle: all(state_isEmpty, not(state_isLoadingMore))">Не найдено</div>
+	<div class="list"></div>
+	<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingMore"></div>
+</div>

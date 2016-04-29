@@ -1,0 +1,22 @@
+<div class="image" style="background-image: url({{= user.image.url }})"></div>
+
+<div class="info">
+  <div class="name">{{= user.nickname }}</div>
+  <!--{{ if (user.phone) { }}-->
+  <!--<div class="phone">+7 {{= Iconto.shared.helpers.phone.format7(user.phone) }}</div>-->
+  <!--{{ } }}-->
+  <div class="send-sms">
+    <div class="checkbox">
+      <input id="contact-{{= id }}" type="checkbox" class="switch theme" name="send-sms" {{ if (send_sms) { }} checked{{ } }}/>
+    </div>
+    <label class="label" for="contact-{{= id }}">Отправлять <span>сообщения пользователей по</span> SMS<span>, если контакт не онлайн</span>
+
+      <div class="hint l-mb-0">(сообщение будет отправлено по sms, если не прочитано в чате более 2 минут)</div>
+    </label>
+  </div>
+</div>
+{{ if (user_id != current_user_id && !owner) { }}
+<div class="delete-button">
+  <i class="ic ic-cross-circle"></i>
+</div>
+{{ } }}

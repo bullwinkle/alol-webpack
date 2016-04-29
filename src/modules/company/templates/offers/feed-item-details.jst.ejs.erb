@@ -1,0 +1,71 @@
+<div class="feed-item" data-bind="classes:{hide: state_isLoading}">
+	<div class="images-container empty" data-bind="classes:{'empty ic-cashback': not(length(feedItemDetails_images)) }"></div>
+	<div class="is-recommended" data-bind="toggle: is_recommended">
+		<div class="plate-left"></div>
+		<div class="plate-right"></div>
+		<span class="text">Рекомендовано АЛОЛЬ </span>
+	</div>
+	<div class="wrapper">
+		<div class="offer-title">
+			<span class="text" data-bind="text: feedItemDetails_title"></span>
+			<span class="cashback-amount" data-bind="toggle: feedItemDetails_cashback"><span data-bind="text: feedItemDetails_cashback"></span>%</span>
+		</div>
+		<pre class="description" data-bind="text: feedItemDetails_description"></pre>
+		<ul class="conditions" data-bind="underscore: state_conditions">
+			<script type="text/template">
+				<@ _.each(obj, function(conditionText, i) { @>
+					<li class="condition-item"><@= conditionText @></li>
+				<@ }); @>
+			</script>
+		</ul>
+		<div class="company">
+			<!--<div class="company-icon" data-bind="css:{ 'background-image': format('url($1)', resize(get(company_image, 'url')))}"></div>-->
+			<div class="company-info">
+				<!--<span class="company-name" data-bind="text: company_name"></span>-->
+				<!--<span class="company-category" data-bind="text: companyCategory_name"></span>-->
+			</div>
+			<div>Доступно по адресам:</div>
+			<ul class="addresses l-ml-20" data-bind="underscore: state_addresses">
+				<script type="text/template">
+					<@ _.each(obj, function(addressData) { if (!addressData.deleted_at) { @>
+					<li class="address-item" data-address-id="<@- addressData.id @>"><@- addressData.address @></li>
+					<@ }}); @>
+				</script>
+			</ul>
+		</div>
+		<div class="buttons-block">
+			<!--<button class="blue use-this-offer-authorized write-message">-->
+				<!--Написать в компанию-->
+			<!--</button>-->
+			<!--<a data-bypass href="http://ic.gy/1on" target="_blank" class="use-this-offer-unauthorized">-->
+				<!--<button class="blue">-->
+					<!--Воспользоваться-->
+				<!--</button>-->
+			<!--</a>-->
+			<!--<span class="share-wrapper right" data-bind="classes: {'is-liked': is_liked}">-->
+				<!--<span class="icon share vk ic-vk"></span>-->
+				<!--<span class="icon share fb ic-facebook"></span>-->
+				<!--<span class="icon share tw ic-twitter"></span>-->
+				<!--<span class="icon ic-share"></span>-->
+			<!--</span>-->
+		</div>
+	</div>
+</div>
+<div class="buttons-block bottom">
+	<!--<button class="favourite blue text" data-bind="classes: {'is-favourite': is_favourite}">-->
+		<!--<span class="icon ic-star"></span>-->
+		<!--<span class="icon-filled ic-star-filled"></span>-->
+		<!--<span class="text" data-bind="text: select(is_favourite, 'В избранном', 'В избранное' )">В избранное</span>-->
+	<!--</button>-->
+	<button class="like text" data-bind="classes: {'is-liked': is_liked}">
+		<span class="icon ic-heart"></span>
+		<span class="icon-filled ic-heart-filled"></span>
+		<!--<span>Нравится: </span>-->
+		<!--<span data-bind="text: likes_count">0</span>-->
+	</button>
+
+	<!--<button class="hide-offer grey text">-->
+		<!--<span class="icon ic-cross-circle"></span>-->
+		<!--Скрыть-->
+	<!--</button>-->
+</div>

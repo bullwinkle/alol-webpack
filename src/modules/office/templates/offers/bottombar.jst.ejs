@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="small-12 medium-6 medium-centered columns">
+		<ul class="radius tabs row collapse">
+			<li class="small-4 columns tab coupons-tab {{= state.subpage=='coupons'||state.subpage=='advertisements'?'active':'' }}">
+				<a href="/office/{{= state.companyId }}/offers/coupons" class="button tiny">Акции и анонсы</a>
+			</li>
+			<li class="small-4 columns tab cashbacks-tab {{= state.subpage=='cashbacks'?'active':'' }}">
+				<a href="/office/{{= state.companyId }}/offers/cashbacks" class="button tiny">Cashback</a>
+			</li>
+			<li class="small-4 columns tab requests-tab {{= state.subpage=='requests'?'active':'' }}">
+			<a href="/office/{{= state.companyId }}/offers/requests" class="button tiny">Запросы клиентов</a>
+			</li>
+		</ul>
+	</div>
+</div>

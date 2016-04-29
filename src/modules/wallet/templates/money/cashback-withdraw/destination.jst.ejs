@@ -1,0 +1,32 @@
+<!--<div data-bind="toggle: not(state_isLoading)">-->
+	<!--<label for="phone">Другому пользователю</label>-->
+	<!--<div class="comment">-->
+		<!--Введите номер телефона. Если такого пользователя нет, он будет создан автоматически, и ему будет отправлено <span>SMS-уведомление</span> о переводе-->
+	<!--</div>-->
+
+	<!--<form class="flexbox" action="">-->
+		<!--<div class="phone-wrap">-->
+			<!--<div class="phone-number-input">-->
+				<!--<div class="phone-prefix">+7</div>-->
+				<!--<input type="tel" name="phoneNumber" id="phone" class="phone-number" data-bind="phoneValue: phoneNumber, countryCode: 7, events: ['input', 'paste', 'change']"/>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<button type="submit" class="blue filled" name="withdraw">Перевести</button>-->
+	<!--</form>-->
+
+
+<!--</div>-->
+
+<div data-bind="toggle:all(state_hasCards, not(state_isLoading))">
+	<label>На банковскую карту</label>
+
+	<div class="card-list"></div>
+</div>
+
+<div data-bind="toggle:all(not(state_hasCards), not(state_isLoading))">
+	<p>Пожалуйста, добавьте хотя бы одну карту.</p>
+
+	<a href="/wallet/money/card/new">
+		<button type="button" class="button blue filled">Добавить</button>
+	</a>
+</div>

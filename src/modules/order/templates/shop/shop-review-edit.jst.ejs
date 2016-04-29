@@ -1,0 +1,67 @@
+{{ var image = _.get(product,'images[0]') }}
+<div class="shop-product-item s-noselect l-ptb-20 l-plr-10">
+	<div class="flexbox">
+		<div class="product-icon l-w-140 l-h-100">
+
+			<div class="image s-bg-contain" style="background-image: url({{- image }}?resize=w[200]h[160])"></div>
+		</div>
+
+		<div class="flex-1 flexbox flex-column container l-plr-10">
+
+			<div class="title s-line-clamp-2 l-h-40 f-sz-14 f-w-600 f-lh-20">
+				{{- product.title }}
+			</div>
+
+			<div class="flexbox flex-v-center l-mt-5 l-mb-5">
+				<div class="t-grey-light f-sz-12 l-mb-0">Артикул: {{- product.vendor_code}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="flexbox t-grey l-pt-15 l-plr-15">
+	{{ var avatar = _.get(obj,'user.image.url') + '?resize=w[100]h[100]'; }}
+	<div class="show-for-medium-up image s-rounded flex-0 l-w-50 l-h-50 l-mr-15 s-bg-cover"
+		 style="background-image: url({{- avatar }})">
+	</div>
+	<div class="flex-1 l-pb-15">
+		<div class="flexbox">
+			<div class="show-for-small-only image s-rounded flex-0 l-w-45 l-h-45 l-mr-15 s-bg-cover"
+				 style="background-image: url({{- avatar }})">
+			</div>
+			<div class="flex-1">
+				<div class="t-grey-dark l-mb-5 f-sz-18 f-lh-18 f-w-600">{{- user.nickname }}</div>
+				<div class="show-for-medium-up l-mb-5"></div>
+				<div class="rating-wrapper"></div>
+			</div>
+			<div class="flex-0 f-sz-14 t-grey-light">
+				{{- moment().format('DD.MM.YY') }}
+			</div>
+		</div>
+		<form class="l-pt-15 l-mt-10">
+			<textarea
+					name=""
+					id=""
+					cols="30"
+					rows="10"
+					placeholder="Введите текст отзыва..."
+					data-bind="value: comment, events:['input','paste','change']">
+			</textarea>
+			<div class="l-mt-10 t-a-right">
+				<button submit
+						type="submit"
+						class="theme filled"
+						data-bind="text:select(id,'Обновить отзыв','Добавить отзыв')">
+					Добавить отзыв
+				</button>
+				<button delete
+						type="button"
+						class="t-white s-bg-grey-light s-br-2"
+						data-bind="toggle: id">
+					Удалить
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

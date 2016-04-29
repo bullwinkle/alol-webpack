@@ -1,0 +1,45 @@
+<div class="button list-item menu-item">
+	<span class="content title displaying">{{= title }}</span>
+
+	<form class="content editing l-p-0 l-m-0"  id="{{= id }}">
+		<input autofocus type="text" name="title" value="{{= title }}"/>
+	</form>
+	<i class="ic-cross-circle"></i>
+</div>
+<div class="editing">
+	<label for="parent_id">Родительская категория</label>
+	<!--<select class="l-mb-10" form="{{= id }}" name="parent_id" id="parent_id" data-bind="underscore:state_shopCategories">-->
+		<!--<script type="text/template">-->
+			<!--<@ var renderRecourcive = function(items, prefixArg, inheritDisableRoot, level){ @>-->
+				<!--<@ _.each(items, function (item,i) {@>-->
+					<!--<@ var inheritDisable = inheritDisableRoot ? inheritDisableRoot : 0 @>-->
+					<!--<@ if (!prefixArg) prefixArg = ''; @>-->
+					<!--<@ item.title = prefixArg+' '+item.title @>-->
+
+					<!--<@ if (item.id == {{= parent_id }}) { @>-->
+						<!--<option selected value="<@- item.id @>"><@- item.title @></option>-->
+					<!--<@ } else if (item.id != {{= id }}) { @>-->
+						<!--<option value="<@- item.id @>"><@- item.title @></option>-->
+					<!--<@ } @>-->
+
+					<!--<@ if (_.get(item,'children.length',0) > 0) { @>-->
+						<!--<@ renderRecourcive(item.children, prefixArg +'⎯⎯⎯⎯|', inheritDisable, level+1 ) @>-->
+					<!--<@ } @>-->
+				<!--<@ }); @>-->
+			<!--<@ };@>-->
+			<!--<option value="0">Не выбрано</option>-->
+			<!--<@ renderRecourcive(_.cloneDeep(obj), '', 0, 0) @>-->
+		<!--</script>-->
+	<!--</select>-->
+
+	<div class="ui-virtual-select l-mb-20"></div>
+
+	<button type="submit" form="{{= id }}" class="green filled" name="save-category-button">Сохранить</button>
+	<button class="grey" name="cancel-button">Отмена</button>
+</div>
+
+<div class="subcategories">
+	<ul class="menu-items"></ul>
+</div>
+
+<div class="goods"></div>

@@ -1,0 +1,45 @@
+<form>
+
+	<div class="row">
+		<div class="small-12 columns">
+
+			<div class="text-center" data-bind="toggle: url">
+
+				<img class="qr" alt=""
+				     data-bind="attr: { src: format('//chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$1', hash) }"/>
+
+				<h6 class="text-center">
+					<a target="_blank" data-bind="attr: { href: url }, text: replace(url, '/^\/+|\/+$/g', '')" data-bypass=""></a>
+				</h6>
+			</div>
+
+			<label>Название</label>
+			<input type="text" name="title" id="title" data-bind="value:title, events:['input','paste','change']"
+			       class="radius" maxlength="250"/>
+
+			<label>Описание</label>
+			<textarea name="description" id="description" data-bind="value:description, events:['input','paste','change']"
+			          class="radius" maxlength="1000"></textarea>
+
+			<div data-bind="toggle: not(state_progressPercents)">
+
+				<label for="image">Изображение</label>
+				<input type="file" name="images" id="image" accept="image/*" data-bind="value:state_file"/>
+				<button type="button" class="button tiny radius" name="upload" data-bind="toggle:state_file">Загрузить</button>
+
+			</div>
+
+			<div data-bind="toggle:state_progressPercents">
+				<h6>Пожалуйста, подождите...</h6>
+
+				<div class="progress radius">
+					<div class="meter" data-bind="css: { width: format('$1%', state_progressPercents) }"></div>
+				</div>
+			</div>
+
+			<img class="image" data-bind="toggle: state_imageUrl, attr: { src: state_imageUrl }"/>
+
+		</div>
+	</div>
+
+</form>

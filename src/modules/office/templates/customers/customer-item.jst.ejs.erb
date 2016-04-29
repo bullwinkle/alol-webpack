@@ -1,0 +1,9 @@
+<h6 class="group-character">{{= group_character }}</h6>
+<button class="list-item">
+	{{ var avatar = image.id ? Iconto.shared.helpers.image.resize(image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) : Iconto.shared.helpers.image.anonymous() }}
+	<img class="avatar" src="{{= avatar }}" alt=""/>
+	<div class="info">
+		<div class="name" data-bind="text:fullName"></div>
+		<div class="phone">+7 {{= Iconto.shared.helpers.phone.format7(phone) }}</div>
+	</div>
+</button>

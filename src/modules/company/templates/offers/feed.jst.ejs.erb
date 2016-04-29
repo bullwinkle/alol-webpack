@@ -1,0 +1,9 @@
+<div data-bind="toggle:all(state_empty, not(state_isLoadingMore))" class="text-center l-mt-20">
+	<div class="hint">Предложений пока нет.</div>
+</div>
+
+<!-- Feed -->
+<div class="feed-list-wrapper" data-bind="toggle:all( not(state_empty) )" data-scroll>
+	<ul class="feed-list"></ul>
+</div>
+<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingMore"></div>

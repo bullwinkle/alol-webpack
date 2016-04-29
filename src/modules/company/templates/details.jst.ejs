@@ -1,0 +1,62 @@
+<!--<div class="blue-header">-->
+	<!--<img class="logo" alt=""-->
+	     <!--data-bind="attr: { src:resize(get(company_image, 'url'), Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) }"/>-->
+
+	<!--<div class="info">-->
+		<!--<div class="company-name" data-bind="text: company_name"></div>-->
+		<!--<div class="company-category" data-bind="text: category_name"></div>-->
+		<!--<div class="address" data-bind="text: address_address"></div>-->
+
+		<!--<div class="buttons-block clearfix">-->
+			<!--<button class="white filled" name="write">Написать</button>-->
+			<!--<button class="white" name="subscribe" data-bind="text: select(address_isSubscribed, 'Отписаться' ,'Подписаться' )">Подписаться</button>-->
+			<!--<button class="white" name="block" data-bind="text: select(address_isBlocked, 'Разблокировать' ,'Заблокировать' )"> Заблокировать</button>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+<div class="map-block">
+	<a data-bypass target="_blank" class="map"
+	   data-bind="css: { 'background-image': format('url(//static-maps.yandex.ru/1.x/?l=map&ll=$1,$2&pt=$1,$2,pm2lbm&z=13)', address_longitude, address_latitude) }, attr: { href: format('//static-maps.yandex.ru/1.x/?l=map&ll=$1,$2&pt=$1,$2,pm2lbl&z=13', address_longitude, address_latitude) }"></a>
+</div>
+
+<!--<div class="block-menu-item worktime">-->
+	<!--<i class="ic-clock"></i>-->
+
+	<!--<div class="content" data-bind="text: state_worktime"></div>-->
+<!--</div>-->
+<div class="block-menu-item distance">
+	<i class="ic-marker"></i>
+
+	<div class="content">
+		<span>До места</span>
+		<span class="distance-text" data-bind="text: distance(address_distance)"></span>
+	</div>
+</div>
+<a class="button list-item menu-item phone" data-bypass
+   data-bind="toggle: state_phone, attr: { href: format('tel:+$1', address_contact_phone) }">
+	<i class="ic-phone"></i>
+
+	<div class="content" data-bind="text: state_phone"></div>
+</a>
+
+<a class="button list-item menu-item website" target="_blank" data-bypass
+   data-bind="toggle: company_site, attr: { href: state_company_site }">
+	<i class="ic-basketball"></i>
+
+	<div class="content" data-bind="text: company_site"></div>
+</a>
+
+<!--<a class="button list-item menu-item promotions"-->
+   <!--data-bind="attr: { href: format('/wallet/company/$1/address/$2/offers', company_id, address_id) }">-->
+	<!--<i class="ic-cashback"></i>-->
+
+	<!--<div class="content">Все предложения</div>-->
+	<!--<i class="ic-chevron-right"></i>-->
+<!--</a>-->
+
+<div class="description" data-bind="toggle: company_description, html: company_description"></div>
+
+<!--<button class="button blue small" name="complain">-->
+<!--Сообщить об ошибке-->
+<!--</button>-->

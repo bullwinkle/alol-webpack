@@ -1,0 +1,39 @@
+{{%= outlet('shopTopbar') }}
+
+<div class="add-category">
+	<i class="ic-plus-circle"></i><a href="#">Добавить</a>
+</div>
+
+<div class="category-input hide">
+	<form action="" id="new-shop-category">
+		<div class="inputs">
+			<label>Название</label>
+			<input type="text" name="category-title" data-bind="value: trim(title), events: ['input','paste','change']"/>
+
+			<label>Родительская категория</label>
+			<!--<select name="parent_id" data-bind="value:integer(parent_id), underscore:state_shopCategories, events: ['change']">-->
+				<!--<script type="text/template">-->
+					<!--<@ var renderRecourcive = function(items, prefixArg, inheritDisableRoot, level){ @>-->
+						<!--<@ _.each(items, function (item,i) {@>-->
+							<!--<@ var inheritDisable = inheritDisableRoot ? inheritDisableRoot : 0 @>-->
+							<!--<@ if (!prefixArg) prefixArg = ''; @>-->
+							<!--<@ item.title = prefixArg+' '+item.title @>-->
+							<!--<option value="<@- item.id @>"><@= item.title @></option>-->
+							<!--<@ if (_.get(item,'children.length',0) > 0) { @>-->
+								<!--<@ renderRecourcive(item.children, prefixArg +'⎯⎯⎯⎯|', inheritDisable, level+1 ) @>-->
+							<!--<@ } @>-->
+						<!--<@ }); @>-->
+					<!--<@ };@>-->
+					<!--<option value="0">Не выбрано</option>-->
+					<!--<@ renderRecourcive(obj, '', 0, 0) @>-->
+				<!--</script>-->
+			<!--</select>-->
+			<div class="ui-virtual-select l-mb-20"></div>
+		</div>
+
+		<button type="submit" class="green filled" name="add-category-button">Добавить</button>
+		<button type="button" class="grey" name="cancel-button">Отмена</button>
+	</form>
+</div>
+
+<ul class="menu-items"></ul>

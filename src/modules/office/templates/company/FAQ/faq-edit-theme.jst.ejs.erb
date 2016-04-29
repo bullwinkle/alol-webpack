@@ -1,0 +1,36 @@
+<form class="form l-pt-20">
+	<label for="title">Название</label>
+	<input name="title" type="text" id="title" data-bind="value:title"/>
+
+	<label for="parent_id">Категория</label>
+	<select name="parent_id" id="parent_id" data-bind="value:number(parent_id),underscore: state_FAQcategories, events:['change']">
+		<script type="text/template">
+			<@ var renderRecourcive = function(items, prefixArg, inheritDisableRoot, level){ @>
+				<@ _.each(items, function (item,i) {@>
+					<@ var inheritDisable = inheritDisableRoot ? inheritDisableRoot : 0 @>
+					<@ if (!prefixArg) prefixArg = ''; @>
+					<@ item.title = prefixArg+' '+item.title @>
+					<@ if (item.type == Iconto.REST.CompanyFAQ.TYPE_CATEGORY && item.id == {{- id }}) { @>
+						<@ inheritDisable = item.id @>
+						<option value="<@- item.id @>" disabled><@- item.title @></option>
+					<@ } else if (item.type == Iconto.REST.CompanyFAQ.TYPE_CATEGORY) { @>
+						<@ if (inheritDisable) { @>
+							<option value="<@- item.id @>" disabled><@- item.title @></option>
+						<@ } else { @>
+							<option value="<@- item.id @>"><@- item.title @></option>
+						<@ } @>
+					<@ } @>
+					<@ if (_.get(item,'children.length',0) > 0) { @>
+						<@ renderRecourcive(item.children, prefixArg +'⎯⎯⎯⎯|', inheritDisable, level+1 ) @>
+					<@ } @>
+				<@ }); @>
+			<@ };@>
+
+			<option default selected value="0">Не выбрано</option>
+			<@ renderRecourcive(obj, '', 0, 0) @>
+		</script>
+	</select>
+
+	<button class="theme filled" type="submit" data-bind="text:state_submitButtonText"></button>
+	<button class="delete red" type="button" data-bind="toggle:not(equal(id, null))">Удалить</button>
+</form>

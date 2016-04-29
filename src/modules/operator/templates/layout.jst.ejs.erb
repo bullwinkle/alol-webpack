@@ -1,0 +1,82 @@
+<div class="header">
+  <div class="content">
+    <a href="/operator" class="logo"><%= image_tag "alol-blue.svg" %></a>
+
+    <div class="authorised-links">
+	<a class="button" name="profile">
+	<img alt="" class="avatar"/>
+	<!--<span class="user-name"></span>-->
+	</a>
+    </div>
+
+    <div class="unauthorised-links">
+      <a href="/auth?action={{- window.location.pathname }}&fromPublicRoute=true" class="signin theme">Вход</a>
+      <a href="/auth?action={{- window.location.pathname }}&fromPublicRoute=true"
+         class="signup grey">Регистрация</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+
+    <div class="main-section">
+      <div class="main-region-wrapper">
+        <div id="slideable-region-left" class="main-region slideable-region slide-left"></div>
+        <div id="main-region" class="main-region main-region"></div>
+        <div id="slideable-region-right" class="main-region slideable-region slide-right"></div>
+      </div>
+    </div>
+
+    <!-- Left side menu -->
+    <aside class="left-off-canvas-menu" data-prevent-scroll>
+      <div class="off-canvas-wrap-relative">
+        <div class="user-profile">
+          <a href="/office/profile" class="clearfix">
+            <div class="user-profile-image">
+              <img alt=""/>
+            </div>
+            <div class="user-profile-name"></div>
+            <div class="user-profile-settings-icon ic-settings"></div>
+          </a>
+        </div>
+        <!--<div class="menu">-->
+        <!--<div name="all">-->
+        <!--<a href="/operator/all" class="button list-item menu-item">-->
+        <!--<i class="ic-bubbles-round"></i>-->
+
+        <!--<div class="content">Все <span class="counter all-amount"></span></div>-->
+        <!--</a>-->
+        <!--</div>-->
+
+        <!--<div name="unread">-->
+        <!--<a href="/operator/unread" class="button list-item menu-item">-->
+        <!--<i class="ic-bubble-round"></i>-->
+
+        <!--<div class="content">Непрочитанные <span class="counter unread-amount"></span></div>-->
+        <!--</a>-->
+        <!--</div>-->
+
+        <!--<div name="taken">-->
+        <!--<a href="/operator/taken" class="button list-item menu-item">-->
+        <!--<i class="ic-heart"></i>-->
+
+        <!--<div class="content">Мои <span class="counter taken-amount"></span></div>-->
+        <!--</a>-->
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<div class="iconto-logo">-->
+        <!--<%= image_tag 'alol-black.svg' %>-->
+        <!--</div>-->
+      </div>
+
+    </aside>
+
+    <!-- Overflow to exit side menu -->
+    <a class="exit-off-canvas"></a>
+  </div>
+</div>
+</div>

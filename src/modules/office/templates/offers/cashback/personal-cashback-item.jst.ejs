@@ -1,0 +1,23 @@
+<button class="button text">
+
+	<div class="right">
+		<div class="percent">
+			{{= discount }} %
+		</div>
+	</div>
+
+	<div class="user-name">
+		{{ if (first_name && second_name) { }}
+			{{= first_name }} {{= second_name }}
+		{{ } else if (phone) { }}
+			+7 {{= Iconto.shared.helpers.phone.format7(phone) }}
+		{{ } else if (email) { }}
+			{{= email }}
+		{{ } else if (title) { }}
+			{{= title }}
+		{{ } else { }}
+			Персональный CashBack #{{= id }}
+		{{ } }}
+	</div>
+
+</button>

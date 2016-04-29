@@ -1,0 +1,10 @@
+<a href="#" class="button tiny">
+  <%= image_tag 'icons-checked.png', class: 'tick' %>
+	{{ if (type == TYPE_BOUND_CARD) { }}
+
+		<span class="card">{{= card.card_number }}</span>
+
+	{{ } else if (type == TYPE_OTHER_CARD) { }}
+		<span class="card">Другая банковская карта</span>
+	{{ } }}
+</a>

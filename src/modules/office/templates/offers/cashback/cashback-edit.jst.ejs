@@ -1,0 +1,263 @@
+<div>
+
+	<!--<div class="hint" data-bind="toggle:not(state_companyHasContract)">Необходимо заключить Договор с АЛОЛЬ , чтобы иметь возможность устанавливать шаблоны CashBack.-->
+		<!--Пожалуйста, обратитесь в службу поддержки: <a href="mailto:support@alol.io" data-bypass>support@alol.io</a>-->
+	<!--</div>-->
+
+	<div class="loader-bubbles green" data-bind="toggle: state_isLoadingMore"></div>
+
+	<form novalidate class="form hide-first-validation">
+
+		<div class="intervals">
+			<input type="checkbox" class="switch green" id="is_active" name="is_active" data-bind="checked:is_active"/>
+			<!--<label class="inline" for="is_active" data-bind="text:select(is_active, 'активен', 'не активен')"></label>-->
+			<label class="inline" for="is_active">Активен</label>
+		</div>
+
+		<!-- title -->
+		<label>Название</label>
+		<input type="text" id="title" class="radius" name="title"
+			   data-bind="value:title, events: ['input','paste','change']" maxlength="200"/>
+
+		<!-- cashback -->
+		<label>% CashBack</label>
+		<input type="tel" id="cashback" class="radius green" name="cashback"
+			   data-bind="value:integer(cashback), events: ['input','paste','change']" maxlength="3">
+
+		<!--addresses-->
+		<div data-bind="toggle:length(state_addresses)">
+
+			<label>Действует по адресам:</label>
+
+			<div class="addresses" data-bind="underscore:state_addresses" name="address_ids">
+				<script type="text/template">
+					<@ _.each(obj, function(address) { @>
+					<div class="address flexbox" data-id="<@= address.id @>">
+						<div class="address-checkbox">
+							<input class="green" type="checkbox" id="address_<@= address.id @>"/>
+						</div>
+						<div class="address-label">
+							<label class="inline" for="address_<@= address.id @>">
+								<@- (address.address || 'Интернет-представительство') @>
+							</label>
+						</div>
+					</div>
+					<@ }); @>
+				</script>
+			</div>
+
+		</div>
+
+		<label>Действует для банков:</label>
+
+		<input type="text" id="bank_bin" class="radius green" name="bank_bin" placeholder="Введите БИН банка" maxlength="6"
+			   data-bind="value:state_bankBin, events: ['input','paste','change']">
+		<div class="banks" data-bind="underscore:state_banks">
+			<script type="text/template">
+				<@ _.each(obj, function(bank) { @>
+				<div class="bank flexbox" data-id="<@= bank.id @>">
+					<div class="remove-bank ic-cross-circle"></div>
+					<div class="bank-image" style="background-image:url('<@= bank.image.url @>')"></div>
+					<div class="grey bank-name"><@= bank.name @></div>
+				</div>
+				<@ }); @>
+			</script>
+		</div>
+		<button type="button" class="load-bank-info green filled" data-bind="text:select(length(state_banks),'Изменить банк','Добавить банк')">Добавить банк</button>
+
+		<!--&lt;!&ndash; images &ndash;&gt;-->
+		<!--<div class="row">-->
+		<!--<div class="small-12 columns">-->
+		<!--<div class="row">-->
+		<!--<h5 class="text-center">Изображения</h5>-->
+		<!--</div>-->
+		<!--<div class="row">-->
+		<!--<div class="images-container"></div>-->
+		<!--</div>-->
+		<!--<div class="row text-center">-->
+		<!--<button type="button" class="button upload-image">Добавить</button>-->
+		<!--</div>-->
+		<!--<div class="preview-container"></div>-->
+		<!--<div class="row text-center">-->
+		<!--<button type="button" class="button upload-files">Загрузить</button>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</div>-->
+
+		<!-- weekdays -->
+		<div class="intervals">
+			<label>Дни недели</label>
+
+			<div class="weekdays">
+				<div class="weekday">
+					<input class="green" id="monday" type="checkbox" data-bind="checked: state_monday">
+					<label for="monday" class="grey inline">Пн</label>
+				</div>
+				<div class="weekday">
+					<input class="green" id="tuesday" type="checkbox" data-bind="checked: state_tuesday">
+					<label for="tuesday" class="grey inline">Вт</label>
+				</div>
+				<div class="weekday">
+					<input class="green" id="wednesday" type="checkbox" data-bind="checked: state_wednesday">
+					<label for="wednesday" class="grey inline">Ср</label>
+				</div>
+				<div class="weekday">
+					<input class="green" id="thursday" type="checkbox" data-bind="checked: state_thursday">
+					<label for="thursday" class="grey inline">Чт</label>
+				</div>
+				<div class="weekday">
+					<input class="green" id="friday" type="checkbox" data-bind="checked: state_friday">
+					<label for="friday" class="grey inline">Пт</label>
+				</div>
+				<div class="weekday">
+					<input class="green" id="saturday" type="checkbox" data-bind="checked: state_saturday">
+					<label for="saturday" class="grey inline">Сб</label>
+				</div>
+				<div class="weekday">
+					<input class="green" id="sunday" type="checkbox" data-bind="checked: state_sunday">
+					<label for="sunday" class="grey inline">Вс</label>
+				</div>
+			</div>
+			<div class="hide" data-bind="classes: {hide: state_gotSelectedDays}">
+				<span class="has-validation-error hide"></span>
+				<span class="validation-error">Cashback не может быть активирован, если не выбран хотя бы 1 день.</span>
+			</div>
+		</div>
+
+
+		<!--period-->
+		<label>Период действия:</label>
+
+		<div class="row collapse intervals">
+			<div class="period-from-wrapper small-5 columns">
+				<input type="date" name="period_from" class="radius" data-bind="value: unixDate(period_from), events: ['paste','change']"/>
+			</div>
+			<div class="period-to-wrapper small-5 right columns">
+				<input type="date" name="period_to" class="radius" data-bind="value: unixDateEndOfDay(period_to), events: ['paste','change']" />
+			</div>
+		</div>
+
+		<!--worktime-->
+		<label>Часы действия</label>
+
+		<div class="row intervals collapse">
+			<div class="small-5 columns">
+				<input type="time" name="worktime_from" class="radius green"
+					   data-bind="value:worktime_from, events: ['input', 'paste', 'change']"/>
+			</div>
+
+			<div class="small-5 right columns">
+				<input type="time" name="worktime_to" class="radius green"
+					   data-bind="value:worktime_to, events: ['input', 'paste', 'change']"/>
+			</div>
+		</div>
+
+		<!--price-->
+		<div>
+			<label>Стоимость покупки данного cashback (в рублях)</label>
+			<input type="tel" id="price" class="radius" name="price" data-bind="value:price, events: ['input','paste']"/>
+		</div>
+
+		<!--birthday-->
+		<label>День рождения</label>
+
+		<div class="intervals">
+			<input class="switch green" id="at-birthday" type="checkbox" data-bind="checked: at_birthday"/>
+			<label for="at-birthday" class="grey inline">Только в день рождения</label>
+		</div>
+		<div class="row collapse intervals">
+			<div class="small-5 columns">
+				<label class="inline">Дней до</label>
+			</div>
+			<div class="small-7 columns">
+				<input type="tel" name="birthday_before" id="birthday-before"
+					   data-bind="value:birthday_before, events: ['input', 'paste', 'change']"
+					   class="radius" maxlength="3"/>
+			</div>
+		</div>
+		<div class="row collapse intervals">
+			<div class="small-5 columns">
+				<label class="inline">Дней после</label>
+			</div>
+			<div class="small-7 columns">
+				<input type="tel" name="birthday_after" id="birthday-after"
+					   data-bind="value:birthday_after, events: ['input','paste']"
+					   class="radius" maxlength="3"/>
+			</div>
+		</div>
+		<div class="row collapse intervals">
+			<div class="small-5 columns">
+				<label class="inline">Исполняется</label>
+			</div>
+			<div class="small-7 columns">
+				<input type="tel" name="birthday_ages" id="birthday-ages"
+					   data-bind="value:birthday_ages, events: ['input','paste']" class="radius" maxlength="3"/>
+			</div>
+		</div>
+
+
+		<!-- gender -->
+		<label>Пол</label>
+		
+		<div class="intervals">
+			<div>
+				<input class="green" type="radio" name="sex" value="1" data-bind="checked:integer(sex)" id="sex-male"/>
+				<label for="sex-male" class="grey inline">Для мужчин</label>
+			</div>
+			<div>
+				<input class="green" type="radio" name="sex" value="2" data-bind="checked:integer(sex)" id="sex-female"/>
+				<label for="sex-female" class="grey inline">Для женщин</label>
+			</div>
+			<div>
+				<input class="green" type="radio" name="sex" value="0" data-bind="checked:integer(sex)" id="sex-unknown"/>
+				<label for="sex-unknown" class="grey inline">Для всех</label>
+			</div>
+		</div>
+
+		<!-- first_buy -->
+		<div class="intervals">
+			<input class="switch green" id="first_buy" type="checkbox" name="first_buy" data-bind="checked:first_buy"/>
+			<label for="first_buy" class="grey inline">Только на первую покупку</label>
+		</div>
+		<!-- company_payment_count -->
+		<div class="row collapse intervals">
+			<div class="small-5 columns">
+				<label class="inline">Количество покупок в компании</label>
+			</div>
+			<div class="small-7 columns">
+				<input type="tel" id="company-payment-count" class="radius" name="company_payment_count" min="0" maxlength="18"
+					   data-bind="value:number(company_payment_count), events:['input', 'paste', 'change']"/>
+			</div>
+		</div>
+
+		<!-- company_payment_sum -->
+		<div class="row collapse intervals">
+			<div class="small-5 columns">
+				<label class="inline">Сумма покупок в компании</label>
+			</div>
+			<div class="small-7 columns">
+				<input type="tel" name="company_payment_sum" id="company-payment-sum" class="radius" min="0" maxlength="18"
+					   data-bind="value:number(company_payment_sum), events: ['input','paste']"/>
+			</div>
+		</div>
+
+		<div class="flexbox save-and-notify l-mb-20">
+			<div class="checkbox">
+				<input class="green" type="checkbox" id="save-and-notify" data-bind="checked: vm_saveAndNotify"/>
+				<label class="inline black" for="save-and-notify">Уведомить пользователей об изменении</label>
+			</div>
+		</div>
+		<div class="hide-height" data-bind="toggle: vm_saveAndNotify">
+			<label for="notify-message">Текст сообщения для рассылки</label>
+			<textarea name="notify-message"  id="notify-message" cols="30" rows="10" data-bind="value: vm_notifyMessage" placeholder="Текст сообщения для рассылки"></textarea>
+		</div>
+		<div class="text-center">
+			Обратитесь в службу поддержки <a class="green" href="mailto:support@alol.io" data-bypass>support@alol.io</a>, если Вам необходимы дополнительные условия действия CashBack.
+		</div>
+		<div class="form-buttons">
+			<button type="button" class="red" name="delete" data-bind="classes:{hide:not(id)}">Удалить</button>
+			<button type="submit" class="green filled" name="save" >Сохранить</button>
+		</div>
+
+	</form>
+</div>

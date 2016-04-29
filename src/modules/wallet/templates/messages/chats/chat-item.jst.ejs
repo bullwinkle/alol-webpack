@@ -1,0 +1,59 @@
+<div class="flexbox">
+
+	<img src="{{= Iconto.shared.helpers.image.resize(image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) }}" alt="" class="chat-logo"/>
+
+	<div class="info">
+		<div class="title">
+			<div class="chat-name">
+				{{- name }}
+			</div>
+			{{ if (obj['last_message']) { }}
+			<div class="date">
+				{{= getDateString(last_message.created_at) }}
+			</div>
+			{{ } }}
+		</div>
+
+		<div class="additional-group-names">
+			{{- additional_group_names }}
+		</div>
+
+		{{ if (obj['last_message']) { }}
+		<div class="last-message">
+			{{ if (last_message.user && last_message.user.image) { }}
+			<img class="sender-image"
+			     src="{{= last_message.user.image.url }}?resize=w[{{= imageWidth }}]h[{{= imageWidth }}]e[true]" alt=""/>
+			{{ } }}
+			<span class="message-body">
+				{{- getMessageBody(last_message) }}
+			</span>
+		</div>
+		{{ } }}
+	</div>
+
+</div>
+
+<div class="actions">
+	<i class="dots ic-dots"></i>
+</div>
+
+<div class="overlay">
+	<div class="wrap-overlay">
+		<a href="#" class="overlay-button white hide-chat">
+			<i class="f-lh-26"><span>–</span></i>
+			<span>Скрыть</span>
+		</a>
+		{{ var callHref = !!obj.contact_phone ? 'tel:+'+obj.contact_phone : '#'; }}
+		{{ var callDisabled = !callHref }}
+
+		<!--<a href="{{- callHref }}" class="overlay-button call-chat green {{- callDisabled ? 'disabled' : ''}}">-->
+			<!--<i class="ic-phone"></i>-->
+			<!--<span>Позвонить</span>-->
+		<!--</a>-->
+
+		<a href="#" class="overlay-button red block-chat">
+			<i class="ic-lock"></i>
+			<span>Заблокировать</span>
+		</a>
+	</div>
+</div>

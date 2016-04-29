@@ -1,0 +1,133 @@
+{{
+var page = Backbone.history.fragment.split('/')[0];
+}}
+
+<!-- User info -->
+<div class="user-info">
+	<div class="user-image">
+		<img src="{{= Iconto.shared.helpers.image.resize(image.url) }}"
+		     alt="{{- Iconto.shared.helpers.user.getName(obj) }}"/>
+	</div>
+	<div class="user-contacts">
+		<div class="user-name">{{- Iconto.shared.helpers.user.getName(obj) }}</div>
+		<div class="user-phone">+7 {{= Iconto.shared.helpers.phone.format7(login) }}</div>
+		<div class="user-email">{{- Iconto.shared.helpers.toUnicode(email) }}</div>
+	</div>
+	<div class="user-edit">
+		<a class="button white user-edit-button" href="/{{= page }}/profile/edit">Редактировать</a>
+	</div>
+</div>
+
+<!-- Email confirmation notification -->
+<div class="notification" data-bind="classes: { hide:is_email_confirmed }">
+	<i class="ic-info-circle"></i>
+
+	<div class="content green">На указанный Вами адрес электронной почты было отправлено письмо. Пожалуйста, пройдите по ссылке,
+		указанной в письме, чтобы подтвердить адрес. <a href="#" class="white send-confirmation-email">Выслать письмо повторно</a>
+	</div>
+</div>
+
+<!-- Add mastercard -->
+<a class="button list-item menu-item" href="/{{= page }}/profile/mastercards">
+	<i class="ic-card"></i>
+	<div class="content">МАСТЕР-КАРТЫ</div>
+	<i class="ic-chevron-right"></i>
+</a>
+<div class="splitter"></div>
+
+
+<!-- Simplified user verification -->
+<!--<a class="button list-item menu-item" href="/{{= page }}/profile/verification/status" data-bind="classes: { 'need-verification':state_needVerification }">-->
+	<!--<i class="ic-circle-checked"></i>-->
+
+	<!--<div class="content">Подтверждение данных</div>-->
+	<!--<i class="ic-chevron-right"></i>-->
+<!--</a>-->
+
+<!-- Change password -->
+<a class="button list-item menu-item" href="/{{= page }}/profile/password">
+	<i class="ic-lock"></i>
+
+	<div class="content">Смена пароля</div>
+	<i class="ic-chevron-right"></i>
+</a>
+
+<!--
+<a class="button list-item menu-item" href="/{{= page }}/profile/blacklist">
+	<i class="ic-hand"></i>
+
+	<div class="content">Заблокированные</div>
+	<i class="ic-chevron-right"></i>
+</a>
+-->
+
+<!-- Message settings -->
+<!--<div class="message-settings">-->
+	<!--<div class="content">-->
+		<!--<div>Управление сообщениями</div>-->
+
+		<!--<div class="hint">-->
+			<!--<input id="receive-sms" type="checkbox" class="switch theme" data-bind="checked: state_receiveSms">-->
+			<!--<label class="inline" for="receive-sms">Получать sms</label>-->
+			<!--<div data-bind="toggle: not(state_receiveSms)">Включите, чтобы получать сообщения через sms</div>-->
+			<!--<div data-bind="toggle: state_receiveSms">Отключите, чтобы не получать сообщения через sms</div>-->
+		<!--</div>-->
+		<!--<div class="hint">-->
+			<!--<input id="accept-untrusted" type="checkbox" class="switch theme" data-bind="checked: state_acceptUntrusted">-->
+			<!--<label class="inline" for="accept-untrusted">Получать сообщения только от ваших компаний</label>-->
+			<!--<div data-bind="toggle: not(state_acceptUntrusted)">Включите, чтобы получать сообщения и специальные предложения только от ваших компаний</div>-->
+			<!--<div data-bind="toggle: state_acceptUntrusted">Отключите, чтобы получать сообщения и специальные предложения от всех компаний</div>-->
+		<!--</div>-->
+
+	<!--</div>-->
+<!--</div>-->
+
+<!-- About -->
+<a class="button list-item menu-item" href="/{{= page }}/about">
+	<i class="ic-info-circle"></i>
+	<div class="content">О сервисе</div>
+	<i class="ic-chevron-right"></i>
+</a>
+
+<!-- Rules -->
+<a class="button list-item menu-item" href="/rules" data-bypass target="_blank">
+	<i class="ic-shield-document"></i>
+	<div class="content">Публичная оферта</div>
+	<i class="ic-chevron-right"></i>
+</a>
+
+<!-- Terms -->
+<a class="button list-item menu-item" href="/terms" data-bypass target="_blank">
+    <i class="ic-document"></i>
+	<div class="content">Правила сервиса</div>
+	<i class="ic-chevron-right"></i>
+</a>
+
+<!-- Terms -->
+<!--<a class="button list-item menu-item" href="/{{= page }}/terms">-->
+	<!--<i class="ic-document"></i>-->
+
+	<!--<div class="content">Правила</div>-->
+	<!--<i class="ic-chevron-right"></i>-->
+<!--</a>-->
+
+<!--<div class="splitter"></div>-->
+
+<!-- Invite friend -->
+<!--<a class="button list-item menu-item invite-friend-button" data-bind="attr: { href:state_inviteFriendLink }"-->
+   <!--data-bypass>-->
+	<!--<i class="ic-users-add"></i>-->
+
+	<!--<div class="content">Пригласить друга</div>-->
+	<!--<i class="ic-chevron-right"></i>-->
+<!--</a>-->
+
+<!--<div class="splitter"></div>-->
+
+<!-- Logout -->
+<div class="splitter"></div>
+<a class="button list-item menu-item logout-button">
+	<i class="ic-exit"></i>
+
+	<div class="content">Выход</div>
+</a>

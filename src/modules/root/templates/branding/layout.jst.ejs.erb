@@ -1,0 +1,130 @@
+{{
+
+var backgroundColor = '';
+
+if (
+	window.ICONTO_APPLICATION_DOMAIN_SETTINGS &&
+	(backgroundColor = window.ICONTO_APPLICATION_DOMAIN_SETTINGS.background_color) &&
+	Iconto.shared.helpers.color.luminance(backgroundColor, 0.25).toLowerCase() !== '#ffffff'
+) {
+	var backgroundColorHover = Iconto.shared.helpers.color.luminance(backgroundColor, -0.1)
+	var backgroundColorActive = Iconto.shared.helpers.color.luminance(backgroundColor, -0.2)
+}}
+<style type="text/css">
+	.branding-view, button.submit-button, input[name=accept_oferta]:checked {
+		background-color: {{= backgroundColor }} !important;
+	}
+	h6.welcome-text, .forgot-password, a, label[for=accept_oferta] {
+		color: {{= backgroundColor }} !important;
+	}
+	.bbm-modal__title {
+		color: {{= backgroundColor }};
+	}
+
+	a:active, #workspace a.bottom-links:active {
+		color: {{= backgroundColorActive }} !important;
+		color: {{= backgroundColorActive }} !important;
+	}
+	input[name=accept_oferta] {
+		border-color: {{= backgroundColor }} !important;
+	}
+
+	#modals .bbm-modal__bottombar button {
+		background-color: {{= backgroundColor }} !important;
+		border: solid 1px {{= backgroundColor }} !important;
+	}
+	#modals .bbm-modal__bottombar button:hover {
+		background-color: {{= backgroundColorHover }} !important;
+		border: solid 1px {{= backgroundColorHover }} !important;
+	}
+	#modals .bbm-modal__bottombar button:active {
+		background-color: {{= backgroundColorActive }} !important;
+		border: solid 1px {{= backgroundColorActive }} !important;
+	}
+
+	#modals .offer .bbm-modal__topbar{
+		background-color: {{= backgroundColorActive }} !important;
+		border: solid 1px {{= backgroundColorActive }} !important;
+		color: white;
+	}
+	#modals .offer .bbm-modal__topbar .bbm-modal__title {
+		color: white;
+
+	}
+
+</style>
+{{ } }}
+
+<div class="branding-wrapper">
+	<div class="row">
+		<div class="small-12 medium-6 medium-centered columns text-center">
+
+			<div class="branding-bubble">
+				<div class="branding-bubble-inner">
+
+					<!-- Company logo -->
+					<div class="text-center">
+						<img alt="company logo" class="company-logo">
+					</div>
+
+					<!-- Welcome text -->
+					<div class="text-center l-mb-20">
+						<h6 class="welcome-text">{{- (window.ICONTO_APPLICATION_DOMAIN_SETTINGS.welcome_text || "")
+							}}</h6>
+
+						<div class="hint" data-bind="toggle: equal(state_mode, 'register')">Зарегистрируйтесь, чтобы
+							общаться с нами on-line, участвовать в акциях и быть в курсе наших новостей.
+						</div>
+					</div>
+
+					<form name="login-form" method="POST" action="/blank" target="branding-blank-frame">
+						<input type="hidden" name="authenticity_token">
+
+						<div class="phone-input" name="login">
+							<div class="phone-prefix">+7</div>
+							<div class="input-wrapper">
+								<input type="tel" placeholder="№ телефона" class="radius"
+								       data-bind="phoneValue: login, countryCode:7, events: ['input', 'paste', 'change']" maxlength="20"/>
+							</div>
+						</div>
+
+						<div data-bind="toggle:equal(state_mode, 'register')" class="hint">
+							Нажимая кнопку "Зарегистрироваться", <br>я принимаю
+							<a href="/rules" data-bypass target="_blank">Условия оферты</a>
+						</div>
+
+						<div data-bind="toggle:state_showPasswordInput">
+							<input type="password" placeholder="Пароль" name="password" class="radius"
+							       data-bind="value:password, events: ['input', 'paste', 'change']"/>
+						</div>
+
+						<!--Неправильный логин или пароль.-->
+
+						<div class="text-center login-error hide"></div>
+
+						<div class="button-wrapper">
+							<button class="button submit-button" type="submit"
+							        data-bind="text:state_buttonText"></button>
+						</div>
+
+					</form>
+
+					<div>
+						<a class="bottom-links right restore-button" href="#"
+						   data-bind="toggle:not(equal(state_mode,'restore'))">Забыли пароль?</a>
+						<a class="bottom-links left mode" href="#" data-bind="text:state_modeText"></a>
+					</div>
+
+					<script type="text/javascript">
+						$(function () {
+							$('[name=authenticity_token]').val($('[name=csrf-token]').attr('content'));
+						});
+					</script>
+
+				</div>
+				<iframe id="branding-blank-frame" name="branding-blank-frame"
+				        style="position: absolute; width: 20px; height: 20px; visibility: hidden;"></iframe>
+			</div>
+		</div>
+	</div>
+</div>

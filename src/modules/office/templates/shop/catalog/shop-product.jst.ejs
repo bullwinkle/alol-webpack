@@ -1,0 +1,262 @@
+<!--<div class="product-icon" >-->
+	<!--{{ obj.image = obj.image || obj.image_url || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}-->
+	<!--&lt;!&ndash;<img class="image" src="{{-image}}"></img>&ndash;&gt;-->
+	<!--<div class="image" data-src="" style="background-image: url({{- obj.image }}?resize=w[140]h[140]e[true])"></div>-->
+	<!--<div data-editing class="l-pb-20">-->
+		<!--<button type="button" class="needsclick delete-image red text">Удалить изображение</button>-->
+		<!--<button type="button" class="needsclick file-upload theme text text-center">Выбрать изображение</button>-->
+		<!--<div class="files-names hint text-center">02_120.jpg</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+<!--<div class="container" data-showing>-->
+	<!--{{ if (obj.categories && obj.renderedInSearchResult && Iconto.wallet) { }}-->
+	<!--<div class="categories">-->
+		<!--{{ _.each(obj.categories, function (category, index) { }}-->
+			<!--{{ if (index === obj.categories.length-1) { }}-->
+				<!--<a class="category" href="{{- category.url }}">{{- category.title }}</a>-->
+			<!--{{} else { }}-->
+				<!--<span class="category" >{{- category.title }}</span>-->
+			<!--{{}}}-->
+		<!--{{})}}-->
+	<!--</div>-->
+	<!--{{}}}-->
+	<!--<div class="title" data-title >{{-title}}</div>-->
+	<!--{{ if (obj.external_id) { }}-->
+	<!--<div class="article hint" data-article>артикул: {{-external_id}}</div>-->
+	<!--{{}}}-->
+	<!--<div class="description" data-description >{{- description }}</div>-->
+	<!--<div class="price" data-price >{{-price}} <span class="rouble">№</span></div>-->
+	<!--&lt;!&ndash;<div class="{{- is_active ? 'is-active':'not-active' }}">{{- is_active ? 'Активен':'Не активен' }}</div>&ndash;&gt;-->
+<!--</div>-->
+
+<!--<form class="form container s-overflow-h" data-editing>-->
+	<!--<label>Название</label>-->
+	<!--<input placeholder="Название товара" type="text" name="title" data-title-input value="{{- title}}" />-->
+	<!--<label>Описание</label>-->
+	<!--<input placeholder="Описание товара" type="text" name="description" data-description-input value="{{- description }}"/>-->
+	<!--<label>Цена</label>-->
+	<!--<div class="input-with-currency l-mb-0">-->
+		<!--<input placeholder="Цена" type="text" name="price" data-price-input value="{{-price}}"/>-->
+		<!--<span class="currency rouble">№</span>-->
+	<!--</div>-->
+	<!--<label>Категория</label>-->
+	<!--&lt;!&ndash;<select name="shop_category_id" data-shop-category >&ndash;&gt;-->
+		<!--&lt;!&ndash;{{ _.each(obj.shopCategories, function(category, index) { }}&ndash;&gt;-->
+			<!--&lt;!&ndash;{{ if (category && category.subCategories && category.subCategories.length > 0) { }}&ndash;&gt;-->
+				<!--&lt;!&ndash;<optgroup label="{{- category.title }}">&ndash;&gt;-->
+					<!--&lt;!&ndash;{{ _.each(category.subCategories, function (subCategory) { }}&ndash;&gt;-->
+						<!--&lt;!&ndash;<option {{- (obj.shop_category_id == subCategory.id)? "default selected" : "" }} value="{{- subCategory.id }}">{{- subCategory.title }}</option>&ndash;&gt;-->
+					<!--&lt;!&ndash;{{ }); }}&ndash;&gt;-->
+				<!--&lt;!&ndash;</optgroup>&ndash;&gt;-->
+			<!--&lt;!&ndash;{{ } else { }}&ndash;&gt;-->
+				<!--&lt;!&ndash;<option {{- (obj.shop_category_id == category.id)? "default selected" : "" }} value="{{- category.id }}">{{- category.title }}</option>&ndash;&gt;-->
+			<!--&lt;!&ndash;{{ } }}&ndash;&gt;-->
+		<!--&lt;!&ndash;{{ }); }}&ndash;&gt;-->
+	<!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+	<!--<div class="ui-virtual-select l-mb-20"></div>-->
+
+	<!--&lt;!&ndash;<div class="flexbox image-selector">&ndash;&gt;-->
+		<!--&lt;!&ndash;<button type="button" class="needsclick file-upload theme filled">Выбрать изображение</button>&ndash;&gt;-->
+		<!--&lt;!&ndash;<div class="files-names hint"></div>&ndash;&gt;-->
+	<!--&lt;!&ndash;</div>&ndash;&gt;-->
+	<!--<input type="file" class="needsclick hide" accept="image/*" name="file" id="file-input" >-->
+	<!--<div>-->
+		<!--<button type="submit" class="theme filled submit">Сохранить</button><button type="button" class="grey cancel">Отменить</button>-->
+	<!--</div>-->
+	<!--&lt;!&ndash;<div class="{{- is_active ? 'is-active':'not-active' }}">{{- is_active ? 'Активен':'Не активен' }}</div>&ndash;&gt;-->
+<!--</form>-->
+
+<!--<div class="actions l-pl-5">-->
+	<!--<i class="action-button ic-cross-circle delete theme"></i>-->
+	<!--<i class="action-button ic-pencil-black edit theme"></i>-->
+<!--</div>-->
+
+
+
+
+<div class="">
+	<div class="flexbox">
+
+		<div class="flex-0 product-icon l-w-140 l-h-100">
+			{{ obj.image = obj.image || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}
+			<div class="image" data-src="" style="background-image: url({{- obj.image }}?resize=w[160]h[160]e[true])"></div>
+
+			<div data-editing class="l-pb-20">
+				<button type="button" class="needsclick delete-image red text">Удалить изображение</button>
+				<button type="button" class="needsclick file-upload theme text text-center">Выбрать изображение</button>
+				<div class="files-names hint text-center">02_120.jpg</div>
+			</div>
+
+		</div>
+
+		<div class="flex-1 flexbox flex-column container l-plr-10" data-showing>
+			{{ if (obj.title) { }}
+			<div class="title s-line-clamp-2 l-h-40 f-sz-14 f-w-600 f-lh-20">{{-title}}</div>
+			{{}}}
+			<div class="flexbox flex-v-center l-mt-5 l-mb-5">
+				{{ if (obj.vendor_code) { }}
+				<div class="t-grey-light f-sz-12 l-mb-0">Артикул: {{- vendor_code}}</div>
+				{{}}}
+				<div class="{{- obj.is_active ? 'is-active':'not-active' }} l-ml-15 f-sz-12">{{- obj.is_active ? 'В наличии':'Нет в наличии' }}</div>
+			</div>
+			{{ if (obj.description) { }}
+			<div class="description s-line-clamp-2">{{- description }}</div>
+			{{}}}
+
+			<!--{{ if (obj.categories && obj.renderedInSearchResult && Iconto.wallet) { }}-->
+			<!--<div class="categories">-->
+			<!--{{ _.each(obj.categories, function (category, index) { }}-->
+			<!--{{ if (index === obj.categories.length-1) { }}-->
+			<!--<a class="category" href="{{- category.url }}">{{- category.title }}</a>-->
+			<!--{{} else { }}-->
+			<!--<span class="category">{{- category.title }}</span>-->
+			<!--{{}}}-->
+			<!--{{})}}-->
+			<!--</div>-->
+			<!--{{}}}-->
+		</div>
+
+		<div class="flex-0 flexbox flex-column l-pl-10" data-showing>
+			<div class="flex-self-end t-a-right l-h-40">
+				{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}
+				<div class="price f-sz-18 f-lh-18 f-w-900">{{-discount_price}} <span class="rouble">№</span></div>
+				<div class="price t-grey-light f-sz-12 l-mb-0 f-strike">{{-price}} <span class="rouble">№</span></div>
+				{{} else if (obj.price) { }}
+				<div class="price f-sz-18 f-lh-22 f-w-900">{{-price}} <span class="rouble">№</span></div>
+				{{}}}
+			</div>
+
+			<!--<div class="flex-0">-->
+			<!--<button name="add-to-cart" class="green theme order-button l-left" data-add-to-cart>Заказать</button>-->
+			<!--<div class="count-selector" data-count-selector>-->
+			<!--<span class="decrement s-cp t-centered"><i>-</i></span>-->
+			<!--<input type="number" class="count-input" value="{{-count}}" data-count/>-->
+			<!--<span class="increment s-cp t-centered"><i>+</i></span>-->
+			<!--</div>-->
+			<!--</div>-->
+
+			<!--
+			<button class="add-to-comparison small blue l-block">
+				<i class="ic-compare"></i>
+				<span data-add-to-comparison>К&nbsp;сравнению</span>
+			</button>
+			-->
+			<!--<button class="add-to-cart small blue filled l-block l-mt-5">-->
+				<!--<i class="ic-cart-2 "></i>-->
+				<!--<span data-add-to-cart>В&nbsp;корзину</span>-->
+			<!--</button>-->
+		</div>
+
+		<form class="flex-1 form container s-overflow-h l-plr-10" data-editing>
+			<label>Название</label>
+			<input placeholder="Название товара" type="text" name="title" data-title-input value="{{- title}}" />
+			<label>Описание</label>
+			<input placeholder="Описание товара" type="text" name="description" data-description-input value="{{- description }}"/>
+			<label>Цена</label>
+			<div class="input-with-currency l-mb-0">
+				<input placeholder="Цена" type="text" name="price" data-price-input value="{{-price}}"/>
+				<span class="currency rouble">№</span>
+			</div>
+			<label>Категория</label>
+			<!--<select name="shop_category_id" data-shop-category >-->
+			<!--{{ _.each(obj.shopCategories, function(category, index) { }}-->
+			<!--{{ if (category && category.subCategories && category.subCategories.length > 0) { }}-->
+			<!--<optgroup label="{{- category.title }}">-->
+			<!--{{ _.each(category.subCategories, function (subCategory) { }}-->
+			<!--<option {{- (obj.shop_category_id == subCategory.id)? "default selected" : "" }} value="{{- subCategory.id }}">{{- subCategory.title }}</option>-->
+			<!--{{ }); }}-->
+			<!--</optgroup>-->
+			<!--{{ } else { }}-->
+			<!--<option {{- (obj.shop_category_id == category.id)? "default selected" : "" }} value="{{- category.id }}">{{- category.title }}</option>-->
+			<!--{{ } }}-->
+			<!--{{ }); }}-->
+			<!--</select>-->
+
+			<div class="ui-virtual-select l-mb-20"></div>
+
+			<!--<div class="flexbox image-selector">-->
+			<!--<button type="button" class="needsclick file-upload theme filled">Выбрать изображение</button>-->
+			<!--<div class="files-names hint"></div>-->
+			<!--</div>-->
+			<input type="file" class="needsclick hide" accept="image/*" name="file" id="file-input" >
+			<div>
+				<button type="submit" class="theme filled submit l-mr-15">Сохранить</button>
+				<button type="button" class="grey cancel">Отменить</button>
+			</div>
+			<!--<div class="{{- is_active ? 'is-active':'not-active' }}">{{- is_active ? 'Активен':'Не активен' }}</div>-->
+		</form>
+
+		<div class="flex-0 actions">
+			<div>
+				<i class="action-button ic-cross-circle delete theme s-cp l-pl-15 l-pb-15"></i>
+			</div>
+			<div>
+				<i class="action-button ic-pencil-black edit theme s-cp l-pl-15 l-pb-15"></i>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!--<div class="show-for-small-only">-->
+	<!--<div class="content l-pt-10">-->
+		<!--{{ if (obj.title) { }}-->
+		<!--<div class="title s-ellipsis l-mb-15 l-plr-20 f-sz-16 f-w-600 f-lh-20">{{-title}}</div>-->
+		<!--{{}}}-->
+		<!--<div class="flexbox l-plr-20 l-pb-10">-->
+			<!--<div class="flex-08">-->
+				<!--<div class="product-icon l-h-100">-->
+					<!--{{ obj.image = obj.image || obj.image_url || _.get(obj,'images[0]') || Iconto.REST.ShopGood.prototype.defaults.image }}-->
+					<!--<div class="image" style="background-image: url({{- image }}?resize=w[200]h[120])"></div>-->
+				<!--</div>-->
+				<!--&lt;!&ndash;-->
+				<!--<div class="flexbox flex-row-wrap flex-v-center">-->
+					<!--<div class="rating">-->
+						<!--<span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>-->
+					<!--</div>-->
+					<!--<div class="f-sz-12 f-lh-20">({{- parseFloat(obj.rating) || 0 }})</div>-->
+					<!--<div class="f-sz-12 f-lh-20 l-pl-5">({{- parseInt(obj.rating_count) || 0 }})</div>-->
+				<!--</div>-->
+				<!--&ndash;&gt;-->
+			<!--</div>-->
+			<!--<div class="flex-1 flexbox l-pl-15">-->
+				<!--<div class="container flexbox flex-column">-->
+					<!--{{ if (obj.description) { }}-->
+					<!--<div class="description s-line-clamp-2 l-mb-10">{{- description }}</div>-->
+					<!--{{ } }}-->
+					<!--{{ if (obj.vendor_code) { }}-->
+					<!--<div class="t-grey-light f-sz-12 l-mb-0">арт.: {{- vendor_code }}</div>-->
+					<!--{{ } }}-->
+					<!--<div class="{{- obj.is_active ? 'is-active':'not-active' }} l-mt-2 f-sz-11">{{- obj.is_active ? 'В наличии':'Нет в наличии' }}</div>-->
+
+					<!--<div class="flexbox flex-1 flex-v-bottom">-->
+						<!--<div>-->
+							<!--{{ if (obj.price && obj.discount_price && obj.price > obj.discount_price) { }}-->
+							<!--<div class="price t-grey-light f-sz-12 l-mb-0 f-strike">{{-price}} <span class="rouble">№</span></div>-->
+							<!--<div class="price f-sz-20 f-lh-24 f-w-900">{{-discount_price}} <span class="rouble">№</span></div>-->
+							<!--{{} else if (obj.price) { }}-->
+							<!--<div class="price f-sz-20 f-lh-24 f-w-900">{{-price}} <span class="rouble">№</span></div>-->
+							<!--{{}}}-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="flexbox flex-v-center actions">-->
+		<!--&lt;!&ndash;-->
+		<!--<div class="add-to-comparison flex-1 flexbox flex-v-center flex-h-center l-pt-5 l-pb-5">-->
+			<!--<i class="ic-compare f-sz-26 l-pr-10 l-pb-7"></i>-->
+			<!--<span data-add-to-comparison>К&nbsp;сравнению</span>-->
+		<!--</div>-->
+		<!--&ndash;&gt;-->
+		<!--<div class="add-to-cart flex-1 flexbox flex-v-center flex-h-center l-pt-5 l-pb-5 t-primary">-->
+			<!--<i class="ic-cart-2 f-sz-26 l-pr-10 l-pb-7"></i>-->
+			<!--<span data-add-to-cart>В&nbsp;корзину</span>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+

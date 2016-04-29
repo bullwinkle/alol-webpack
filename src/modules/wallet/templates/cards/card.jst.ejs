@@ -1,0 +1,90 @@
+<div class="panel" style="background-color: {{%= getCompanyColor() }}">
+    <div class="flexbox">
+        <div class="company-image" {{%=getCompanyImage() }}></div>
+        <div class="info">
+            <div class="company-name">{{= getCompanyName() }}</div>
+            <div class="currency">{{= getCurrency() }}</div>
+        </div>
+        <div class="discount">
+            <div class="discount-percent">{{%= getDiscountPercent() }}</div>
+            <div class="card-name">{{= getCardName() }}</div>
+        </div>
+    </div>
+    <div class="info-buttons flexbox">
+        <a href="/wallet/company/{{= company_id }}" class="info-item">
+            <i class="ic ic-info-italic"></i>
+            О компании
+        </a>
+
+        <div class="item-split"></div>
+        <a href="/wallet/company/{{= company_id }}/addresses" class="info-item">
+            <i class="ic ic-marker"></i>
+            Адреса и скидки
+        </a>
+
+        <div class="item-split"></div>
+        {{ var href = (rulesUrl) ? ('href='+rulesUrl+' target="_blank" data-bypass') : ''; }}
+        {{ var disabled = (!hasCompanyRules) ? ' disabled' : ''; }}
+        <a {{= href }} data-action="rules" class="info-item{{= disabled }}">
+            <i class="ic ic-document"></i>
+            Правила
+        </a>
+	</div>
+	<div class="action-buttons flexbox">
+        <!--<div class="action-button {{ if (!hasShop) print('disabled') }}" data-action="catalog">-->
+        <!--<div class="action-button-icon">-->
+        <!--<i class="ic ic-cart"></i>-->
+        <!--</div>-->
+        <!--<div class="action-button-text">Каталог</div>-->
+        <!--</div>-->
+	    {{ if (hasTaxi) { }}
+	        <div class="action-button"
+				 data-action="{{ comingSoon? print('comingSoon') : print('taxi') }}">
+	            <div class="action-button-icon">
+	                <i class="ic ic-taxi-alt"></i>
+	            </div>
+	            <div class="action-button-text">Заказать такси</div>
+	        </div>
+	    {{ } else { }}
+	        <div class="action-button {{ if (!hasShop) print('disabled') }}"
+				 data-action="{{ comingSoon ? print('comingSoon') : print('catalog') }}">
+	            <div class="action-button-icon">
+	                <i class="ic ic-cart"></i>
+	            </div>
+	            <div class="action-button-text">Каталог</div>
+	        </div>
+	    {{ } }}
+
+        <div class="action-button" data-action="promotions">
+            <div class="action-button-icon">
+                <i class="ic ic-cashback"></i>
+            </div>
+            <div class="action-button-text">Акции и<br/>новости</div>
+        </div>
+
+        <div class="action-button {{ if (!hasPhone) print('disabled') }}" data-action="call">
+            <div class="action-button-icon">
+                <i class="ic ic-phone"></i>
+            </div>
+            <div class="action-button-text">Позвонить</div>
+        </div>
+
+        <div class="action-button" data-action="messages">
+            <div class="action-button-icon">
+                <i class="ic ic-bubble-square"></i>
+            </div>
+            <div class="action-button-text">Сообщения</div>
+        </div>
+    </div>
+
+    {{ if (status !== Iconto.REST.CustomerDiscountCard.STATUS_ACTIVE) { }}
+    <div class="status">
+        <button style="color: {{%= getCompanyColor() }};" name="connect-card-button">Подключить бесплатно</button>
+        <div class="rules">Подключаясь, вы соглашаетесь с&nbsp;<a {{=href }}
+																  data-action="rules"
+																  class="{{= disabled }}"
+																  data-bypass>правилами программы лояльности</a>.
+		</div>
+    </div>
+    {{ } }}
+</div>

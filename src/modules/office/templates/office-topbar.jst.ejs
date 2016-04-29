@@ -1,0 +1,29 @@
+<div class="office-topbar">
+	<a href="/office/{{= company.id }}/main" class="tab"
+	   data-bind="classes: { active: equal(get(state_officeTopbar, 'currentPage'), 'edit') }">
+		<i class="ic-settings"></i>
+		<span>Основные</span>
+	</a>
+	<a href="/office/{{= company.id }}/employees" class="tab"
+	   data-bind="classes: { active: equal(get(state_officeTopbar, 'currentPage'), 'employees') }">
+		<i class="ic-group"></i>
+		<span>Сотрудники</span>
+	</a>
+	<a href="/office/{{= company.id }}/addresses" class="tab"
+	   data-bind="classes: { active: equal(get(state_officeTopbar, 'currentPage'), 'addresses') }">
+		<i class="ic-marker"></i>
+		<span>Адреса</span>
+	</a>
+	<a href="/office/{{= company.id }}/legal" class="tab"
+	   data-bind="classes: { active: equal(get(state_officeTopbar, 'currentPage'), 'legal') }">
+		<i class="ic-case"></i>
+		<span>Юр. лицо</span>
+	</a>
+	</a>
+	<a href="/office/{{= company.id }}/settings/messages" class="tab"
+	   data-bind="classes: { active: equal(get(state_officeTopbar, 'currentPage'), 'messages') }">
+		<i class="ic-bubble-square"></i>
+		<span>F.A.Q</span>
+	</a>
+
+</div>

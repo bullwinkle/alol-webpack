@@ -1,0 +1,100 @@
+<div class="hide-first-validation">
+
+	<pre id="model"></pre>
+
+	<form novalidate class="form hide-first-validation">
+
+		<div class="loader-bubbles green" data-bind="toggle: state_isLoadingMore"></div>
+
+		<div class="intervals">
+			<input type="checkbox" class="switch green" id="is_active" name="is_active" data-bind="checked:is_active"/>
+			<label class="inline" for="is_active">Активен</label>
+		</div>
+
+		<!--title: ""-->
+		<label>Название</label>
+		<input id="title" type="text" name="title" data-bind="value: title, events: ['input','paste','change']" maxlength="200"/>
+
+		<!--description: ""-->
+		<label>Описание</label>
+		<textarea id="description" type="text" name="description" data-bind="value: description, events: ['input','paste','change']" maxlength="1024"></textarea>
+
+		<!--addresses-->
+		<div data-bind="toggle:length(state_addresses)">
+
+			<label>Действует по адресам:</label>
+			<div class="addresses" data-bind="underscore:state_addresses" name="address_ids">
+				<script type="text/template">
+					<@ _.each(obj, function(address) { @>
+					<div class="address flexbox" data-id="<@= address.id @>">
+						<div class="address-checkbox">
+							<input class="green" type="checkbox" id="address_<@= address.id @>"/>
+						</div>
+						<div class="address-label">
+							<label class="inline" for="address_<@= address.id @>">
+								<@- (address.address || 'Интернет-представительство') @>
+							</label>
+						</div>
+					</div>
+					<@ }); @>
+				</script>
+			</div>
+
+		</div>
+
+		<!--period-->
+		<label>Период действия</label>
+
+		<div class="row collapse intervals">
+			<div class="period-from-wrapper small-5 columns">
+				<input type="date" name="period_from" class="radius" data-bind="value: unixDate(period_from), events: ['paste','change']"/>
+			</div>
+			<div class="period-to-wrapper small-5 right columns">
+				<input type="date" name="period_to" class="radius" data-bind="value: unixDateEndOfDay(period_to), events: ['paste','change']" min="{{= moment().format('YYYY-MM-DD')}}"/>
+			</div>
+		</div>
+
+		<!--worktime-->
+		<!--<label>Часы действия</label>-->
+
+		<!--<div class="row intervals collapse">-->
+			<!--<div class="small-5 columns">-->
+				<!--<input type="text" name="worktime_from" class="radius green"-->
+				       <!--data-bind="value:worktime_from, events: ['input', 'paste', 'change']" placeholder="00:00"/>-->
+			<!--</div>-->
+
+			<!--<div class="small-5 right columns">-->
+				<!--<input type="text" name="worktime_to" class="radius green"-->
+				       <!--data-bind="value:worktime_to, events: ['input', 'paste', 'change']" placeholder="24:00"/>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--images: []-->
+		<label>Изображения</label>
+
+		<div class="images-preview-container clearfix"></div>
+		<div class="buttons clearfix">
+			<button type="button" class="green text add-images needsclick" data-bind="classes:{'is-loading':state_isSaving}, attr:{disabled:state_isSaving}">Добавить изображения</button>
+			<button type="button" class="red text clear-images needsclick" data-bind="classes:{hide: state_imagesCollectionEmpty}">Удалить все изображения</button>
+		</div>
+		<div class="hint">Вы можете добавить не более {{- MAX_FILES_COUNT }} изображений</div>
+		<input id="images" class="needsclick hide" type="file" accept="image/*" multiple="multiple" name="images" maxlength="5"/>
+
+		<div class="flexbox save-and-notify l-mb-20">
+			<div class="checkbox">
+				<input class="green" type="checkbox" id="save-and-notify" data-bind="checked: vm_saveAndNotify"/>
+				<label class="inline black" for="save-and-notify">Уведомить пользователей об изменении</label>
+			</div>
+		</div>
+		<div class="hide-height" data-bind="toggle: vm_saveAndNotify">
+			<label for="notify-message">Текст сообщения для рассылки</label>
+			<textarea name="notify-message"  id="notify-message" cols="30" rows="10" data-bind="value: vm_notifyMessage" placeholder="Текст сообщения для рассылки"></textarea>
+		</div>
+		<div class="form-buttons">
+			<button type="button" class="red" name="delete" data-bind="classes:{hide:not(id)}">Удалить</button>
+			<button type="submit" class="green filled" name="save" data-bind="classes:{'is-loading':state_isSaving}, attr:{disabled:state_isSaving}">Сохранить</button>
+		</div>
+
+	</form>
+</div>
+

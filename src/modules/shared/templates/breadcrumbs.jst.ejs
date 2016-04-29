@@ -1,0 +1,15 @@
+<div class="breadcrumbs theme" data-bind="underscore: state_breadcrumbs, classes: { empty: not(length(state_breadcrumbs)) }">
+	<script type="text/template">
+		<@ for (var i = 0, len = obj.length; i < len; i++) { @>
+		<@ var breadcrumb = obj[i]; @>
+		<a href="<@- breadcrumb.href || '#' @>" class="breadcrumb white">
+			<@- breadcrumb.title @>
+		</a>
+
+		<@ if (i < len - 1) { @>
+		<span class="splitter">/</span>
+		<@ } @>
+
+		<@ } @>
+	</script>
+</div>

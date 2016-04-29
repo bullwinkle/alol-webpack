@@ -1,0 +1,15 @@
+<div class="bbm-modal__topbar">
+	<%= image_tag "message.svg", :class => 'logo' %>
+	{{ if (title) { }}
+	<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+	{{ } }}
+</div>
+
+<div class="bbm-modal__section">
+	<p class="text-center">Необходимо заключить Договор с АЛОЛЬ , чтобы иметь возможность устанавливать шаблоны CashBack.</br>
+		Пожалуйста, обратитесь в службу поддержки: <a class="theme" href="mailto:support@alol.io" data-bypass>support@alol.io</a></p>
+</div>
+
+<div class="bbm-modal__bottombar">
+	<button class="theme filled" name="ok">{{- submitButtonText }}</button>
+</div>

@@ -1,0 +1,29 @@
+<div class="chat-profile">
+	<div class="chat-image">
+		<img src="{{= image.url }}?resize=w[50]h[50]q[100]e[true]" alt="">
+	</div>
+	<div class="chat-review flexbox flex-v-center flex-h-center" data-review-id="{{= group.reason.review_id }}">
+		<i class="ic {{= getReviewClassName() }}"></i>
+		<span>{{= group.reason.review_id }}</span>
+	</div>
+</div>
+
+<div class="chat-content">
+	<div class="flexbox flex-v-baseline l-ptb-2">
+		<div class="chat-name">{{= name }}</div>
+		<div class="chat-date" title="{{= getTimeString() }}">{{= getDateString() }}</div>
+	</div>
+
+	<div class="flexbox flex-v-center l-ptb-2">
+		<div class="chat-last-message">{{= getLastMessage() }}</div>
+		<div class="chat-unread-amount" data-unread-amount="{{= unread_amount }}">{{= unread_amount }}</div>
+	</div>
+
+	<div class="flexbox flex-v-center l-ptb-4">
+		<div class="chat-relations">
+			<span class="chat-company-name">{{= group.name }}</span>
+			<span class="chat-operator-name"></span>
+		</div>
+		<div class="chat-specialization"></div>
+	</div>
+</div>

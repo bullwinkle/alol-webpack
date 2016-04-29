@@ -1,0 +1,76 @@
+<form>
+
+	<div class="row">
+		<div class="small-12 columns">
+
+			<label>Имя</label>
+			<input type="text" name="first_name" id="first_name"
+			       data-bind="value: first_name, events: ['input','paste','change']" class="radius" maxlength="255" disabled/>
+
+			<label>Фамилия</label>
+			<input type="text" name="second_name" id="second_name"
+			       data-bind="value: second_name, events: ['input','paste','change']" class="radius" maxlength="255"
+			       disabled/>
+
+			<!--<label for="middle_name">Отчество</label>-->
+			<!--<input type="text" name="middle_name" id="middle_name" data-bind="value: middle_name, events: ['input','paste','change']" class="radius" maxlength="255" disabled/>-->
+
+			<label>№ телефона</label>
+			<div class="phone-input">
+				<div class="phone-prefix">+7</div>
+				<div class="input-wrapper">
+					<input type="tel" class="radius" data-bind="value:state_phone, events: ['input','paste','change']" name="phone"
+						   id="phone" disabled/>
+				</div>
+			</div>
+
+
+			<label>E-mail</label>
+			<input type="email" name="email" id="email" data-bind="value: email, events: ['input','paste','change']"
+			       class="radius" maxlength="255" disabled/>
+
+			<!--<label for="birthday">Дата рождения</label>-->
+			<!--<input type="date" name="birthday" id="birthday" data-bind="value: birthday" class="radius" maxlength="255"/>-->
+
+			<label>Пол</label>
+
+			<div class="row collapse">
+				<div class="small-4 columns">
+					<input type="radio" name="sex" id="sex-male" data-bind="value: integer(sex)" value="1" disabled/>
+					<label for="sex-male">Мужской</label>
+				</div>
+				<div class="small-4 columns">
+					<input type="radio" name="sex" id="sex-female" data-bind="value: integer(sex)" value="2" disabled/>
+					<label for="sex-female">Женский</label>
+				</div>
+				<div class="small-4 columns">
+					<input type="radio" name="sex" id="sex-unknown" data-bind="value: integer(sex)" value="0" disabled/>
+					<label for="sex-unknown">Не задан</label>
+				</div>
+			</div>
+
+			<div data-bind="toggle:state_canEditDiscount">
+				<label>% Cashback</label>
+				<input type="tel" class="radius" name="discount" id="discount"
+				       data-bind="value:discount, events: ['input','paste','change']" maxlength="3"/>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row" data-bind="toggle:state_canAccept">
+		<div class="small-6 columns">
+			<button type="button" class="button tiny radius expand" name="approve">Подтвердить</button>
+		</div>
+		<div class="small-6 columns">
+			<button type="button" class="button tiny radius expand alert" name="cancel">Отклонить</button>
+		</div>
+	</div>
+
+	<div class="row" data-bind="toggle:state_canDelete">
+		<div class="small-12 columns text-center">
+			<button type="button" class="button tiny radius" name="delete">Удалить</button>
+		</div>
+	</div>
+
+</form>

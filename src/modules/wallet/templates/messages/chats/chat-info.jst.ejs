@@ -1,0 +1,38 @@
+<div class="row margin">
+	<div class="small-12 columns text-center">
+		<img alt="" data-bind="attr: { src: get(company_image, 'url') }"/>
+	</div>
+</div>
+
+<div class="row margin">
+	<div class="small-12 columns">
+		<div class="description" data-bind="text: company_description"></div>
+		<div class="site" data-bind="toggle: company_site">
+			Сайт: <a target="_blank" data-bypass data-bind="attr: { href: company_site }, text: company_site"></a>
+		</div>
+	</div>
+</div>
+
+<div class="row margin">
+	<div class="small-12 columns">
+
+		<h5>Адреса</h5>
+		<div class="addresses" data-bind="underscore:state_addresses">
+			<script type="text/template">
+				<@ _.each(obj, function(address) { @>
+				<div class="address" data-id="<@= address.id @>">
+					<@- address.full_address  @>
+				</div>
+				<@ }); @>
+			</script>
+		</div>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 columns text-center">
+		<button name="block" class="button tiny radius" data-bind="toggle:state_showBlocked">Заблокировать</button>
+		<button name="unblock" class="button tiny radius" data-bind="toggle:state_showUnblocked">Разблокировать</button>
+	</div>
+</div>

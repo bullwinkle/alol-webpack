@@ -1,0 +1,53 @@
+<div class="topbar-region">
+
+	<nav class="tab-bar">
+		<section class="left-small" data-bind="toggle: state_topbarLeftButtonVisible">
+			<button class="left-small " type="button" data-bind="toggle: state_topbarLeftButtonVisible, attr: { class: state_topbarLeftButtonResultClass }, disabled: state_topbarLeftButtonDisabled">
+				<span data-bind="attr: { class: state_topbarLeftButtonSpanClass }, text: state_topbarLeftButtonSpanText" class="ic-chevron-left"></span>
+			</button>
+		</section>
+
+		<section class="middle tab-bar-section">
+			<div class="table">
+				<div class="table-row">
+					<div class="table-cell">
+						<h6 class="title text-center" data-bind="text: state_topbarTitle"></h6>
+						<h6 class="subtitle text-center" data-bind="text: state_topbarSubtitle"></h6>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="right-small" data-bind="toggle: state_topbarRightButtonVisible">
+			<button data-bind="attr: { class: state_topbarRightButtonClass }">
+				<span data-bind="attr: { class: state_topbarRightButtonSpanClass }"></span>
+			</button>
+		</section>
+	</nav>
+
+</div>
+
+
+<div id="menu">
+  <div class="row text-center terms-tabs">
+
+    <a class="terms-link">
+      <div class="small-12 medium-6 columns terms-tab terms">
+        <span>Правила сервиса АЛОЛЬ</span>
+      </div>
+    </a>
+
+    <a class="tariffs-link">
+      <div class="small-12 medium-6 columns terms-tab tariffs">
+        <span>Тарифы сервиса АЛОЛЬ</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="data-content"></div>
+  </div>
+</div>

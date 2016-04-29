@@ -1,0 +1,21 @@
+<div class="search-block flexbox">
+	<div class="input">
+		<input class="search1" type="text"
+		       data-bind="value: state_query, events: ['input', 'paste', 'change']"
+		       placeholder="Поиск" name="query"/>
+	</div>
+	<div class="counter flexbox">
+		<span data-bind="text: length(state_selected)"></span>/<span data-bind="text: state_amount_all"></span>
+	</div>
+</div>
+
+<div class="list-wrap" data-scroll>
+	<div class="list"></div>
+	<div class="loader-bubbles green" data-bind="toggle: infiniteScrollState_isLoadingMore"></div>
+	<div class="not-found hint" data-bind="toggle: infiniteScrollState_isEmpty">Ничего не найдено</div>
+</div>
+
+<div class="form-buttons">
+	<button class="green filled" name="submit">Выбрать</button>
+	<button class="grey" name="cancel">Отмена</button>
+</div>

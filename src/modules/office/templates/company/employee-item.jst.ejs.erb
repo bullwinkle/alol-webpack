@@ -1,0 +1,9 @@
+<span class="ic-cross-circle"></span>
+<span>{{= Iconto.shared.helpers.user.getName(user) }}</span>
+<div class="employee-phone">+7 {{= Iconto.shared.helpers.phone.format7(user.phone) || '*** *** ** **' }}</div>
+
+<div class="send-sms-block">
+  <input type="checkbox" name="send_sms" class="theme switch" id="send_sms_{{= id }}"{{= send_sms ? ' checked' : '' }}/>
+  <label for="send_sms_{{= id }}" class="inline">Отправлять сообщения пользователей по SMS, если не онлайн</label>
+	<i class="ic-info-circle has-tip right" data-message="Стоимость смс - 0,60 рублей. Средства за смс списываются с баланса компании."></i>
+</div>

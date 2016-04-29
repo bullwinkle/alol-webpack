@@ -1,0 +1,144 @@
+{{%= outlet('officeTopbar') }}
+
+<div class="inner-view-content">
+	<div class="header">Данные компании</div>
+
+	<label>Название</label>
+	<input type="text" disabled data-bind="value: name"/>
+
+	<div class="hint">Если вы хотите изменить название компании, <span class="green">напишите в АЛОЛЬ </span></div>
+
+	<label>Категория</label>
+	<select name="category_id" id="category_id"
+	        data-bind="value:integer(category_id), underscore:state_categories, events: ['change']">
+		<script type="text/template">
+			<@ _.each(obj, function(value, key) { @>
+			<optgroup label="<@- key @>">
+				<@ _.each(value, function (category) { @>
+				<@ if (category.id == {{= category_id }}) { @>
+				<option value="<@- category.id @>" selected><@- category.name @></option>
+				<@ } else { @>
+				<option value="<@- category.id @>"><@- category.name @></option>
+				<@ }}); @>
+			</optgroup>
+			<@ }); @>
+		</script>
+	</select>
+
+	<label>Корпоративный e-mail</label>
+	<input type="text" name="email" id="email" maxlength="50"
+	       data-bind="value:email, events: ['input','paste','change']">
+
+	<label>Сайт компании</label>
+	<input type="text" name="site" id="site" maxlength="40"
+	       data-bind="value:ignoreWhitespace(site), events: ['input','paste','change']">
+
+	<!--<div class="label">Правила компании</div>-->
+	<!--<div class="l-mb-10">-->
+		<!--<label class="inline s-cp l-mr-5">-->
+			<!--<input class="theme inline" type="radio" name="rules_type" value="url" id="rules_type_url" data-bind="checked: rules_type"/>-->
+			<!--Ссылка-->
+		<!--</label>-->
+		<!--<label class="inline s-cp">-->
+			<!--<input class="theme inline" type="radio" name="rules_type" value="text" id="rules_type_text" data-bind="checked: rules_type"/>-->
+			<!--Текст-->
+		<!--</label>-->
+	<!--</div>-->
+	<!--<div class="l-mb-20">-->
+		<!--<div data-bind="toggle: equal(rules_type, 'url')">-->
+			<!--<input type="text" name="rules_url" id="rules_url" placeholder="Ссылка на правила компании" data-bind="value: rules_url"/>-->
+		<!--</div>-->
+		<!--<div data-bind="toggle: equal(rules_type, 'text')">-->
+			<!--<textarea name="rules_text" id="rules_text" cols="30" rows="10" placeholder="Правила компании" data-bind="value: rules_text"></textarea>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<div class="header">Правила компании</div>
+	<div class="hint">При показе приоритет отдается ссылке на правила.</div>
+	<label for="rules_url">Ссылка на правила компании</label>
+	<input type="text" name="rules_url" id="rules_url" placeholder="Ссылка на правила компании" data-bind="value: rules_url"/>
+	<label for="rules_text">Текст правил компании</label>
+	<textarea name="rules_text" id="rules_text" cols="30" rows="10" placeholder="Правила компании" data-bind="value: rules_text"></textarea>
+
+
+	<label>Facebook</label>
+
+	<div class="prefix">
+		<div class="prefix-text">facebook.com/</div>
+		<input type="text" name="facebook_id" id="facebook-id" maxlength="100"
+		       data-bind="value:ignoreWhitespace(facebook_id), events: ['input','paste','change']">
+	</div>
+
+	<div class="hint">Укажите ID или псевдоним страницы компании в Facebook. Мы возьмем оттуда ваши фотографии и
+		новости.
+	</div>
+
+	<label>Описание компании</label>
+
+	<div class="wrapper">
+		<textarea name="description" id="description" maxlength="2000" rows="5" data-bind="value:description, events: ['input','paste','change']">
+			<!--data binding by tinymce events handling-->
+		</textarea>
+	</div>
+
+	<div class="hint">Текст, добавленный в это поле, будет отображаться на детальной странице компании</div>
+
+	<label>Теги</label>
+	<textarea name="tags" id="tags" data-bind="value:tags, events: ['input','paste','change']" maxlength="3000"
+	          rows="3"></textarea>
+
+	<div class="hint">Введите теги через запятую</div>
+
+	<div class="header">Настройки оповещения</div>
+
+	<label>Псевдоним отправителя SMS</label>
+	<input type="text" class="radius" name="sender_name" id="sender_name" maxlength="11"
+	       data-bind="value:ignoreWhitespace(sender_name), events: ['input','paste','change']"/>
+
+	<div class="flexbox">
+		<div>
+			<input class="switch theme inline" id="sms_notify_users" name="sms_notify_users" type="checkbox"
+			       data-bind="checked: sms_notify_users"/>
+		</div>
+		<div>
+			<label class="inline" for="sms_notify_users">Дублировать сообщения пользователю через смс</label>
+
+			<div class="hint">Если пользователь в течение 10 минут не прочитал сообщение в мессенджере, то сообщение
+				дублируется по смс.
+			</div>
+		</div>
+	</div>
+
+	<label>Приветственное сообщение</label>
+
+	<div class="wrapper">
+		<textarea name="welcome_message" id="welcome_message"
+		          data-bind="value:welcome_message, events: ['input','paste','change']" maxlength="1024"
+		          rows="5"></textarea>
+	</div>
+	<div class="hint">Текст, добавленный в это поле, автоматически отправляется всем пользователям, которые инициируют
+		чат
+		с&nbsp;компанией
+	</div>
+
+	<label>Автоответ в чате</label>
+
+	<div class="wrapper">
+		<textarea name="greeting_message" id="greeting_message"
+		          data-bind="value:greeting_message, events: ['input','paste','change']" maxlength="1024"
+		          rows="5"></textarea>
+	</div>
+	<div class="hint">Текст, добавленный в это поле, автоматически отправляется всем пользователям в качестве ответа на
+		отправленное ими сообщение в чат
+	</div>
+
+	<div class="form-buttons">
+		<div class="left-buttons">
+			<button type="button" class="theme filled" name="save-button">Сохранить</button>
+			<a href="/office/{{= company.id }}/profile" class="button grey" name="cancel-button">Отмена</a></div>
+		{{ if (company.id != 3116) { }}
+		<button type="button" class="red" name="delete-button">Удаление компании</button>
+		{{ } }}
+	</div>
+
+</div>

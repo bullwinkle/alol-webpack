@@ -1,0 +1,18 @@
+<div class="hint" data-bind="toggle:not(state_hasAddressCredentials)">
+	Для того, чтобы сформировать счет, необходимо корректно заполнить данные <a class="theme" href="/office/{{= company_id }}/legal">юридического лица</a>.
+</div>
+
+
+<div data-bind="toggle:state_hasAddressCredentials">
+	<div class="hint">Введите сумму, на которую необходимо выставить счет.<br>
+		Мы вышлем его на электронный адрес <b class="email" data-bind="text:state_email"></b>
+	</div>
+	<form class="form">
+		<label>Сумма пополнения</label>
+		<input type="text" name="amount" id="amount"
+		       data-bind="value:integer(amount), events: ['input','paste']" placeholder="Введите сумму" maxlength="15"/>
+
+			<button type="submit" class="theme filled">Получить счёт</button>
+			<button type="button" class="grey" name="cancel">Отмена</button>
+	</form>
+</div>

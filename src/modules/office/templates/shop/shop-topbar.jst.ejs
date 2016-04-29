@@ -1,0 +1,15 @@
+<div class="shop-topbar">
+
+	<a href="/office/{{= company.id }}/shop/edit" class="tab"
+	   data-bind="classes: { active: equal(get(state_shopTopbar, 'currentPage'), 'edit') }">
+		<i class="ic-loaf"></i>
+		<span>Товары</span>
+	</a>
+
+	<a href="/office/{{= company.id }}/shop/edit/categories" class="tab"
+	   data-bind="classes: { active: equal(get(state_shopTopbar, 'currentPage'), 'categories') }">
+		<i class="ic-cards-alt"></i>
+		<span>Категории</span>
+	</a>
+
+</div>

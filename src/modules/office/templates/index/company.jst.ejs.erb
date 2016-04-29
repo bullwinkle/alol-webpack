@@ -1,0 +1,18 @@
+<div class="company">
+
+  <div class="company-image">
+	  <img alt="{{= name }}" src="{{= Iconto.shared.helpers.image.resize(image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_MEDIUM) }}f[{{= (image_id != 0) }}]">
+	</div>
+
+	<div class="company-info">
+	  <div class="company-name">{{= name }}</div>
+		<div class="company-category">{{= category.name }}</div>
+		<div class="company-legal">{{= legalName }}</div>
+
+		<div class="company-counters">
+			<div class="addresses"><i class="ic-marker"></i>{{= address_count }}</div>
+			<div class="deposit"><i class="ic-wallet"></i>{{= depositAmount }} руб.</div>
+		</div>
+	</div>
+
+</div>

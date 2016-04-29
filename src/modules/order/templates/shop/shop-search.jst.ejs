@@ -1,0 +1,9 @@
+<div class="search-input-wrapper" data-bind="classes: {'with-text': length(state_query)}">
+	<input class="search" type="text" placeholder="Поиск" data-bind="value: state_query, events: ['input', 'paste', 'change']"/>
+	<span class="clear-search ic-cross-thin"></span>
+</div>
+<div class="child-view-container-wrapper">
+	<ul class="shop-search-result l-m-0"  data-bind="classes:{hide: state_isLoading }"></ul>
+	<div class="loader-bubbles theme" data-bind="classes:{hide: not(state_isLoading) }"></div>
+	<div class="shop-product-details-region">search product</div>
+</div>

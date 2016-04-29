@@ -1,0 +1,8 @@
+{{ _.each(obj, function (item) { }}
+	<div>{{- item.title }}</div>
+	<ul>
+	{{ _.each( _.get(item,'children',[]), function (el) { }}
+		<li>{{%= JST['shared/templates/recourcive-child'](el) }}</li>
+	{{ } ) }}
+	</ul>
+{{ }) }}

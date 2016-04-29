@@ -1,0 +1,194 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h6>
+			<small>Платеж: <span data-bind="text:order_id"></span></small>
+		</h6>
+	</div>
+	<div class="small-6 columns" data-bind="toggle: none(state_isCardRegistration, state_isCardVerification)">
+		<h6 class="text-right">
+			<small>
+				Сумма: <span data-bind="text:money(orderFee_amount)"></span> руб.<br/>
+				Комиссия: <span data-bind='text:money(orderFee_total)'></span> руб.
+				(<span data-bind='text:feePercent(orderFee_fee_percent)'></span>%)
+			</small>
+		</h6>
+	</div>
+</div>
+
+<div class="row" data-bind="toggle:none(state_isCardRegistration, state_isCardVerification, order_source_card_id)">
+	<div class="small-12 columns">
+		<h6 class="text-center">
+			Выберите способ оплаты
+		</h6>
+	</div>
+	<div class="small-12 columns">
+		<div class="payment-sources">
+			<ul class="tabs_pay radius vertical inverted" name="payment-sources"></ul>
+		</div>
+	</div>
+</div>
+
+<form autocomplete="off" method="post" action="#" target="hidden-frame" data-bind="toggle:state_selectedPaymentSource" class="form">
+
+	<!--Hack to fix Chrome bug, when autocomplete="off" is ignored -->
+	<input type="text" style="display:none"/>
+	<input type="password" style="display:none"/>
+
+	<div class="row" data-bind="toggle:not(state_paymentSourceFulfilled)">
+		<div class="small-12 columns">
+			<label for="card-number">Номер карты</label>
+			<input type="tel" id="card-number" name="card_number" maxlength="19"
+				data-bind="toggle: not(state_isCardVerification), value:ignoreWhitespace(card_number), events: ['input', 'paste', 'change']"/>
+			<input type="tel" disabled data-bind="toggle: state_isCardVerification, value: state_verificationCardNumber"/>
+		</div>
+	</div>
+
+	<div class="row" data-bind="toggle:not(state_paymentSourceFulfilled)">
+		<div class="small-12 columns">
+			<label for="month">Срок действия</label>
+		</div>
+		<div class="small-6 columns">
+			<select class="radius" data-bind="value:month" id="month" name="month" data-placeholder="Месяц">
+				<!--<option default selected style="display: none;">Месяц</option>-->
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+		</div>
+		<div class="small-6 columns">
+			<select class="radius" data-bind="value:year" data-placeholder="Год" id="year" name="year">
+				{{ var year = moment().year(); }}
+				{{ for (var i = year; i < year + 10; i++) { }}
+					<option value="{{= i }}">{{= i }}</option>
+				{{ } }}
+				<!--<option default selected style="display: none;">Год</option-->
+				<!--<option value="2015">15</option>-->
+				<!--<option value="2016">16</option>-->
+				<!--<option value="2017">17</option>-->
+				<!--<option value="2018">18</option>-->
+			</select>
+		</div>
+	</div>
+
+	<div class="row" data-bind="toggle:not(state_paymentSourceFulfilled)">
+		<div class="small-12 columns">
+			<label for="cardholder-name">Имя держателя карты</label>
+			<input autocomplete="off" type="text" id="cardholder-name" name="cardholder_name" class="radius" value=""
+				data-bind="value:cardholder_name, events: ['input', 'paste', 'change']"/>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-12 columns">
+			<label for="cvc">CVV/CVC</label>
+		</div>
+		<div class="small-3 columns">
+			<input autocomplete="off" type="password" pattern="[0-9]*" maxlength="4" id="cvc" name="cvc" value=""
+				data-bind="value:cvc, events: ['input', 'paste', 'change']"/>
+		</div>
+		<div class="small-9 columns">
+			<small>
+				CVV/CVC — это 3 или 4 последние цифры на обороте вашей карты.
+			</small>
+		</div>
+	</div>
+
+	<div class="row notice" data-bind="toggle: state_isCardRegistration">
+		<div class="small-12 columns" style="line-height:normal">
+			<div><small>*</small> Внимание, для подтверждения карты на Вашем счете будет временно заблокировано до 10 рублей.</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-12 columns text-center">
+			<button autocomplete="off" type="submit" name="submit" class="blue theme filled">
+				<span>{{- getSubmitButtonText(order_type) }}</span>
+			</button>
+		</div>
+	</div>
+
+</form>
+
+<iframe src="about:blank" id="hidden-frame" name="hidden-frame" class="" frameborder="0"></iframe>
+
+<!--<div data-bind="toggle:card_id">-->
+
+	<!--<div class="row" data-bind="toggle:all(order_source_card_id, state_paymentSourceFulfilled)">-->
+		<!--<div class="small-12 columns">-->
+			<!--<h6>-->
+				<!--С карты: <span data-bind="text:get(state_paymentSource, 'card_number')"></span>-->
+			<!--</h6>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!--<div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">-->
+		<!--<div class="small-12 columns">-->
+			<!--<h6 class="text-center">Введите данные карты еще раз:</h6>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!--<div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">-->
+		<!--<div class="small-12 columns">-->
+			<!--<input type="tel" placeholder="Номер карты" class="radius" maxlength="25"-->
+			       <!--data-bind="value:ignoreWhitespace(card_number), events:['input', 'paste']"/>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">-->
+		<!--<div class="small-6 columns">-->
+			<!--<select class="radius" data-bind="value:month">-->
+				<!--<option default selected>Месяц</option>-->
+				<!--<option value="01">01</option>-->
+				<!--<option value="02">02</option>-->
+				<!--<option value="03">03</option>-->
+				<!--<option value="04">04</option>-->
+				<!--<option value="05">05</option>-->
+				<!--<option value="06">06</option>-->
+				<!--<option value="07">07</option>-->
+				<!--<option value="08">08</option>-->
+				<!--<option value="09">09</option>-->
+				<!--<option value="10">10</option>-->
+				<!--<option value="11">11</option>-->
+				<!--<option value="12">12</option>-->
+			<!--</select>-->
+		<!--</div>-->
+		<!--<div class="small-6 columns">-->
+			<!--<select class="radius" data-bind="value:year">-->
+				<!--<option default selected>Год</option>-->
+				<!--<option value="2014">14</option>-->
+				<!--<option value="2015">15</option>-->
+				<!--<option value="2016">16</option>-->
+				<!--<option value="2017">17</option>-->
+				<!--<option value="2018">18</option>-->
+			<!--</select>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!--<div class="row" data-bind="toggle:invert(state_paymentSourceFulfilled)">-->
+		<!--<div class="small-12 columns">-->
+			<!--<input type="text" placeholder="Имя держателя карты" class="radius"-->
+			       <!--data-bind="value:cardholder_name, events:['input', 'paste']"/>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!--<div class="row">-->
+		<!--<div class="small-3 columns">-->
+			<!--<input type="password" pattern="[0-9]*" class="radius" placeholder="CVV/CVC" maxlength="5"-->
+			       <!--data-bind="value:cvc, events:['input', 'paste']"/>-->
+		<!--</div>-->
+		<!--<div class="small-9 columns">-->
+			<!--<small>-->
+				<!--CVV/CVC — это 3 или 4 последние цифры на обороте вашей карты.-->
+			<!--</small>-->
+		<!--</div>-->
+	<!--</div>-->
+
+<!--</div>-->

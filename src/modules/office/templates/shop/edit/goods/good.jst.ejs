@@ -1,0 +1,66 @@
+
+<div class="button list-item menu-item info">
+	<div class="image" data-bind="css: { 'background-image': format('url($1?resize=w[140]h[140]e[true])', image_url) }"></div>
+
+	<div class="content">
+		<div class="i-title" data-bind="text: trim(title)"></div>
+		<div class="i-price"><span data-bind="text: price"></span> <span class="rouble">№</span></div>
+		<div class="i-description" data-bind="text: trim(description), toggle: description"></div>
+	</div>
+
+	<i class="ic-cross-circle"></i>
+
+</div>
+
+<div class="good-input-inner">
+	<div class="good-g">
+		<div class="g-image" data-bind="classes: { 'has-image': image_id }">
+			<div class="g-image-src needsclick" data-bind="css: { 'background-image': format('url($1?resize=w[140]h[140]e[true])', image_url) }">
+				<!--<i class="ic-camera"></i>-->
+			</div>
+			<input type="file" accept="image/jpeg, image/png"/>
+			<a href="#" class="red delete-image-button">Удалить</a>
+		</div>
+		<div class="g-info">
+			<label>Название</label>
+			<input type="text" class="title" name="title" data-bind="value: trim(title), events: ['input','paste','change']"/>
+
+			<label>Описание</label>
+			<textarea class="description" name="description"
+			          data-bind="value: trim(description), events: ['input','paste','change']"></textarea>
+
+			<label>Цена</label>
+
+			<div class="input-with-currency">
+				<input name="price" placeholder="1000" type="text" name="input-with-currency" data-bind="value: number(price), events: ['input','paste','change']">
+				<span class="currency">руб.</span>
+			</div>
+
+			<label>Категория</label>
+			<!--<select name="shop_category_id2"-->
+			        <!--data-bind="value:integer(shop_category_id), underscore:state_shopCategories, events: ['change']">-->
+				<!--<script type="text/template">-->
+					<!--<@ var renderRecourcive = function(items, prefixArg, inheritDisableRoot, level){ @>-->
+						<!--<@ _.each(items, function (item,i) {@>-->
+							<!--<@ var inheritDisable = inheritDisableRoot ? inheritDisableRoot : 0 @>-->
+							<!--<@ if (!prefixArg) prefixArg = ''; @>-->
+							<!--<@ item.title = prefixArg+' '+item.title @>-->
+							<!--<option value="<@- item.id @>"><@- item.title @></option>-->
+							<!--<@ if (_.get(item,'subcategories.length',0) > 0) { @>-->
+								<!--<@ renderRecourcive(item.subcategories, prefixArg +'⎯⎯⎯⎯|', inheritDisable, level+1 ) @>-->
+							<!--<@ } @>-->
+						<!--<@ }); @>-->
+					<!--<@ };@>-->
+
+					<!--<option default selected value="0">Не выбрано</option>-->
+					<!--<@ renderRecourcive(obj, '', 0, 0) @>-->
+				<!--</script>-->
+			<!--</select>-->
+
+			<div class="ui-virtual-select l-mb-20"></div>
+
+			<button class="green filled" name="save-good-button">Сохранить</button>
+			<button class="grey" name="cancel-button">Отмена</button>
+		</div>
+	</div>
+</div>

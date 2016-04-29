@@ -1,0 +1,35 @@
+<div class="bbm-modal">
+	{{ if (title) { }}
+	<div class="bbm-modal__topbar">
+		<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+	</div>
+	{{ } }}
+
+	<form name="signin" id="signin_form"  action="/blank" method="post" target="hidden-frame">
+		<div class="bbm-modal__section">
+			{{ if (message) { }}
+				<p class="text-center">{{- message }}</p>
+			{{ } }}
+
+			<div class="phone-input">
+				<div class="phone-prefix radius">+7</div>
+				<div class="input-wrapper">
+					<input type="tel" name="login" class="radius" placeholder="Номер телефона" maxlength="20" autocomplete="on" autocorrect="off" autofocus />
+				</div>
+			</div>
+			<input type="password" name="password" class="radius" placeholder="Пароль" value="" autocomplete="on" autocorrect="off" />
+
+			<div class="error-message validation-error"></div>
+		</div>
+		{{ if (showRegistrationLink) { }}
+			<div class="registation-link hint t-centered">
+				Если вы не зарегистрированы, пожалуйста, <a href="/auth/signup">зарегистрируйтесь</a>.
+			</div>
+		{{}}}
+		<div class="bbm-modal__bottombar">
+			<button type="submit" class="blue theme filled submit-button">{{- submitButtonText }}</button>
+			<button type="button" class="grey cancel-button" >{{- cancelButtonText }}</button>
+		</div>
+	</form>
+	<iframe src="about:blank" id="hidden-frame" name="hidden-frame" class="hide" frameborder="0"></iframe>
+</div>

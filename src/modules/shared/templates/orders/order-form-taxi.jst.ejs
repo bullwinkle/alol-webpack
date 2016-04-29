@@ -1,0 +1,28 @@
+<form action="/blank" method="POST" target="hidden-frame">
+	<label for="from" class="green">Откуда</label>
+	<div class="from-input-wrapper">
+		<input type="text" name="from" id="from" placeholder="Введите адрес" data-bind="value:from,events:['input','paste','change']"/>
+		<div class="get-location-button"></div>
+	</div>
+
+	<label for="where" class="green">Куда</label>
+	<input type="text" name="where" id="where" placeholder="Введите адрес" data-bind="value:where,events:['input','paste','change']"/>
+
+	<label for="when_date" class="green">Дата</label>
+	<input name="when_date" id="when_date" type="date" data-bind="value:when_date,events:['input','paste','change']"/>
+	<label for="when_time" class="green">Время</label>
+	<input name="when_time" id="when_time" type="time" data-bind="value:when_time,events:['input','paste','change']"/>
+
+	<label for="phone" class="green">Телефон для связи</label>
+	<input type="tel" name="phone" id="phone" placeholder="Введите телефон" data-bind="value:phone,events:['input','paste','change']"/>
+
+	<div class="car-type flexbox">
+		<input type="radio" value="standart" name="car-type" id="standart" class="switch green" data-bind="checked:car_type,events:['input','paste','change']"/>
+		<label for="standart" class="green">Стандарт</label>
+		<input type="radio" value="vip" name="car-type" id="vip" class="switch green" data-bind="checked:car_type,events:['input','paste','change']"/>
+		<label for="vip" class="green">VIP</label>
+	</div>
+
+	<button type="submit" class="blue filled green large submit-button">Заказать</button>
+</form>
+<iframe src="about:blank" name="hidden-frame" class="hide" frameborder="0"></iframe>

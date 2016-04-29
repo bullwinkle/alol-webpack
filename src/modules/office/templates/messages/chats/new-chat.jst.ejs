@@ -1,0 +1,23 @@
+<div class="addresses">
+	<label>Адрес</label>
+	<select name="address-select" id="address-select" data-bind="underscore: state_addresses">
+		<script type="text/template">
+			<option value="0" selected>Все адреса</option>
+			<@ _.each(obj, function(address) { @>
+			<option value="<@- address.id @>"><@- (_.escape(address.address) || 'Интернет-представительство') @></option>
+			<@ }); @>
+		</script>
+	</select>
+
+	<div class="hint">Выберите адрес, от имени которого вы создаете чат</div>
+</div>
+
+<div class="search-input">
+	<input type="text" autocomplete="off" class="search" name="query" id="query"
+	       data-bind="value:state_query, events: ['input', 'paste', 'change']"
+	       placeholder="Введите фамилию или телефон"/>
+</div>
+
+<div class="list" data-scroll></div>
+
+

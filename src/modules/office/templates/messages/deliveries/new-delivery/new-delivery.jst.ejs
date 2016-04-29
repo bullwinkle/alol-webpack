@@ -1,0 +1,63 @@
+<div class="addresses-block">
+	<!--<label>Адрес</label>-->
+
+	<!--<select name="address-id" data-bind="underscore: state_addresses, value: integer(address_id)">-->
+		<!--<script type="text/template">-->
+			<!--<option value="0" selected>Все адреса</option>-->
+			<!--<@ _.each(obj, function(value, key) { @>-->
+			<!--<option value="<@- value.id @>"><@- _.escape(value.address) @></option>-->
+			<!--<@ }); @>-->
+		<!--</script>-->
+	<!--</select>-->
+
+	<label>Контакты</label>
+
+	<select name="contact-select" id="contact-select" data-bind="value: state_filterType">
+		<option value="all" name="filter_all" selected>По всем контактам</option>
+		<option value="vip" name="filter_vip">По VIP контактам</option>
+		<option value="nonvip" name="filter_nonvip">По не VIP контактам</option>
+		<option value="custom" name="filter_custom">Выбрать персонально</option>
+	</select>
+</div>
+
+<div class="form">
+	<label for="title">Название</label>
+	<input type="text" data-bind="value: title, events: ['input', 'paste', 'change']" id="title" name="title"
+	       autocomplete="off"/>
+
+	<div class="hint">Название рассылки видят только сотрудники компании</div>
+
+	<label for="message">Текст рассылки</label>
+	<textarea data-bind="value: message, events: ['input', 'paste', 'change']" id="message" name="message"></textarea>
+
+	<div class="hint">
+		<span data-bind="text: state_count"></span>
+	</div>
+
+	<div class="flexbox">
+		<input type="checkbox" class="green switch" data-bind="checked: sms_use, disabled: not(state_canSendSms)"
+		       id="sms-use"/>
+
+		<div>
+			<label for="sms-use">Отправить сообщение через SMS</label>
+
+			<div class="hint">Сообщение будет отправлено через SMS, если пользователь не прочитал его в мессенджере в течение
+				часа.
+			</div>
+			<!--, если пользователь не прочел сообщение в мессенджере в течение часа-->
+
+			<div class="hint">
+				<span data-bind="toggle: state_canSendSms">Рассылка по SMS будет отправлена от имени
+					<b class="sender-name" data-bind="text: state_senderName"></b>. Нажмите <a
+							class="theme change-sender-name" href="#">здесь</a>, чтобы изменить имя отправителя. </span>
+				<span data-bind="toggle: not(state_canSendSms)">Чтобы сделать рассылку по SMS, необходимо заполнить
+				данные юридического лица и пополнить депозит компании.</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-buttons">
+		<button class="green filled" name="submit">Продолжить</button>
+		<button class="grey" name="cancel">Назад</button>
+	</div>
+</div>

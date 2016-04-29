@@ -1,0 +1,77 @@
+<form>
+	<label>Статус</label>
+
+	<div class="l-mb-20">
+		<label class="grey s-cp">
+			<input type="radio" class="green" name="shop-status" data-bind="checked: integer(order_form_type)"
+			       value="0"/> авто ( показывать, если есть товары в каталоге )
+		</label>
+		<label class="grey s-cp">
+			<input type="radio" class="green" name="shop-status" data-bind="checked: integer(order_form_type)"
+			       value="1"/> не показывать
+		</label>
+		<label class="grey s-cp">
+			<input type="radio" class="green" name="shop-status" data-bind="checked: integer(order_form_type)"
+			       value="2"/> показывать каталог в АЛОЛЬ </label>
+		<label class="grey s-cp">
+			<input type="radio" class="green" name="shop-status" data-bind="checked: integer(order_form_type)"
+			       value="3"/> показывать каталог по внешнему адресу
+		</label>
+	</div>
+
+	<div data-bind="toggle: equal( order_form_type, {{- Iconto.REST.Company.SHOP_STATUS_ENABLED_EXTERNAL }})">
+		<label>URL формы заказа</label>
+		<input type="text" class="radius" name="order_form_url" id="order_form_url" maxlength="1024"
+		       data-bind="value:ignoreWhitespace(order_form_url), events: ['input','paste','change']">
+	</div>
+
+	<label>Минимальная сумма заказа</label>
+
+	<div class="l-mb-20">
+		<div class="input-with-currency">
+			<input placeholder="500" type="text" name="shop_order_min_amount" id="shop_order_min_amount"
+			       data-bind="value: number(shop_order_min_amount), events: ['input','paste','change']"/>
+			<span class="currency">руб.</span>
+		</div>
+	</div>
+
+	<label>Стоимость доставки</label>
+
+	<div class="l-mb-20">
+		<div class="input-with-currency">
+			<input placeholder="500" type="text" name="shop_order_delivery_amount" id="shop_order_delivery_amount"
+			       data-bind="value: number(shop_order_delivery_amount), events: ['input','paste','change']"/>
+			<span class="currency l-ml-5">руб.</span>
+		</div>
+	</div>
+
+	<div class="discount">
+		<div class="block">
+			<label>Если сумма заказа больше, чем</label>
+
+			<div class="l-mb-20">
+				<div class="input-with-currency">
+					<input placeholder="1000" type="text" name="shop_order_threshold_amount"
+					       id="shop_order_threshold_amount"
+					       data-bind="value: number(shop_order_threshold_amount), events: ['input','paste','change']"/>
+					<span class="currency l-ml-5">руб.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="block">
+			<label>то стоимость доставки</label>
+
+			<div class="l-mb-20">
+				<div class="input-with-currency">
+					<input placeholder="0" type="text" name="shop_order_delivery_discount_amount"
+					       id="shop_order_delivery_discount_amount"
+					       data-bind="value: number(shop_order_delivery_discount_amount), events: ['input','paste','change']"/>
+					<span class="currency l-ml-5">руб.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button type="submit" class="theme filled" name="save-button" data-bind="classes:{'is-loading':state_isSaving}">Сохранить</button>
+</form>

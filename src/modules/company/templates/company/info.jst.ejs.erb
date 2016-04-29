@@ -1,0 +1,92 @@
+<div class="info-content">
+  <div class="info">
+    <div class="list list-addresses">
+      <div class="icon">
+        <i class="ic-marker"></i>
+      </div>
+      <div class="content">
+        <div class="title">Адреса <span class="inline-badge addresses-inline-badge"></span></div>
+        <ul class="addresses s-unstyled">
+          <script type="text/template">
+            <@ _.each(obj, function(value, key) { @>
+            <li class="address s-unstyled<@= (key > 4) ? ' hidden hide' : '' @>">
+              <div class="address-info">
+                <@ var phone = (value.contact_phone) ? '+7 ' + Iconto.shared.helpers.phone.format7(value.contact_phone)
+                :
+                'Телефон не указан'; var address = (value.address) ? value.address : 'Адрес не указан'; @>
+                <div class="address-name"><@- address @></div>
+                <div class="address-phone"><@- phone @></div>
+                <@ if (value.address) { @>
+                <div class="address-actions-button drop-down">
+                  <i class="ic-dots"></i>
+                  <ul class="drop-down-list">
+                    <li data-address-id="<@= value.id @>">
+                      <div class="icon"><i class="ic-bubble-round"></i></div>
+                      <div class="text">Написать</div>
+                    </li>
+                    <@ if (value.contact_phone) { @>
+                    <li data-phone="<@= value.contact_phone @>">
+                      <div class="icon"><i class="ic-phone"></i></div>
+                      <div class="text">Позвонить</div>
+                    </li>
+                    <@ } @>
+                    <@ if (value.lat) { @>
+                    <li data-coords="<@= value.lat + ',' + value.lng @>">
+                      <div class="icon"><i class="ic-marker-on-map"></i></div>
+                      <div class="text">Карта</div>
+                    </li>
+                    <@ } @>
+                  </ul>
+                </div>
+                <@ } @>
+              </div>
+            </li>
+            <@ }); @>
+          </script>
+        </ul>
+        <div class="addresses-show-more-button">Показать все</div>
+      </div>
+    </div>
+
+    <div class="list list-site">
+      <div class="icon">
+        <i class="ic-basketball"></i>
+      </div>
+      <div class="content">
+        <div class="title">
+          <a target="_blank" data-bypass class="link"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="list list-description">
+      <div class="icon">
+        <i class="ic-document"></i>
+      </div>
+      <div class="content">
+        <div class="text"></div>
+      </div>
+    </div>
+
+    <div class="list list-photos">
+      <div class="icon">
+        <i class="ic-camera"></i>
+      </div>
+      <div class="content">
+        <div class="title">Фотографии <span class="inline-badge photos-inline-badge"></span></div>
+        <div class="photos">
+          <script type="text/template">
+            <@ _.each(obj, function(value, key) { @>
+            <div class="photo<@= (key > 6) ? ' hidden hide' : '' @>" data-id="<@= value.id @>">
+              <div class="photo-image" style="background-image: url(<@= value.url @>)" data-url="<@= value.url @>"></div>
+            </div>
+            <@ }); @>
+          </script>
+        </div>
+        <div class="photos-show-more-button">Показать еще</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loader-bubbles theme"></div>

@@ -1,0 +1,20 @@
+<!--<div class="bbm-modal">-->
+
+	<div class="bbm-modal__topbar">
+		<%= image_tag "confirm.svg", :class => 'logo' %>
+		{{ if (title) { }}
+		<h3 class="bbm-modal__title text-center">{{- title }}</h3>
+		{{ } }}
+	</div>
+
+	{{ if (message) { }}
+	<div class="bbm-modal__section">
+		<p class="text-center">{{- message }}</p>
+	</div>
+	{{ } }}
+
+	<div class="bbm-modal__bottombar">
+		<button class="blue theme filled" name="ok">{{- submitButtonText }}</button>
+		<button class="grey" name="cancel">{{- cancelButtonText }}</button>
+	</div>
+<!--</div>-->

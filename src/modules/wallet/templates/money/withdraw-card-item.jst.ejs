@@ -1,0 +1,19 @@
+<a class="button list-item menu-item" data-id="{{= bank.id }}">
+	<img src="{{= bank.image.url }}" alt="{{= bank.name }}"/>
+
+	<div class="content">
+		<div class="info">
+			<div class="bank-name">{{- bank.name }}</div>
+			<div class="title">{{- title }}</div>
+			<div class="card-number">{{- card_number }}</div>
+		</div>
+	</div>
+
+	<i class="ic-chevron-right"></i>
+
+	<!--{{ if (!is_fulfilled) { }}-->
+		<!--<span class="verify-button">ПОДТВЕРДИТЬ</span>-->
+	<!--{{ } else { }}-->
+		<!--<i class="ic-chevron-right"></i>-->
+	<!--{{ } }}-->
+</a>

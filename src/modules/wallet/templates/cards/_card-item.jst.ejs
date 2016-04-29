@@ -1,0 +1,19 @@
+<div class="upper">
+	<div class="info">
+		<div class="bank-name">{{- bank.name }}</div>
+		<div class="title">{{- title }}</div>
+		<div class="card-number">{{- card_number }}</div>
+	</div>
+	<img class="bank-logo" src="{{= Iconto.shared.helpers.image.resize(bank.image.url, Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) }}" alt=""/>
+</div>
+<div class="lower">
+	{{ if (bank.has_contract) { }}
+	<div class="has-contract" title="Информация об автовыплате CashBack">
+		<div>Автовыплата CashBack</div>
+		<div><i class="ic-info-circle"></i></div>
+	</div>
+	{{ } }}
+	{{ if (obj.paymentSystem && obj.paymentSystem.image_url) { }}
+	<img class="payment-system-logo" src="{{= paymentSystem.image_url }}" alt="{{- paymentSystem.title }}"/>
+	{{ } }}
+</div>

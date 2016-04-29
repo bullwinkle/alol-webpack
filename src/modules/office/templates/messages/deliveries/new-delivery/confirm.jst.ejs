@@ -1,0 +1,56 @@
+	<label>Название рассылки</label>
+	<div class="title">
+		{{- title }}
+	</div>
+
+	<label>Текст сообшения</label>
+	<div class="message">
+		{{- message }}
+	</div>
+
+	<label>Количество символов</label>
+	<div class="symbols-count">
+		{{= message.length }}
+	</div>
+
+	<label>Количество контактов</label>
+	<div class="contacts">
+		{{= users_count }}
+	</div>
+
+	{{ if (sms_use) { }}
+	<div class="sms-info">Информация по SMS рассылке</div>
+
+	<label>Имя отправителя</label>
+	<div class="info" data-bind="text: state_senderName"></div>
+
+	<label>Количество SMS, на которое разбито сообщение</label>
+	<div class="sms-parts-count">
+		{{= sms_parts_count }}
+	</div>
+
+	<label>Общее количество SMS</label>
+	<div class="sms-total-count">
+		{{= sms_total_count }}
+	</div>
+
+	<label>Стоимость одного SMS</label>
+	<div class="sms-part-price">
+		{{= Iconto.shared.helpers.money(sms_part_price) }} руб.
+	</div>
+
+	<label>Максимальная стоимость рассылки</label>
+	<div class="sms-total-price">
+		{{= Iconto.shared.helpers.money(sms_total_price) }} руб.
+		<div class="hint">
+			Итоговая стоимость рассылки может быть уменьшена. SMS не будет отправлено, если сообщение будет прочитано в мессенджере.
+		</div>
+	</div>
+
+	{{ } }}
+
+<div class="form-buttons">
+	<button class="green " name="save">Сохранить, не отправлять</button>
+	<button class="green filled" name="submit">Отправить</button>
+	<button class="grey" name="cancel">Назад</button>
+</div>

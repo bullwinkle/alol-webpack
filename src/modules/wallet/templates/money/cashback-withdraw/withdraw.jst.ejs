@@ -1,0 +1,49 @@
+<label data-bind="toggle:phoneNumber">Пользователю +<span data-bind="text:state_phoneNumber"></span></label>
+
+<div data-bind="toggle:not(state_phoneNumber)">
+    <label>На карту</label>
+
+    <div class="flexbox card">
+        <div class="bank-image">
+            <img alt="" data-bind="attr: { src:get(bank_image, 'url') }"/>
+        </div>
+        <div class="card-info">
+            <div class="bank-name" data-bind="text:bank_name"></div>
+            <div class="card-name" data-bind="text:card_title"></div>
+            <div class="flexbox">
+                <div class="card-number" data-bind="text:replacePan(card_card_number)"></div>
+                <!--<div class="fee-percent">Комиссия <span data-bind="text:state_feePercent"></span>%</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="money-available">
+    Доступно к выплате
+    <span data-bind="text:money(state_moneyAvailable)"></span>
+    <span class="rouble">*</span>
+
+    <div class="hint" data-bind="toggle:not(state_phoneNumber)">Комиссия 2%, но не менее 75 руб.</div>
+    <div class="error-hint" data-bind="toggle: not(state_canWithdraw)">Минимальная сумма перевода <span
+                data-bind="text: state_minimumWithdraw"></span> руб.
+    </div>
+</div>
+
+<form data-bind="toggle: state_canWithdraw">
+    <div class="flexbox fields">
+        <div class="withdraw-amount">
+            <label>Сумма вывода</label>
+            <input type="tel" name="withdrawAmount"/>
+        </div>
+        <div class="transfer-amount">
+            <label>Сумма к зачислению</label>
+            <input type="tel" name="transferAmount"/>
+
+            <div class="hint">Сумма к зачислению с учетом комиссии <span data-bind="text:state_feePercent"></span>%
+            </div>
+        </div>
+    </div>
+    <button class="button blue filled continue-button">Продолжить</button>
+</form>
+
+

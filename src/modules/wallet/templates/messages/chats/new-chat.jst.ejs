@@ -1,0 +1,49 @@
+<div class="inputs">
+	<div class="input query">
+		<label for="query-input">Найти:</label>
+		<input tabindex="0" type="text" name="query" data-bind="value:trim(state_query), events: ['input', 'paste', 'change']"
+		       autocomplete="off" maxlength="255" id="query-input"/>
+
+		{{ if (Iconto.shared.services.media.available) { }}
+		<a tabindex="-1" class="white" href="/wallet/messages/chat/new/qr" name="qr">QR</a>
+		{{ } }}
+
+	</div>
+	<div class="input location hide">
+		<label for="location-input">Местоположение:</label>
+		<input tabindex="0" type="text" name="location" data-bind="value:trim(state_location), events: ['input', 'paste', 'change']"
+		       autocomplete="off" maxlength="255" id="location-input"/>
+	</div>
+</div>
+<div class="notification" data-bind="classes: { hide: not(state_isGeolocationDisabled)}">
+	<i class="ic-info-circle"></i>
+
+	<div class="content">
+		Для корректного отображения акций и предложений, пожалуйста, разрешите iconto.net определить вашу геопозицию, включите геолокацию.
+	</div>
+</div>
+<!--<div class="input">-->
+<!--<div class="row collapse">-->
+<!--<div class="small-12 medium-6 columns">-->
+
+<!--</div>-->
+<!--<div class="small-12 medium-6 columns">-->
+
+<!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;<div class="text">&ndash;&gt;-->
+<!--&lt;!&ndash;Вы можете написать кому угодно, найдите компанию, с которой хотите пообщаться, мы гарантируем, что ваше сообщение будет доставлено&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="list-wrap" data-scroll>
+	<div class="nearby" data-bind="classes: { hide: state_isGeolocationDisabled}">Рядом с Вами</div>
+	<div class="not-found" data-bind="toggle: state_showNotFoundText">К сожалению, по Вашему запросу ничего не найдено.
+		Попробуйте изменить параметры поиска.
+	</div>
+
+	<div class="list"></div>
+
+	<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingMore"></div>
+</div>

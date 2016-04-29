@@ -1,0 +1,61 @@
+<div class="steps">
+  {{ for (var i=0;i< stepIcons.length;i++) { }}
+  {{ var state = (step - 1) == i ? 'active' : (step - 1) < i ? '' : 'done'; }}
+  <div class="step {{= state }}">
+    <i class="ic-{{= stepIcons[i] }}"></i>
+  </div>
+  {{ if (i< stepIcons.length-1) { }}
+  <div class="flexbox dots">
+    {{ for (var j=0;j< stepIcons.length;j++) { }}
+    <div class="dot{{= (i >= step - 1) ? ' light' : '' }}"></div>
+    {{ } }}
+  </div>
+  {{ } }}
+  {{ } }}
+</div>
+
+<div class="content" data-scroll>
+  <div class="content-padding">
+    <div class="title"><span>Шаг 3.</span> Логотип</div>
+
+    <input type="file" accept="image/jpg, image/png, image/jpeg" class="upload-input needsclick"/>
+    <button class="drop-area needsclick" type="button">
+      <div data-bind="toggle: not(state_hasImage)" class="needsclick">
+        <div class="flexbox circle-block needsclick">
+          <div class="flexbox circle needsclick">
+            <i class="ic-image needsclick"></i>
+          </div>
+        </div>
+
+        <div class="upload-hint text-center needsclick">
+          Перетащите файл в эту область или нажмите <span class="upload needsclick">загрузить</span>
+        </div>
+      </div>
+
+      <div data-bind="toggle: state_hasImage" class="upload-image-block needsclick">
+        <div class="delete-image needsclick">
+          <i class="ic-cross needsclick"></i>
+        </div>
+        <img class="upload-image needsclick"/>
+
+        <div class="progress-bar needsclick"></div>
+      </div>
+
+      <div class="flexbox loader-bubbles-block hide">
+        <div class="loader-bubbles green"></div>
+      </div>
+    </button>
+
+    <div class="hint image-hint">
+      Можно загрузить файл формата JPG или PNG размером не более 1 Мб. Указанное здесь изображение
+      будет использоваться во всех случаях, где будет упомянута ваша компания.
+      Вы cможете сделать это позже. Для этого нажмите кнопку «Пропустить».
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="grey" name="back-button">Назад</button>
+      <button type="button" class="green filled" name="continue-button">Продолжить</button>
+      <button type="button" class="green text" name="skip-button">Пропустить</button>
+    </div>
+  </div>
+</div>

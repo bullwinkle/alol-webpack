@@ -1,0 +1,35 @@
+<div class="header">
+
+	<div class="bank-card-info">
+		<i class="ic-settings"></i>
+		<div class="upper">
+			<div class="info">
+				<div class="bank-name" data-bind="text: bank_name"></div>
+				<div class="title" data-bind="text: title"></div>
+				<div class="card-number" data-bind="text: card_number"></div>
+			</div>
+			<img class="bank-logo" src="" alt=""
+			     data-bind="attr: { src:resize(get(bank_image, 'url'), Iconto.shared.helpers.image.FORMAT_SQUARE_SMALL) }"/>
+		</div>
+		<div class="lower">
+
+			<div data-bind="toggle:is_fulfilled">
+				<div class="has-contract" title="Информация об автовыплате CashBack"
+				     data-bind="toggle:bank_has_contract">Автовыплата CashBack<i class="ic-info-circle"></i>
+				</div>
+			</div>
+
+			<img class="payment-system-logo"
+			     data-bind="toggle: system_id, attr: { src: paymentSystem_image_url, title: paymentSystem_title }"/>
+		</div>
+	</div>
+
+</div>
+
+<div class="list-wrap">
+	<div class="hint" data-bind="toggle:state_isEmpty">
+		Здесь будет показана история зачисления вашего CashBack
+	</div>
+	<div class="list"></div>
+	<div class="loader-bubbles blue" data-bind="toggle: state_isLoadingMore"></div>
+</div>

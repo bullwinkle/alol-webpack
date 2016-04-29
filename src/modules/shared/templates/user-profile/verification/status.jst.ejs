@@ -1,0 +1,44 @@
+{{ var statuses = [{},
+{text:'Данные в обработке',icon:'timer'},
+{text:'Данные не подтверждены',icon:'cross'},
+{text:'Данные подтверждены',icon:'check'}];
+var p = personal_info_status;
+var s = statuses[personal_info_status]; }}
+
+<div class="status status-{{= p }}"><i class="ic-{{= s.icon }}"></i>{{= s.text }}</div>
+
+<div class="wrapper">
+	{{ if (personal_info_status == Iconto.REST.User.PERSONAL_INFO_STATUS_EMPTY) { }}
+	<p>
+		Для осуществления операций с денежными средствами, в соответствии с требованиями
+		законодательства, необходимо пройти процедуру идентификации.
+	</p>
+
+	<p>Вам необходимо подтвердить номер телефона и предоставить идентификационные данные.</p>
+	<a class="button filled theme" href="/{{= state.page }}/verification/confirmation">Подтвердить</a>
+	{{ } }}
+
+	{{ if (personal_info_status == Iconto.REST.User.PERSONAL_INFO_STATUS_PENDING) { }}
+	<p>Процедура обработки данных занимает от 24 часов.</p>
+
+	<p>Спасибо за ожидание!</p>
+
+	<p>Если у вас изменятся паспортные данные, необходимо пройти процедуру повторно.</p>
+	<a class="button filled theme" href="/{{= state.page }}/verification">Подтвердить повторно</a>
+	{{ } }}
+
+	{{ if (personal_info_status == Iconto.REST.User.PERSONAL_INFO_STATUS_CANCEL) { }}
+	<p>Для осуществления операций с денежными средствами в соответствии с требованиями
+		законодательства необходимо пройти процедуру идентификации.</p>
+
+	<p>Вам необходимо предоставить идентификационные данные.</p>
+	<a class="button filled theme" href="/{{= state.page }}/verification">Продолжить</a>
+	{{ } }}
+
+	{{ if (personal_info_status == Iconto.REST.User.PERSONAL_INFO_STATUS_APPROVE) { }}
+	<p>Процедура идентификации успешно завершена.</p>
+
+	<p>Если у вас изменятся паспортные данные, необходимо пройти процедуру повторно.</p>
+	<a class="button filled theme" href="/{{= state.page }}/verification">Подтвердить повторно</a>
+	{{ } }}
+</div>

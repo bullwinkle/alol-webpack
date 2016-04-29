@@ -1,0 +1,37 @@
+<!-- Wrt.to logo -->
+<div class="row wrt-logo">
+  <div class="small-12 medium-6 medium-centered columns text-center">
+    <%= image_tag "wrt/wrt-logo@2x.png" %>
+  </div>
+</div>
+
+<!-- Input -->
+<div class="row input">
+  <div class="small-12 medium-6 medium-centered columns text-center">
+    <header>Регистрация</header>
+    <form name="input-form">
+      <input type="tel" class="company-name" name="login" id="login" placeholder="Номер телефона" maxlength="80">
+      <div class="hint-text"></div>
+      <button>ЗАРЕГИСТРИРОВАТЬСЯ</button>
+      <article>Нажимая на кнопку «Зарегистрироваться»,<br/>Вы подтверждаете свое согласие<br/><a href="/terms" data-bypass target="_blank">с правилами АЛОЛЬ</a></article>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="row">
+    <div class="small-12 medium-6 medium-centered columns">
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <a href="/signin">
+          <button class="signin-center">ВХОД</button>
+        </a>
+      </div>
+
+      <div class="copyright">АЛОЛЬ </div>
+      <%= image_tag "wrt/wrt-logo-small@2x.png", :class => "wrt-logo-small" %>
+    </div>
+  </div>
+</div>

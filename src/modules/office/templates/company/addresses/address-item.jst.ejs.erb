@@ -1,0 +1,10 @@
+<div class="content">
+  <div class="title">{{= address || 'Интернет-представительство' }}</div>
+  {{ if (contact_phone) { }}
+  <div class="phone">+7 {{= Iconto.shared.helpers.phone.format7(contact_phone) }}</div>
+  {{ } else { }}
+  <div class="phone">Телефон не указан</div>
+  {{ } }}
+</div>
+
+<i class="ic-chevron-right"></i>

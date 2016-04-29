@@ -1,0 +1,34 @@
+{{%= outlet('officeTopbar') }}
+<div class="inner-content flexbox flex-column flex-1" data-bind="classes:{hide:state_isLoadingMore}">
+
+	<div class="flex-1 flexbox flex-column text-center inner-2-content">
+		<div class="flex-1 empty-content l-mb-80 l-p-20 l-p-r" data-bind="toggle: state_isEmpty">
+			<div class="l-mb-40">
+				FAQ предназначен для автоответов на стандартные вопросы клиентов в чате.
+			</div>
+			<div class="hint">
+				Нажмите на «+», чтобы создать тему или вопрос.
+			</div>
+		</div>
+
+		<div class="flex-1 flexbox faq-tree-region"></div>
+
+		<div class="overlay" data-bind="classes:{'is-visible':equal(state_name,'action-select')}"></div>
+	</div>
+
+	<div class="flex-0 flexbox list-horizontal" data-bind="classes:{'is-visible':equal(state_name,'action-select')}">
+		<a href="/office/{{= company.id }}/settings/messages/faq-question" class="button theme flex-1 text-center l-p-20 l-mr-10 s-cp add-theme">
+			<div class="icon ic-info-circle l-w-20 l-h-20 l-mb-15 f-sz-20"></div>
+			<div>Добавить <br/> вопрос</div>
+		<a href="/office/{{= company.id }}/settings/messages/faq-theme" class="button theme flex-1 text-center l-p-20 l-ml-10 s-cp add-question">
+			<div class="icon ic-info-circle l-w-20 l-h-20 l-mb-15 f-sz-20"></div>
+			<div>Добавить <br/> тему</div>
+		</a>
+		</a>
+	</div>
+
+	<button class="flex-0 bottom-large filled theme text-center f-sz-30" data-bind="classes:{'active':equal(state_name,'action-select')}">
+		<div class="icon">+</div>
+	</button>
+</div>
+<div class="loader-bubbles theme flex-1" data-bind="toggle: state_isLoadingMore"></div>

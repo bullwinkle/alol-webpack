@@ -1,0 +1,62 @@
+<div class="topbar-region">
+  <nav class="tab-bar">
+    <section class="left-small" style="display: block;">
+      <button class="">
+        <span class="ic-chevron-left"></span>
+      </button>
+    </section>
+
+    <section class="middle tab-bar-section">
+      <div class="table">
+        <div class="table-row">
+          <div class="table-cell">
+            <h6 class="title text-center">Предпросмотр</h6>
+          </div>
+        </div>
+      </div>
+    </section>
+  </nav>
+</div>
+
+<div class="preview-content">
+  <div class="text-center wrt-logo">
+    <%= image_tag 'wrt-logo-white-2.png' %>
+  </div>
+
+  <div class="text-center wrt-moto">
+    Нам важно Ваше мнение!
+  </div>
+
+  <div class="bubble">
+
+    <div class="text-center">
+      <img data-bind="attr: { src:get(company_image, 'url') }" class="company-logo"/>
+    </div>
+
+    <div class="input">
+      <div class="quotes">&ldquo;</div>
+      <div class="corner"><%= image_tag 'wrt-corner.png' %></div>
+      <textarea placeholder="Напишите &mdash; Вас услышат!"></textarea>
+    </div>
+
+    <button class="send">ОТПРАВИТЬ</button>
+
+    <div class="hint text-center">Зарегистрируйтесь, чтобы получить<br/>ответ и привелегии.</div>
+
+    <div class="actions clearfix text-center">
+      <button class="signup">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+      <button class="signin">ВОЙТИ</button>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="inner-footer">
+
+      <%= image_tag 'wrt-logo-color.png', :class => 'wrt-footer-logo' %>
+      <%= image_tag 'alol-black.svg', :class => 'iconto-footer-logo' %>
+
+      <span class="copyright right">АЛОЛЬ </span>
+    </div>
+  </div>
+</div>
